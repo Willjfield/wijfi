@@ -1,0 +1,20 @@
+[
+    {
+        "conference": "FOSS4G 2023",
+        "title": "Many Data Sources, One Web Map",
+        "description": "The 2023 FOSS4G conference lorem ipsum...",
+        "link": "https://www.youtube.com/watch?v=6b4BhirP-_E"
+    },
+    {
+        "conference": "FOSS4G 2022",
+        "title": "Open Back-End for Vector Tile Based Web Apps",
+        "description": "The 2022 FOSS4G conference lorem ipsum...",
+        "link": "https://talks.osgeo.org/foss4g-2022/talk/DCY839/"
+    },
+    {
+        "conference": "NY GeoCon 2019",
+        "title": "Census Hard to Count Map",
+        "description": "Our 2020 census map...",
+        "link": "https://talks.osgeo.org/foss4g-2022/talk/DCY839/"
+    }
+]

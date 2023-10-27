@@ -6,5 +6,45 @@
         "link": "https://www.mygovnyc.org/",
         "thumbnails": ["thumbs/wrm-03.jpg", "thumbs/wrm-02.jpg", "thumbs/wrm-01.jpg"],
         "summary": "The \"Who Represents Me: NYC\" online service allows New York City residents to easily find their elected officials.The service is a joint effort between the Center for Urban Research at The Graduate Center / CUNY and the League of Women Voters of the City of New York and has been developed with the support of the New York Community Trust."
+    },
+    {
+        "employer": "CUNY",
+        "role": "Senior Application Developer",
+        "title": "Redistricting And You",
+        "link": "https://www.mygovnyc.org/",
+        "thumbnails": ["thumbs/wrm-03.jpg", "thumbs/wrm-02.jpg", "thumbs/wrm-01.jpg"],
+        "summary": "The \"Who Represents Me: NYC\" online service allows New York City residents to easily find their elected officials.The service is a joint effort between the Center for Urban Research at The Graduate Center / CUNY and the League of Women Voters of the City of New York and has been developed with the support of the New York Community Trust."
+    },
+    {
+        "employer": "CUNY",
+        "role": "Senior Application Developer",
+        "title": "Hard to Count 2020 Census",
+        "link": "https://www.censushardtocountmaps2020.us/",
+        "thumbnails": ["thumbs/wrm-03.jpg", "thumbs/wrm-02.jpg", "thumbs/wrm-01.jpg"],
+        "summary": "The \"Who Represents Me: NYC\" online service allows New York City residents to easily find their elected officials.The service is a joint effort between the Center for Urban Research at The Graduate Center / CUNY and the League of Women Voters of the City of New York and has been developed with the support of the New York Community Trust."
+    },
+    {
+        "employer": "CUNY",
+        "role": "Senior Application Developer",
+        "title": "Interactive Map of Aging: NYC",
+        "link": "https://imagenyc.nyam.org/map/",
+        "thumbnails": ["thumbs/wrm-03.jpg", "thumbs/wrm-02.jpg", "thumbs/wrm-01.jpg"],
+        "summary": "The \"Who Represents Me: NYC\" online service allows New York City residents to easily find their elected officials.The service is a joint effort between the Center for Urban Research at The Graduate Center / CUNY and the League of Women Voters of the City of New York and has been developed with the support of the New York Community Trust."
+    },
+    {
+        "employer": "CUNY",
+        "role": "Senior Application Developer",
+        "title": "NYC 2021 Primary Election",
+        "link": "https://www.urbanresearchmaps.org/nycrcv2021/",
+        "thumbnails": ["thumbs/wrm-03.jpg", "thumbs/wrm-02.jpg", "thumbs/wrm-01.jpg"],
+        "summary": "The \"Who Represents Me: NYC\" online service allows New York City residents to easily find their elected officials.The service is a joint effort between the Center for Urban Research at The Graduate Center / CUNY and the League of Women Voters of the City of New York and has been developed with the support of the New York Community Trust."
+    },
+    {
+        "employer": "Freelance",
+        "role": "Application Developer",
+        "title": "Working Class History",
+        "link": "https://map.workingclasshistory.com/",
+        "thumbnails": ["thumbs/wrm-03.jpg", "thumbs/wrm-02.jpg", "thumbs/wrm-01.jpg"],
+        "summary": "The \"Who Represents Me: NYC\" online service allows New York City residents to easily find their elected officials.The service is a joint effort between the Center for Urban Research at The Graduate Center / CUNY and the League of Women Voters of the City of New York and has been developed with the support of the New York Community Trust."
     }
 ]

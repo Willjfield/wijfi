@@ -10,46 +10,36 @@
           <v-icon>mdi-github</v-icon>
         </v-btn>
         <v-btn href="https://fosstodon.org/@Wijfi" target="_blank">
-
           <v-icon>mdi-mastodon</v-icon>
         </v-btn>
       </template>
     </v-app-bar>
     <v-main>
-      <v-container class="bg-surface-variant">
-        <v-row class="mb-6" no-gutters>
-          <v-col>
-              <v-card class="pa-2 ma-2">
-                lorem ipsum
-              </v-card>
+      <v-container>
+        <v-row  justify="center" no-gutters>
+          <v-col cols="4" v-for="(project, index) in projects" :key="project.title">
+                <ProjectThumb class="pa-2 ma-2" :project="project" />
           </v-col>
-          <v-col>
-              <v-card class="pa-2 ma-2">
-                lorem ipsum
-              </v-card>
-          </v-col>
-          <v-col>
-              <v-card class="pa-2 ma-2">
-                lorem ipsum
-              </v-card>
-          </v-col>
-          <v-col>
-              <v-card class="pa-2 ma-2">
-                lorem ipsum
-              </v-card>
-          </v-col>
-          <v-col>
-              <v-card class="pa-2 ma-2">
-                lorem ipsum
-              </v-card>
-          </v-col>
+          
         </v-row>
       </v-container>
 
     </v-main>
   </v-app>
 </template>
-
+<script>
+import projects from './assets/projects.json';
+import ProjectThumb from './ProjectThumb.vue';
+export default {
+  name: 'App',
+  components: {
+    ProjectThumb
+  },
+  data: () => ({
+    projects
+  })
+}
+</script>
 <style scoped>
 .logo {
   height: 6em;
