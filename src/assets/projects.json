@@ -1,0 +1,10 @@
+[
+    {
+        "employer": "CUNY",
+        "role": "Senior Application Developer",
+        "title": "Who Represents Me?",
+        "link": "https://www.mygovnyc.org/",
+        "thumbnails": ["thumbs/wrm-03.jpg", "thumbs/wrm-02.jpg", "thumbs/wrm-01.jpg"],
+        "summary": "The \"Who Represents Me: NYC\" online service allows New York City residents to easily find their elected officials.The service is a joint effort between the Center for Urban Research at The Graduate Center / CUNY and the League of Women Voters of the City of New York and has been developed with the support of the New York Community Trust."
+    }
+]
