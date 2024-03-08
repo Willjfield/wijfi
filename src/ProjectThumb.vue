@@ -34,6 +34,7 @@ export default {
 <style>
 .project-thumb img {
     cursor: pointer;
+    object-fit: contain;
 }
 </style>
 <style scoped>
@@ -42,5 +43,9 @@ export default {
 }
 .project-thumb a{
     text-decoration: none;
+}
+
+.project-thumb .v-img__img--cover {
+    object-fit: contain;
 }
 </style>
