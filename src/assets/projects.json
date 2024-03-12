@@ -42,9 +42,8 @@
         "title": "Interactive Map of Aging: NYC",
         "link": "https://imagenyc.nyam.org/map/",
         "thumbnails": [
-            "thumbs/wrm-03.jpg",
-            "thumbs/wrm-02.jpg",
-            "thumbs/wrm-01.jpg"
+            "thumbs/im_01.png",
+            "thumbs/im_02.png"
         ],
         "summary": "The \"Who Represents Me: NYC\" online service allows New York City residents to easily find their elected officials.The service is a joint effort between the Center for Urban Research at The Graduate Center / CUNY and the League of Women Voters of the City of New York and has been developed with the support of the New York Community Trust."
     },
@@ -54,11 +53,10 @@
         "title": "NYC 2021 Primary Election",
         "link": "https://www.urbanresearchmaps.org/nycrcv2021/",
         "thumbnails": [
-            "thumbs/wrm-03.jpg",
-            "thumbs/wrm-02.jpg",
-            "thumbs/wrm-01.jpg"
+            "thumbs/rcv_01.png",
+            "thumbs/rcv_02.png"
         ],
-        "summary": "The \"Who Represents Me: NYC\" online service allows New York City residents to easily find their elected officials.The service is a joint effort between the Center for Urban Research at The Graduate Center / CUNY and the League of Women Voters of the City of New York and has been developed with the support of the New York Community Trust."
+        "summary": "The Center for Urban Research (CUR) at The Graduate Center of the City University of New York (CUNY) has created this NYC Ranked Choice Voting map to help members of the public, journalists, elected officials, and others to understand the hyperlocal patterns of New York's first citywide election using ranked choice voting: the June 22, 2021 primary. Our map visualizes the Democratic primary results for Mayor and Comptroller."
     },
     {
         "employer": "Freelance",
@@ -66,10 +64,9 @@
         "title": "Working Class History",
         "link": "https://map.workingclasshistory.com/",
         "thumbnails": [
-            "thumbs/wrm-03.jpg",
-            "thumbs/wrm-02.jpg",
-            "thumbs/wrm-01.jpg"
+            "thumbs/wch_01.png",
+            "thumbs/wch_02.png"
         ],
-        "summary": "The \"Who Represents Me: NYC\" online service allows New York City residents to easily find their elected officials.The service is a joint effort between the Center for Urban Research at The Graduate Center / CUNY and the League of Women Voters of the City of New York and has been developed with the support of the New York Community Trust."
+        "summary": "This is a map containing the Working Class History project's always-growing archive of Stories of our collective struggles to build a better world."
     }
 ]

@@ -17,7 +17,10 @@ export default {
     data: () => ({}),
     methods: {
         open(e) {
-            if(e.target.classList.contains('v-btn')) return;
+            console.log(e)
+            if(e.target.classList.contains('v-btn') || e.target.classList.contains('v-icon')){ 
+                return;
+            }
             
             this.mitt.emit('open-modal', this.project);
            

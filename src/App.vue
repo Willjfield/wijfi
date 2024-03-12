@@ -15,13 +15,24 @@
       </template>
     </v-app-bar>
     <v-main>
-      <v-container fluid>
-        <v-row  justify="center" no-gutters>
-          <v-col cols="4" v-for="(project, index) in projects" :key="project.title">
+      <h1 class="section-headers">Projects</h1>
+      <v-divider></v-divider>
+      <v-container>
+       
+        <v-row no-gutters>
+          <v-col cols="12" lg="3" md="4" sm="12" v-for="(project, index) in projects" :key="project.title">
                 <ProjectThumb class="pa-2 ma-2" :project="project" />
           </v-col>
-          
         </v-row>
+      </v-container>
+      <h1 class="section-headers">Talks</h1>
+      <v-divider></v-divider>
+      <v-container>
+        <Talks/>
+      </v-container>
+      <h1 class="section-headers">Teaching</h1>
+      <v-divider></v-divider>
+      <v-container>
       </v-container>
       <Modal />
     </v-main>
@@ -30,12 +41,14 @@
 <script>
 import projects from './assets/projects.json';
 import ProjectThumb from './ProjectThumb.vue';
+import Talks from './Talks.vue';
 import Modal from './Modal.vue';
 export default {
   name: 'App',
   components: {
     ProjectThumb,
-    Modal
+    Modal,
+    Talks
   },
   data: () => ({
     projects
@@ -49,6 +62,11 @@ export default {
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
+}
+
+.section-headers{
+  text-align: justify;
+  font-weight: 100;
 }
 
 .logo:hover {

@@ -2,19 +2,18 @@
     {
         "conference": "FOSS4G 2023",
         "title": "Many Data Sources, One Web Map",
-        "description": "The 2023 FOSS4G conference lorem ipsum...",
+        "description": "The Long Island Zoning Atlas is an interactive web map that displays zoning data, public services, and demographic data for municipalities all across Long Island excluding New York City. The project presented a problem very common to GIS projects: transforming data from many different sources, in this cases towns. We were given the data in many different formats and needed to transform it all into clean, usable data which is organized to our needs and renders quickly and efficiently on the web.",
         "link": "https://www.youtube.com/watch?v=6b4BhirP-_E"
     },
     {
         "conference": "FOSS4G 2022",
         "title": "Open Back-End for Vector Tile Based Web Apps",
-        "description": "The 2022 FOSS4G conference lorem ipsum...",
+        "description": "Redistricting is often a complex and complicated process. Given the often rushed nature of redistricting it was crucial to provide fair district advocates, journalists, and lawmakers with accurate maps and data as soon as proposed districts became publicly available. In previous projects, we relied on a mostly proprietary back-end. In 2021, we implemented a new back-end stack to connect our spatial databases to our web sites using FOSS solutions: QGIS, PostGres with PostGIS, Mapbox, and Nodejs. The result is a free, fully customizable solution that is easy to update, maintain, and migrate. ",
         "link": "https://talks.osgeo.org/foss4g-2022/talk/DCY839/"
     },
     {
         "conference": "NY GeoCon 2019",
         "title": "Census Hard to Count Map",
-        "description": "Our 2020 census map...",
-        "link": "https://talks.osgeo.org/foss4g-2022/talk/DCY839/"
+        "description":"On a periodic basis over the course of the 2020 Census, the Center presented an analysis of self-response rates to the coalition of philanthropic foundations and national and regional census stakeholders that are leading the effort in collaboration with the U.S. Census Bureau to help ensure a fair and accurate 2020 Census. Reports highlight trends and changes by geographic area and demographic data, response methods, and more."
     }
 ]
