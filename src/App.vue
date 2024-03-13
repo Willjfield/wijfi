@@ -25,7 +25,7 @@
           </v-col>
         </v-row>
       </v-container>
-      <h1 class="section-headers">Talks</h1>
+      <h1 class="section-headers">Talks and Papers</h1>
       <v-divider></v-divider>
       <v-container>
         <Talks/>
@@ -33,6 +33,7 @@
       <h1 class="section-headers">Teaching</h1>
       <v-divider></v-divider>
       <v-container>
+        <Teaching/>
       </v-container>
       <Modal />
     </v-main>
@@ -42,13 +43,15 @@
 import projects from './assets/projects.json';
 import ProjectThumb from './ProjectThumb.vue';
 import Talks from './Talks.vue';
+import Teaching from './Teaching.vue';
 import Modal from './Modal.vue';
 export default {
   name: 'App',
   components: {
     ProjectThumb,
     Modal,
-    Talks
+    Talks,
+    Teaching
   },
   data: () => ({
     projects
