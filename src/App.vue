@@ -6,6 +6,10 @@
         <h2>Will J Field</h2>
       </v-app-bar-title>
       <template v-slot:append>
+        <v-btn href="mailto:wijfi@protonmail.com">
+          <v-icon>mdi-email</v-icon> 
+          <span class="email-address">wijfi@protonmail.com</span>
+        </v-btn>
         <v-btn href="https://github.com/willjfield" target="_blank">
           <v-icon>mdi-github</v-icon>
         </v-btn>
@@ -67,9 +71,15 @@ export default {
   transition: filter 300ms;
 }
 
+.email-address{
+  text-transform: none;
+  font-size: small;
+}
+
 .section-headers{
   text-align: justify;
   font-weight: 100;
+  margin-left: 24px;
 }
 
 .logo:hover {

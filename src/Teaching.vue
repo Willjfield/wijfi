@@ -2,8 +2,12 @@
     <div
     class="my-4 py-2 px-8"
     >
-    <div  v-for="_class, t in this.teaching" >
-   {{ _class }}
+    <div class="classes" v-for="_class, t in this.teaching" >
+       <b>{{ _class.title}}</b>
+       <br>
+        <i>{{ _class.institution }}</i>
+          {{ _class.year }}
+         
     </div>
     </div>
 </template>
@@ -17,6 +21,10 @@ export default {
 }
 </script>
 <style scoped>
+.classes {
+    text-align: left;
+    margin-bottom: 15px;
+}
 .co-authors {
     font-style: italic;
     font-size: small;

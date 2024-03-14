@@ -3,7 +3,7 @@
         <template v-slot:subtitle>
            {{ this.project.role }}, {{ this.project.employer }} <!-- <a class="external-link" :href="this.project.link">(link)</a> -->
         </template>
-        <v-carousel hide-delimiters show-arrows="hover" height="300">
+        <v-carousel show-arrows="hover" height="300">
             <v-carousel-item max-height="300" v-for="(item, i) in this.project.thumbnails" :key="i" :src="item" cover></v-carousel-item>
         </v-carousel>
 
