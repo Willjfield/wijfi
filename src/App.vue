@@ -2,13 +2,13 @@
 <template>
   <v-app>
     <v-app-bar app color="primary">
-      <v-app-bar-title>
+      <v-app-bar-title style="text-align: left; padding-left: 24px;">
         <h2>Will J Field</h2>
       </v-app-bar-title>
       <template v-slot:append>
         <v-btn href="mailto:wijfi@protonmail.com">
           <v-icon>mdi-email</v-icon> 
-          <span class="email-address">wijfi@protonmail.com</span>
+          <span v-show="$vuetify.display.mdAndUp" class="email-address">wijfi@protonmail.com</span>
         </v-btn>
         <v-btn href="https://github.com/willjfield" target="_blank">
           <v-icon>mdi-github</v-icon>
@@ -19,7 +19,7 @@
       </template>
     </v-app-bar>
     <v-main>
-      <h1 class="section-headers">Projects</h1>
+      <h1 class="section-headers" :style="{'text-align': $vuetify.display.mdAndUp ? 'justify':'center'}">Projects</h1>
       <v-divider></v-divider>
       <v-container>
        
@@ -29,12 +29,12 @@
           </v-col>
         </v-row>
       </v-container>
-      <h1 class="section-headers">Talks and Papers</h1>
+      <h1 class="section-headers" :style="{'text-align': $vuetify.display.mdAndUp ? 'justify':'center'}">Talks & Papers</h1>
       <v-divider></v-divider>
       <v-container>
         <Talks/>
       </v-container>
-      <h1 class="section-headers">Teaching</h1>
+      <h1 class="section-headers" :style="{'text-align': $vuetify.display.mdAndUp ? 'justify':'center'}">Teaching</h1>
       <v-divider></v-divider>
       <v-container>
         <Teaching/>
