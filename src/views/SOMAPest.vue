@@ -45,7 +45,8 @@
                             the Username or Email that you
                             signed up
                             with and I will add
-                            you as a collaborator
+                            you as a collaborator.
+                            <a href="https://docs.qfield.org/get-started/tutorials/get-started-qfc/">Find more information here</a>
 
                         </v-card-text>
                     </v-card>
@@ -58,20 +59,19 @@
                     </v-card>
                     <v-card class="ma-4 pa-4" title="3) Connect to and syncronize the project">
                         <v-card-text>
-                            <a
-                                href="https://app.qfield.cloud/accounts/signup/">https://app.qfield.cloud/accounts/signup/</a>
+                            <video-player class="video-player-elem" src="/videos/QFieldLogin.mp4" />
+                            <v-divider></v-divider>
+                            <video-player class="video-player-elem" src="/videos/QFieldSync.mp4" />
                         </v-card-text>
                     </v-card>
                     <v-card class="ma-4 pa-4" title="4) Update a parcel">
                         <v-card-text>
-                            <a
-                                href="https://app.qfield.cloud/accounts/signup/">https://app.qfield.cloud/accounts/signup/</a>
+                            <video-player class="video-player-elem" src="/videos/QFieldEditParcel.mp4" />
                         </v-card-text>
                     </v-card>
                     <v-card class="ma-4 pa-4" title="5) Push updates">
                         <v-card-text>
-                            <a
-                                href="https://app.qfield.cloud/accounts/signup/">https://app.qfield.cloud/accounts/signup/</a>
+                            <video-player class="video-player-elem" src="/videos/QFieldPushChanges.mp4" />
                         </v-card-text>
                     </v-card>
 
@@ -137,12 +137,23 @@
     width: 100%;
 
 }
+
+.video-player-elem,
+.video-player-elem video {
+    width: 400px;
+    max-width: 100%;
+}
 </style>
 <script>
 import ml from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import 'vue-md-player/dist/style.css'
+import { VideoPlayer } from 'vue-md-player'
 export default {
     name: 'SOMAPest',
+    components: {
+        VideoPlayer
+    },
     data() {
         return {
             useMapping: {
