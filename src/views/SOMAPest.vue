@@ -14,7 +14,7 @@
 
             <v-divider></v-divider>
             <v-sheet class="text-left ma-4 pa-4">
-                <v-card class="ma-4 pa-4" justify="start" title="The Goal">
+                <v-card variant="outlined" class="ma-4 pa-4" justify="start" title="The Goal">
                     <v-card-text>
                         The goal of the project is to collect and make publicly available data about where residential
                         and commercial pesticides are being used in South Orange and Maplewood. The data may be used for
@@ -27,7 +27,8 @@
                     </v-card-text>
                 </v-card>
 
-                <v-card class="ma-4 pa-4" subtitle="How to contribute to the project" title="Contributing">
+                <v-card variant="outlined" class="ma-4 pa-4" subtitle="How to contribute to the project"
+                    title="Contributing">
                     <v-card-text>
                         This section describes how to download and set up the project so that you can contribute data
                         (Steps 1-2) and how to update and share the data (Steps 3-5). The project uses <a
@@ -36,7 +37,7 @@
                         a free
                         online service that syncs data in the QField app.
                     </v-card-text>
-                    <v-card class=" ma-4 pa-4" title="1) Sign up for a free qfield cloud account">
+                    <v-card class="ma-4 pa-4" title="1) Sign up for a free qfield cloud account">
                         <v-card-text>
                             The first step in contributing is to sign up for a free qfield cloud account from
                             <a
@@ -46,7 +47,8 @@
                             signed up
                             with and I will add
                             you as a collaborator.
-                            <a href="https://docs.qfield.org/get-started/tutorials/get-started-qfc/">Find more information here</a>
+                            <a href="https://docs.qfield.org/get-started/tutorials/get-started-qfc/">Find more
+                                information here</a>
 
                         </v-card-text>
                     </v-card>
@@ -59,24 +61,75 @@
                     </v-card>
                     <v-card class="ma-4 pa-4" title="3) Connect to and syncronize the project">
                         <v-card-text>
-                            <video-player class="video-player-elem" src="/videos/QFieldLogin.mp4" />
-                            <v-divider></v-divider>
-                            <video-player class="video-player-elem" src="/videos/QFieldSync.mp4" />
+                            <v-container>
+                                <v-row>
+                                    <v-col cols="4">
+                                        <video-player class="video-player-elem ma-4 pa-1"
+                                            src="/videos/QFieldLogin.mp4" />
+                                    </v-col>
+                                    <v-col cols="8">
+                                        <v-card variant="tonal" class="ma-4">
+                                            <v-card-text> What's happening in the video
+                                            </v-card-text>
+                                        </v-card>
+                                    </v-col>
+                                </v-row>
+                                <v-divider></v-divider>
+                                <v-row>
+                                    <v-col cols="4">
+                                        <video-player class="video-player-elem ma-4 pa-1"
+                                            src="/videos/QFieldSync.mp4" />
+                                    </v-col>
+                                    <v-col cols="8">
+                                        <v-card variant="tonal" class="ma-4">
+                                            <v-card-text> What's happening in the video
+                                            </v-card-text>
+                                        </v-card>
+                                    </v-col>
+                                </v-row>
+                            </v-container>
                         </v-card-text>
                     </v-card>
                     <v-card class="ma-4 pa-4" title="4) Update a parcel">
                         <v-card-text>
-                            <video-player class="video-player-elem" src="/videos/QFieldEditParcel.mp4" />
+                            <v-container>
+                                <v-row>
+                                    <v-col cols="4">
+                                        <video-player class="video-player-elem ma-4 pa-1"
+                                            src="/videos/QFieldEditParcel.mp4" />
+                                    </v-col>
+                                    <v-col cols="8">
+                                        <v-card variant="tonal" class="ma-4">
+                                            <v-card-text> What's happening in the video
+                                            </v-card-text>
+                                        </v-card>
+                                    </v-col>
+                                </v-row>
+                            </v-container>
                         </v-card-text>
                     </v-card>
                     <v-card class="ma-4 pa-4" title="5) Push updates">
                         <v-card-text>
-                            <video-player class="video-player-elem" src="/videos/QFieldPushChanges.mp4" />
+                            <v-container>
+                                <v-row>
+                                    <v-col cols="4">
+                                        <video-player class="video-player-elem ma-4 pa-1"
+                                            src="/videos/QFieldPushChanges.mp4" />
+                                    </v-col>
+                                    <v-col cols="8">
+                                        <v-card variant="tonal" class="ma-4">
+                                            <v-card-text> What's happening in the video
+                                            </v-card-text>
+                                        </v-card>
+                                    </v-col>
+                                </v-row>
+                            </v-container>
+
                         </v-card-text>
                     </v-card>
 
                 </v-card>
-                <v-card class="ma-4 pa-4" title="Output">
+                <v-card variant="outlined" class="ma-4 pa-4" title="Output">
                     <v-card-text>
                         The final output of the project will be an interactive web map to help non-technical users to
                         explore the data, as well as the underlying data in the form of GIS files (geojson and
@@ -140,7 +193,7 @@
 
 .video-player-elem,
 .video-player-elem video {
-    width: 400px;
+    width: 300px;
     max-width: 100%;
 }
 </style>
@@ -175,6 +228,7 @@ export default {
         const map = new ml.Map({
             container: 'map', // container id
             style: '/basic.json', // style URL
+            minZoom: 12,
             center: [-74.2644, 40.73766], // starting position [lng, lat]
             zoom: 12.65 // starting zoom
         });
