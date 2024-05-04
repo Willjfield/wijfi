@@ -47,8 +47,8 @@
                             signed up
                             with and I will add
                             you as a collaborator.
-                            <a href="https://docs.qfield.org/get-started/tutorials/get-started-qfc/">Find more
-                                information here</a>
+                            <a href="https://docs.qfield.org/get-started/tutorials/get-started-qfc/">Find general
+                                information about getting started with qfield here.</a>
 
                         </v-card-text>
                     </v-card>
@@ -69,7 +69,26 @@
                                     </v-col>
                                     <v-col cols="8">
                                         <v-card variant="tonal" class="ma-4">
-                                            <v-card-text> What's happening in the video
+                                            <v-card-text>
+                                                <v-list>
+                                                    <v-list-item>
+                                                        First open the app and choose QFieldCloud projects
+                                                    </v-list-item>
+                                                    <v-list-item>
+                                                        Enter your username and password to login
+                                                    </v-list-item>
+                                                    <v-list-item>
+                                                        If you have emailed <a
+                                                            href="mailto:wijfi@proton.me">wijfi@proton.me</a> with your
+                                                        username and I have added you as a collaborator, you should see
+                                                        Maplewood-Pesticide-Use as a project option
+                                                    </v-list-item>
+                                                    <v-list-item>
+                                                        When you open the project, if you have granted location
+                                                        permissions, you should see an icon showing your location and
+                                                        the tax parcels near you.
+                                                    </v-list-item>
+                                                </v-list>
                                             </v-card-text>
                                         </v-card>
                                     </v-col>
@@ -82,8 +101,31 @@
                                     </v-col>
                                     <v-col cols="8">
                                         <v-card variant="tonal" class="ma-4">
-                                            <v-card-text> What's happening in the video
-                                            </v-card-text>
+                                            <v-list>
+                                                <v-list-item>
+                                                    The first thing you should do when you open the project is to
+                                                    syncronize it. This will make sure that the local version on your
+                                                    phone is up to date. <b>Note: I strongly recommend you do this
+                                                        connected to WiFi both for speed and to save data.</b> But the
+                                                    project is about 20 MB so it may not be a big problem if you need to
+                                                    use mobile data.
+                                                </v-list-item>
+                                                <v-list-item>
+                                                    To syncronize, first open the menu from the "hamburger" icon
+                                                    <v-icon>mdi-menu</v-icon> on the top
+                                                    left.
+                                                </v-list-item>
+                                                <v-list-item>
+                                                    Next, chose the cloud option
+                                                    <v-icon>mdi-cloud</v-icon> on the top
+                                                    and select Synchronize.
+                                                </v-list-item>
+                                                <v-list-item>
+                                                    After synchronization is complete, click the back arrow at the top
+                                                    to go back to the map.
+                                                    <v-icon>mdi-arrow-left</v-icon>
+                                                </v-list-item>
+                                            </v-list>
                                         </v-card>
                                     </v-col>
                                 </v-row>
@@ -100,8 +142,40 @@
                                     </v-col>
                                     <v-col cols="8">
                                         <v-card variant="tonal" class="ma-4">
-                                            <v-card-text> What's happening in the video
-                                            </v-card-text>
+                                            <v-list>
+                                                <v-list-item>
+                                                    Tap the location icon on the lower right of the map
+                                                    <v-icon>mdi-crosshairs-gps</v-icon> and the compass needle on the
+                                                    lower left to switch modes <v-icon>mdi-compass-outline </v-icon>
+                                                    You can either orient the map to your phone's current orientation or
+                                                    orient to fixed North, South, East,West.
+                                                </v-list-item>
+                                                <v-list-item>
+                                                    Tap on a parcel. You may select multiple parcels at once either
+                                                    intentionally or by accident. If you select multiple parcels, you
+                                                    can chose one from the next menu and
+                                                    will see one highlighted on the map and < and> arrows that you can
+                                                        tap to switch between them.
+                                                </v-list-item>
+                                                <v-list-item>
+                                                    When updating a parcel, the first thing you should do is tap the
+                                                    calendar icon <v-icon>mdi-calendar-today</v-icon> which
+                                                    will
+                                                    set the current date.
+                                                </v-list-item>
+                                                <v-list-item>
+                                                    Next chose an option from the dropdown list under PEST_USE. <b>Note:
+                                                        Landscapers/Lawn Companies are grouped together because there
+                                                        are just too many to keep track. If you notice another pesticide
+                                                        company that's not in the drop down, select the "other" option
+                                                        and then email me <a
+                                                            href="mailto:wijfi@proton.me">wijfi@proton.me</a> with the
+                                                        name so that I can add it.</b>
+                                                </v-list-item>
+                                                <v-list-item>
+                                                    Finally, tap check <v-icon>mdi-check</v-icon> to update the
+                                                </v-list-item>
+                                            </v-list>
                                         </v-card>
                                     </v-col>
                                 </v-row>
