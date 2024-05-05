@@ -164,14 +164,22 @@
                                                     set the current date.
                                                 </v-list-item>
                                                 <v-list-item>
-                                                    Next chose an option from the dropdown list under PEST_USE. <b>Note:
-                                                        Landscapers/Lawn Companies are grouped together because there
+                                                    Next chose an option from the dropdown list under PEST_USE.
+                                                    <b>Landscapers/Lawn Companies are grouped together because there
                                                         are just too many to keep track. If you notice another pesticide
                                                         company that's not in the drop down, select the "other" option
                                                         and then email me <a
                                                             href="mailto:wijfi@proton.me">wijfi@proton.me</a> with the
                                                         name so that I can add it.</b>
                                                 </v-list-item>
+                                                <v-list-item>
+                                                    The NOTE field can be used to add any notes that might be relevant.
+                                                    For example if there is something ambiguous about the parcel (eg.
+                                                    parcel boundaries seem to line up) or any other miscellaneous
+                                                    information. (eg. there's a pesticide free sign and a mosquito
+                                                    shield sign in the parcel)
+                                                </v-list-item>
+
                                                 <v-list-item>
                                                     Finally, tap check <v-icon>mdi-check</v-icon> to update the
                                                 </v-list-item>
@@ -192,7 +200,25 @@
                                     </v-col>
                                     <v-col cols="8">
                                         <v-card variant="tonal" class="ma-4">
-                                            <v-card-text> What's happening in the video
+                                            <v-card-text>
+                                                <v-list-item>
+                                                    Push your new updates: first open the menu again from the
+                                                    "hamburger" icon
+                                                    <v-icon>mdi-menu</v-icon> on the top
+                                                    left.
+                                                </v-list-item>
+                                                <v-list-item>
+                                                    Next, chose the cloud option
+                                                    <v-icon>mdi-cloud</v-icon> on the top
+                                                    and select Push changes. (Synchronize will work too but it takes
+                                                    longer and uses more bandwidth because it also downloads new data
+                                                    from the cloud)
+                                                </v-list-item>
+                                                <v-list-item>
+                                                    After you push changes or synchronize, you can click the back arrow
+                                                    <v-icon>mdi-arrow-left</v-icon> to go back to the map or quit the
+                                                    app if you're done.
+                                                </v-list-item>
                                             </v-card-text>
                                         </v-card>
                                     </v-col>
@@ -240,6 +266,10 @@
                                         </tr>
                                     </tbody>
                                 </v-table>
+                            </v-list-item>
+                            <v-list-item title="NOTE">
+                                This field is optional and should usually be left blank. It is for any additional notes
+                                that might be relevant or anything ambiguous about the property.
                             </v-list-item>
                             <v-list-item title="Parcel Geometry">Parcel geometry is provided by NJ.gov<br>
                                 <a href="https://nj.gov/njgin/edata/parcels/">https://nj.gov/njgin/edata/parcels/</a>
