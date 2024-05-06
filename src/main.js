@@ -10,6 +10,7 @@ const app = createApp(App)
 app.provide('mitt', emitter)
 
 const router = createRouter({
+    mode: 'history',
     history: createWebHistory(),
     routes: [
         {
