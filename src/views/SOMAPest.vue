@@ -64,8 +64,9 @@
                             <v-container>
                                 <v-row>
                                     <v-col cols="12" md="4">
-                                        <video-player class="video-player-elem ma-4 pa-1"
-                                            src="/videos/QFieldLogin.mp4" />
+                                        <video-player class="video-player-elem ma-4 pa-1 mb-0"
+                                            src="/videos/QFieldLogin.mp4" /><span class="hint">(click video to
+                                            play)</span>
                                     </v-col>
                                     <v-col cols="12" md="8">
                                         <v-card variant="tonal" class="ma-4">
@@ -99,8 +100,9 @@
                                 <v-divider></v-divider>
                                 <v-row>
                                     <v-col cols="12" md="4">
-                                        <video-player class="video-player-elem ma-4 pa-1"
-                                            src="/videos/QFieldSync.mp4" />
+                                        <video-player class="video-player-elem ma-4 pa-1 mb-0"
+                                            src="/videos/QFieldSync.mp4" /><span class="hint">(click video to
+                                            play)</span>
                                     </v-col>
                                     <v-col cols="12" md="8">
                                         <v-card variant="tonal" class="ma-4">
@@ -163,8 +165,9 @@
 
                                 <v-row>
                                     <v-col cols="12" md="4">
-                                        <video-player class="video-player-elem ma-4 pa-1"
-                                            src="/videos/QFieldEditParcel.mp4" />
+                                        <video-player class="video-player-elem ma-4 pa-1 mb-0"
+                                            src="/videos/QFieldEditParcel.mp4" /><span class="hint">(click video to
+                                            play)</span>
                                     </v-col>
                                     <v-col cols="12" md="8">
                                         <v-card variant="tonal" class="ma-4">
@@ -222,8 +225,9 @@
                             <v-container>
                                 <v-row>
                                     <v-col cols="12" md="4">
-                                        <video-player class="video-player-elem ma-4 pa-1"
-                                            src="/videos/QFieldPushChanges.mp4" />
+                                        <video-player class="video-player-elem ma-4 pa-1 mb-0"
+                                            src="/videos/QFieldPushChanges.mp4" /><span class="hint">(click video to
+                                            play)</span>
                                     </v-col>
                                     <v-col cols="12" md="8">
                                         <v-card variant="tonal" class="ma-4">
@@ -323,6 +327,11 @@
     height: 600px;
     width: 100%;
 
+}
+
+.hint {
+    font-style: italic;
+    font-size: small;
 }
 
 .video-player-elem,
