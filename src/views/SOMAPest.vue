@@ -230,7 +230,16 @@ export default {
             style: '/basic.json', // style URL
             minZoom: 12,
             center: [-74.2644, 40.73766], // starting position [lng, lat]
-            zoom: 12.65 // starting zoom
+            zoom: 12.65, // starting zoom
+            // transformRequest: function (url, resourceType) {
+            //     console.log(url)
+            //     if (url.indexOf('{host_name}') > -1) {
+            //         console.log(url)
+            //         return {
+            //             url: url.replace('{host_name}', window.location.origin+window.location.pathname)
+            //         }
+            //     }
+            // }
         });
 
         map.addControl(new ml.NavigationControl());

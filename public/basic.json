@@ -16,9 +16,9 @@
     },
     "Maplewood": {
       "type": "geojson",
-      "data": "https://wijfi.com/Maplewood.geojson"
+      "data": "/Maplewood.geojson"
     },
-    "SO": {"type": "geojson", "data": "https://wijfi.com/SO.geojson"}
+    "SO": {"type": "geojson", "data": "/SO.geojson"}
   },
   "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=7SGo3nVkTl7JQ90xmJ0i\t",
   "layers": [
