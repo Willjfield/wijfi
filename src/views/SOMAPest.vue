@@ -8,7 +8,13 @@
                     <h1>SOMA Pesticide Map</h1>
                 </v-col>
                 <v-col cols="12" md="8">
-                    <div id="map"></div>
+                    <div id="map" @mouseover="() => showHint = false">
+                        <v-card variant="outlined" :style="{display: !showHint ? 'none' : ''}" class="interact ma-0 pa-4 " justify="start">
+                            <v-card-text> Pan/Zoom the map by dragging with the mouse. <br>
+                                Hover over parcels to get information on pesticide use.
+                            </v-card-text>
+                        </v-card>
+                    </div>
                 </v-col>
             </v-row>
 
@@ -318,6 +324,16 @@
     </v-layout>
 </template>
 <style>
+.interact {
+    position: absolute;
+    z-index: 2;
+    background-color: #eeed;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 #app {
     max-width: none;
     width: 100%;
@@ -352,6 +368,7 @@ export default {
     },
     data() {
         return {
+            showHint: true,
             useMapping: {
 
                 'Lc': 'Lawn Company',
