@@ -2,6 +2,18 @@
     {
         "employer": "CUNY",
         "role": "Senior Application Developer",
+        "title": "Long Island Zoning Atlas",
+        "link": "https://www.longislandzoningatlas.org",
+        "thumbnails": [
+            "thumbs/liz_03.png",
+            "thumbs/liz_02.png",
+            "thumbs/liz_01.png"
+        ],
+        "summary": "The Long Island Zoning Atlas is an innovative online platform, the first of its kind in New York State, providing a comprehensive map of all zoning districts across each of Long Island's 13 towns, two cities, and 90+ incorporated villages. It provides detailed insights into the types of housing permitted in each area, as well as other critical characteristics."
+    },
+    {
+        "employer": "CUNY",
+        "role": "Senior Application Developer",
         "title": "Who Represents Me?",
         "link": "https://www.mygovnyc.org/",
         "thumbnails": [

@@ -1,16 +1,19 @@
 <template v-if="this.project">
-    <v-card @click="open" class="project-thumb" color="primary" variant="tonal" :title="this.project.title">
+    <v-card :style="{ height: $vuetify.display.mdAndUp ? '430px' : 'initial' }" @click="open" class="project-thumb"
+        color="primary" variant="tonal" :title="this.project.title">
         <template v-slot:subtitle>
-           {{ this.project.role }}, {{ this.project.employer }} <!-- <a class="external-link" :href="this.project.link">(link)</a> -->
+            {{ this.project.role }}, {{ this.project.employer }}
+            <!-- <a class="external-link" :href="this.project.link">(link)</a> -->
         </template>
-        <v-carousel show-arrows="hover" height="300">
-            <v-carousel-item max-height="300" v-for="(item, i) in this.project.thumbnails" :key="i" :src="item" cover></v-carousel-item>
+        <v-carousel show-arrows="hover" max-height="300">
+            <v-carousel-item max-height="300" v-for="(item, i) in this.project.thumbnails" :key="i" :src="item"
+                cover></v-carousel-item>
         </v-carousel>
 
     </v-card>
 </template>
 <script>
-import {inject} from 'vue';
+import { inject } from 'vue';
 export default {
     name: 'ProjectThumb',
     props: ['project'],
@@ -18,15 +21,15 @@ export default {
     methods: {
         open(e) {
             console.log(e)
-            if(e.target.classList.contains('v-btn') || e.target.classList.contains('v-icon')){ 
+            if (e.target.classList.contains('v-btn') || e.target.classList.contains('v-icon')) {
                 return;
             }
-            
+
             this.mitt.emit('open-modal', this.project);
-           
+
         }
     },
-    mounted() { 
+    mounted() {
         this.mitt = inject('mitt');
     }
 }
@@ -37,9 +40,23 @@ export default {
     object-fit: contain;
 }
 </style>
-<style scoped>
-.project-thumb{
+<style>
+.project-thumb {
     cursor: pointer;
+
+}
+
+.project-thumb .v-card-item {
+    height: 100px;
+}
+
+.project-thumb .v-card-subtitle {
+    text-overflow: initial !important;
+    white-space: initial !important;
+}
+
+.project-thumb .v-card-title {
+    line-height: 1.25em !important;
 }
 
 .project-thumb:hover {
@@ -48,7 +65,8 @@ export default {
     transform: scale(1.05);
 
 }
-.project-thumb a{
+
+.project-thumb a {
     text-decoration: none;
 }
 
