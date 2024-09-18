@@ -1,5 +1,11 @@
 [
     {
+        "conference": "FOSS4G North America",
+        "title": "How to Make FLOSS Look Good",
+        "co-authors": "Steve Romalewski",
+        "description": "Our team has recently transitioned to a FLOSS stack. FLOSS provides flexibility that proprietary solutions cannot match. This flexibility has been an indispensable asset to our web mapping team. However, a successful user interface requires a consistent style and a good user experience demands a coherent plan, both of which are inherently difficult to forge given too many options. Thus we found, at least at first, that the open-endedness of FLOSS solutions were a UI/UX hurdle rather than an asset. Last spring, we teamed up with UI/UX students at Pratt Institute to come up with solutions for one of our more complex and data heavy web maps: The Long Island Zoning Atlas."
+    },
+    {
         "conference": "CUNY GIS Day 2023",
         "title": "Long Island Zoning Atlas",
         "co-authors": "Steve Romalewski, Valerie Bauer",
