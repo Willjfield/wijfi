@@ -21,7 +21,7 @@
             "thumbs/wrm-02.jpg",
             "thumbs/wrm-01.jpg"
         ],
-        "summary": "The \"Who Represents Me: NYC\" online service allows New York City residents to easily find their elected officials.The service is a joint effort between the Center for Urban Research at The Graduate Center / CUNY and the League of Women Voters of the City of New York and has been developed with the support of the New York Community Trust."
+        "summary": "The \"Who Represents Me: NYC\" online service allows New York City residents to easily find their elected officials. The service is a joint effort between the Center for Urban Research at The Graduate Center / CUNY and the League of Women Voters of the City of New York and has been developed with the support of the New York Community Trust."
     },
     {
         "employer": "CUNY",
@@ -80,5 +80,29 @@
             "thumbs/wch_02.png"
         ],
         "summary": "This is a map containing the Working Class History project's always-growing archive of Stories of our collective struggles to build a better world."
+    },
+    {
+        "employer": "Unified Field",
+        "role": "Software Developer",
+        "title": "Dogs Exhibit - California Science Center",
+        "link": "https://www.unifiedfield.com/projects/california-science-center",
+        "thumbnails": [
+            "thumbs/ufi_01.webp",
+            "thumbs/ufi_02.webp",
+            "thumbs/ufi_03.webp",
+            "thumbs/ufi_04.webp"
+        ],
+        "summary": "Working together with the museum and Evidence Design, Unified Field created 17 digital and physical interactives, linear films and immersive soundscapes that range from the whimsical to the serious and heart-warming, allowing guests to see like a dog, hear like a dog, run like a dog and so much more."
+    },
+    {
+        "employer": "Microsoft Research",
+        "role": "Software Developer",
+        "title": "Project Zanzibar",
+        "link": "https://www.microsoft.com/en-us/research/project/project-zanzibar/",
+        "thumbnails": [
+            "thumbs/mic_01.jpg",
+            "thumbs/mic_02.jpg"
+        ],
+        "summary": "Project Zanzibar is a flexible, portable mat that can sense and track physical objects, identify what they are, and allow you to interact through multi-touch and hover gestures."
     }
 ]

@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="modal" fullscreen>
+  <v-dialog max-width="700" width="auto" v-model="modal">
     <v-card>
       <v-card-actions>
         <v-btn icon="mdi-close" class="close-modal-x" color="primary" @click="modal = false"></v-btn>
