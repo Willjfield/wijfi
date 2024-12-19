@@ -46,7 +46,7 @@
       <iframe allowfullscreen sandbox="allow-top-navigation allow-scripts allow-popups allow-popups-to-escape-sandbox"
         width="100%" height="800" max-height="80dvh" frameborder="0"
         style="border: 1px solid #ccc; border-radius: 4px; overflow: hidden;"
-        src="https://www.mastofeed.com/apiv2/feed?userurl=https%3A%2F%2Ffosstodon.org%2Fusers%2Fwijfi&theme=light&size=100&header=true&replies=false&boosts=true"></iframe>
+        src="https://www.mastofeed.com/apiv2/feed?userurl=https%3A%2F%2Ffosstodon.org%2Fusers%2Fwijfi&theme=light&size=100&header=true&replies=false&boosts=false"></iframe>
     </v-main>
 
   </v-app>
