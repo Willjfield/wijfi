@@ -5,7 +5,7 @@
         <h2>Will J Field</h2>
       </v-app-bar-title>
       <template v-slot:append>
-        <v-btn href="mailto:wijfi@protonmail.com">
+        <v-btn href="mailto:willjfield@proton.me">
           <v-icon>mdi-email</v-icon>
           <span v-show="$vuetify.display.mdAndUp" class="email-address">willjfield@proton.me</span>
         </v-btn>
@@ -24,8 +24,8 @@
       <v-container>
 
         <v-row no-gutters>
-          <v-col class="d-flex child-flex" cols="12" lg="3" md="4" sm="12" v-for="(project, index) in projects" :key="project.title">
-            <ProjectThumb class="pa-0 ma-2" :project="project" />
+          <v-col class="d-flex child-flex pa-2" cols="12" lg="3" md="4" sm="12" v-for="(project, index) in projects" :key="project.title">
+            <ProjectThumb class="pa-0 ma-0" :project="project" />
           </v-col>
         </v-row>
       </v-container>

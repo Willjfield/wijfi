@@ -5,22 +5,24 @@
         <v-card-title> <a class="external-link" :href="this.project.link">{{ project.title }}</a></v-card-title>
         <v-btn icon="mdi-close" class="close-modal-x" color="primary" @click="modal = false"></v-btn>
       </v-card-actions>
-     
+
       <v-card-text class="py-0">
         {{ project.summary }}
         <br>
-        <v-divider></v-divider>
+        <v-card-actions>
+          <v-btn color="primary" prepend-icon="mdi-link" block :href="this.project.link">Visit {{ project.title }}</v-btn>
+        </v-card-actions>
         <br>
         <div class="img-container">
           <v-row>
-            <v-col v-for="(thumbnail, index) in this.project.thumbnails" >
-              <v-img :class="project-image" :src="thumbnail" cover aspect-ratio="1" />
+            <v-col v-for="(thumbnail, index) in this.project.thumbnails">
+              <v-img class="project-images" :src="thumbnail" cover aspect-ratio="1" />
             </v-col>
           </v-row>
         </div>
         <v-divider></v-divider>
         <br>
-        <a target="_blank" class="external-link" :href="this.project.link">Link</a> |
+        <!-- <a target="_blank" class="external-link" :href="this.project.link">Link</a> | -->
         Employer/Client: {{ project.employer }} |
         Role: {{ project.role }}
       </v-card-text>
@@ -63,9 +65,10 @@ export default {
   display: block;
 }
 
-.project-image {
-  max-width: 100%;
-  max-height: 50%;
+.project-images {
+  /* max-width: 100%;
+  max-height: 50%; */
   margin: 0 auto;
+  box-shadow: 1px 1px 10px 1px #9d9d9d;
 }
 </style>

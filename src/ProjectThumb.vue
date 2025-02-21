@@ -3,7 +3,7 @@
         :style="{ width: $vuetify.display.mdAndUp ? '35dvh' : '75%', margin: $vuetify.display.mdAndUp ? 'initial' : '0 auto !important' }"
         @click="open" @mouseenter="hover = true" @mouseleave="hover = false" class="project-thumb pa-0" color="primary"
         variant="tonal">
-        <v-card-item v-show="!hover" density="compact" class="pa-0">
+        <v-card-item  v-show="!hover" density="compact" class="pa-0">
             <template v-slot:title>
                 {{ this.project.title }}
             </template>
@@ -49,6 +49,7 @@ export default {
 .project-thumb {
     cursor: pointer;
     aspect-ratio: 1;
+    background: linear-gradient(45deg, #3949ab33, transparent);
 }
 
 .project-thumb .v-card-item {
