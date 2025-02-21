@@ -24,8 +24,8 @@
       <v-container>
 
         <v-row no-gutters>
-          <v-col cols="12" lg="3" md="4" sm="12" v-for="(project, index) in projects" :key="project.title">
-            <ProjectThumb class="pa-2 ma-2" :project="project" />
+          <v-col class="d-flex child-flex" cols="12" lg="3" md="4" sm="12" v-for="(project, index) in projects" :key="project.title">
+            <ProjectThumb class="pa-0 ma-2" :project="project" />
           </v-col>
         </v-row>
       </v-container>
@@ -66,7 +66,7 @@ export default {
     Teaching
   },
   data: () => ({
-    projects
+    projects: projects.filter(project => project.active)
   }),
   mounted() { }
 }
