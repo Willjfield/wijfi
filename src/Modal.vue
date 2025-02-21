@@ -1,17 +1,22 @@
 <template>
-  <v-dialog max-width="700" width="auto" v-model="modal">
+  <v-dialog max-width="60dvw" width="auto" v-model="modal">
     <v-card>
       <v-card-actions>
+        <v-card-title> <a class="external-link" :href="this.project.link">{{ project.title }}</a></v-card-title>
         <v-btn icon="mdi-close" class="close-modal-x" color="primary" @click="modal = false"></v-btn>
       </v-card-actions>
-      <v-card-title> <a class="external-link" :href="this.project.link">{{ project.title }}</a></v-card-title>
-      <v-card-text>
+     
+      <v-card-text class="py-0">
         {{ project.summary }}
         <br>
         <v-divider></v-divider>
         <br>
         <div class="img-container">
-          <img class="project-image" :src="project.thumbnails[0]">
+          <v-row>
+            <v-col v-for="(thumbnail, index) in this.project.thumbnails" >
+              <v-img :class="project-image" :src="thumbnail" cover aspect-ratio="1" />
+            </v-col>
+          </v-row>
         </div>
         <v-divider></v-divider>
         <br>
@@ -56,9 +61,6 @@ export default {
 
 .img-container {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
 }
 
 .project-image {

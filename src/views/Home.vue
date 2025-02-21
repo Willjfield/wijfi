@@ -24,8 +24,8 @@
       <v-container>
 
         <v-row no-gutters>
-          <v-col cols="12" lg="3" md="4" sm="12" v-for="(project, index) in projects" :key="project.title">
-            <ProjectThumb class="pa-2 ma-2" :project="project" />
+          <v-col class="d-flex child-flex" cols="12" lg="3" md="4" sm="12" v-for="(project, index) in projects" :key="project.title">
+            <ProjectThumb class="pa-0 ma-2" :project="project" />
           </v-col>
         </v-row>
       </v-container>
@@ -43,10 +43,10 @@
         <Teaching />
       </v-container>
       <Modal />
-      <iframe allowfullscreen sandbox="allow-top-navigation allow-scripts allow-popups allow-popups-to-escape-sandbox"
+      <!-- <iframe allowfullscreen sandbox="allow-top-navigation allow-scripts allow-popups allow-popups-to-escape-sandbox"
         width="100%" height="800" max-height="80dvh" frameborder="0"
         style="border: 1px solid #ccc; border-radius: 4px; overflow: hidden;"
-        src="https://www.mastofeed.com/apiv2/feed?userurl=https%3A%2F%2Ffosstodon.org%2Fusers%2Fwijfi&theme=light&size=100&header=true&replies=false&boosts=false"></iframe>
+        src="https://www.mastofeed.com/apiv2/feed?userurl=https%3A%2F%2Ffosstodon.org%2Fusers%2Fwijfi&theme=light&size=100&header=true&replies=false&boosts=false"></iframe> -->
     </v-main>
 
   </v-app>
@@ -66,7 +66,7 @@ export default {
     Teaching
   },
   data: () => ({
-    projects
+    projects: projects.filter(project => project.active)
   }),
   mounted() { }
 }

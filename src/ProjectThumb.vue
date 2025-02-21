@@ -1,15 +1,18 @@
 <template v-if="this.project">
-    <v-card :style="{ height: $vuetify.display.mdAndUp ? '430px' : 'initial' }" @click="open" class="project-thumb"
-        color="primary" variant="tonal" :title="this.project.title">
-        <template v-slot:subtitle>
-            {{ this.project.role }}, {{ this.project.employer }}
-            <!-- <a class="external-link" :href="this.project.link">(link)</a> -->
-        </template>
-        <v-carousel show-arrows="hover" max-height="300">
-            <v-carousel-item max-height="300" v-for="(item, i) in this.project.thumbnails" :key="i" :src="item"
-                cover></v-carousel-item>
-        </v-carousel>
+    <v-card
+        :style="{ width: $vuetify.display.mdAndUp ? '35dvh' : '75%', margin: $vuetify.display.mdAndUp ? 'initial' : '0 auto !important' }"
+        @click="open" @mouseenter="hover = true" @mouseleave="hover = false" class="project-thumb pa-0" color="primary"
+        variant="tonal">
+        <v-card-item v-show="!hover" density="compact" class="pa-0">
+            <template v-slot:title>
+                {{ this.project.title }}
+            </template>
+            <template v-slot:subtitle>
+                {{ this.project.role }}, {{ this.project.employer }}
+            </template>
 
+        </v-card-item>
+        <v-img v-show="hover" :src="this.project.thumbnail" cover aspect-ratio="1"></v-img>
     </v-card>
 </template>
 <script>
@@ -17,7 +20,9 @@ import { inject } from 'vue';
 export default {
     name: 'ProjectThumb',
     props: ['project'],
-    data: () => ({}),
+    data: () => ({
+        hover: false
+    }),
     methods: {
         open(e) {
             console.log(e)
@@ -37,17 +42,17 @@ export default {
 <style>
 .project-thumb img {
     cursor: pointer;
-    object-fit: contain;
+    /* object-fit: contain; */
 }
 </style>
 <style>
 .project-thumb {
     cursor: pointer;
-
+    aspect-ratio: 1;
 }
 
 .project-thumb .v-card-item {
-    height: 100px;
+    height: 100%;
 }
 
 .project-thumb .v-card-subtitle {
@@ -71,6 +76,6 @@ export default {
 }
 
 .project-thumb .v-img__img--cover {
-    object-fit: contain;
+    /* object-fit: contain; */
 }
 </style>

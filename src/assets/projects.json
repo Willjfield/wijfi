@@ -4,6 +4,8 @@
         "role": "Senior Application Developer",
         "title": "Long Island Zoning Atlas",
         "link": "https://www.longislandzoningatlas.org",
+        "active": true,
+        "thumbnail": "thumbs/liz_01.png",
         "thumbnails": [
             "thumbs/liz_03.png",
             "thumbs/liz_02.png",
@@ -16,6 +18,8 @@
         "role": "Senior Application Developer",
         "title": "Who Represents Me?",
         "link": "https://www.mygovnyc.org/",
+        "active": true,
+        "thumbnail": "thumbs/wrm-02.jpg",
         "thumbnails": [
             "thumbs/wrm-03.jpg",
             "thumbs/wrm-02.jpg",
@@ -28,6 +32,8 @@
         "role": "Senior Application Developer",
         "title": "Redistricting And You",
         "link": "https://us.redistrictingandyou.org",
+        "active": true,
+        "thumbnail": "thumbs/ry_04.png",
         "thumbnails": [
             "thumbs/ry_04.png",
             "thumbs/ry_03.png",
@@ -40,6 +46,8 @@
         "role": "Senior Application Developer",
         "title": "Hard to Count 2020 Census",
         "link": "https://www.censushardtocountmaps2020.us/",
+        "active": true,
+        "thumbnail": "thumbs/htc_01.png",
         "thumbnails": [
             "thumbs/htc_01.png",
             "thumbs/htc_02.png",
@@ -53,6 +61,8 @@
         "role": "Senior Application Developer",
         "title": "Interactive Map of Aging: NYC",
         "link": "https://imagenyc.nyam.org/map/",
+        "active": true,
+        "thumbnail": "thumbs/im_01.png",
         "thumbnails": [
             "thumbs/im_01.png",
             "thumbs/im_02.png"
@@ -64,6 +74,8 @@
         "role": "Senior Application Developer",
         "title": "NYC 2021 Primary Election",
         "link": "https://www.urbanresearchmaps.org/nycrcv2021/",
+        "active": true,
+        "thumbnail": "thumbs/rcv_01.png",
         "thumbnails": [
             "thumbs/rcv_01.png",
             "thumbs/rcv_02.png"
@@ -75,6 +87,8 @@
         "role": "Application Developer",
         "title": "Working Class History",
         "link": "https://map.workingclasshistory.com/",
+        "active": true,
+        "thumbnail": "thumbs/wch_01.png",
         "thumbnails": [
             "thumbs/wch_01.png",
             "thumbs/wch_02.png"
@@ -86,6 +100,8 @@
         "role": "Software Developer",
         "title": "Dogs Exhibit - California Science Center",
         "link": "https://www.unifiedfield.com/projects/california-science-center",
+        "active": true,
+        "thumbnail":"thumbs/ufi_01.webp",
         "thumbnails": [
             "thumbs/ufi_01.webp",
             "thumbs/ufi_02.webp",
@@ -99,6 +115,8 @@
         "role": "Software Developer",
         "title": "Project Zanzibar",
         "link": "https://www.microsoft.com/en-us/research/project/project-zanzibar/",
+        "active": true,
+        "thumbnail": "thumbs/mic_01.jpg",
         "thumbnails": [
             "thumbs/mic_01.jpg",
             "thumbs/mic_02.jpg"
