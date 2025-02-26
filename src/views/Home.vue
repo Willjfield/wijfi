@@ -18,7 +18,7 @@
       </template>
     </v-app-bar>
     <v-main>
-      <h1 class="section-headers" :style="{ 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">Projects
+      <h1 class="section-headers" :style="{ 'margin-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">Projects
       </h1>
       <v-divider></v-divider>
       <v-container>
@@ -29,14 +29,13 @@
           </v-col>
         </v-row>
       </v-container>
-      <h1 class="section-headers" :style="{ 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">Talks &
-        Papers
+      <h1 class="section-headers" :style="{'margin-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">Talks &Papers
       </h1>
       <v-divider></v-divider>
       <v-container>
         <Talks />
       </v-container>
-      <h1 class="section-headers" :style="{ 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">Teaching
+      <h1 class="section-headers" :style="{ 'margin-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">Teaching
       </h1>
       <v-divider></v-divider>
       <v-container>
