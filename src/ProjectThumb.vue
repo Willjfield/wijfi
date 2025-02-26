@@ -49,7 +49,8 @@ export default {
 .project-thumb {
     cursor: pointer;
     aspect-ratio: 1;
-    background: linear-gradient(45deg, #3949ab33, transparent);
+    background: linear-gradient(45deg, #e6e9ff, #ffffff);
+    box-shadow: 2px 2px 10px #77889982;
 }
 
 .project-thumb .v-card-item {

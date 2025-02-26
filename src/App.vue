@@ -4,7 +4,7 @@
 </template>
 <style>
 body {
-  background: linear-gradient(-45deg, #3949ab5e, transparent);
+  background: linear-gradient(-45deg, #d3daff, #ffffff);
 }
 #app, .v-application {
   background: none;
