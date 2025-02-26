@@ -12,7 +12,7 @@
             </template>
 
         </v-card-item>
-        <v-img v-show="hover" :src="this.project.thumbnail" cover aspect-ratio="1"></v-img>
+        <v-img v-show="hover" :lazy-src="this.project.thumbnail" :src="this.project.thumbnail" cover aspect-ratio="1"></v-img>
     </v-card>
 </template>
 <script>

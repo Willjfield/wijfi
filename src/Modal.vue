@@ -1,5 +1,5 @@
 <template>
-  <v-dialog max-width="60dvw" width="auto" v-model="modal">
+  <v-dialog :max-width="$vuetify.display.mdAndUp ? '60vw' : 'none'" width="auto" v-model="modal">
     <v-card>
       <v-card-actions>
         <v-card-title> <a class="external-link" :href="this.project.link">{{ project.title }}</a></v-card-title>
