@@ -1,7 +1,7 @@
 <template v-if="this.project">
     <v-card
         :style="{ width: $vuetify.display.mdAndUp ? '35dvh' : '75%', margin: $vuetify.display.mdAndUp ? 'initial' : '0 auto !important' }"
-        @click="open" @mouseenter="hover = true" @mouseleave="hover = false" class="project-thumb pa-0" color="primary"
+        @click="open" @mouseenter="hover = true" @touchend="hover = false" @mouseup="hover = false" @mouseleave="hover = false" class="project-thumb pa-0" color="primary"
         variant="tonal">
         <v-card-item  v-show="!hover" density="compact" class="pa-0">
             <template v-slot:title>
