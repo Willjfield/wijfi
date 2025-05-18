@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     outDir: 'dist',
-    exclude: ['public/videos/','public/videos/*', 'public/*.geojson'],
+    emptyOutDir: true,
+    copyPublicDir: false,
   },
 })
