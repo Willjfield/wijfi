@@ -16,9 +16,8 @@
     },
     "Maplewood": {
       "type": "geojson",
-      "data": "/Maplewood.geojson"
-    },
-    "SO": {"type": "geojson", "data": "/SO.geojson"}
+      "data": "/Maplewood_sm.geojson"
+    }
   },
   "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=7SGo3nVkTl7JQ90xmJ0i\t",
   "layers": [
@@ -134,20 +133,6 @@
       "paint": {
         "fill-color": "#E1EBB0",
         "fill-opacity": {"base": 1, "stops": [[5, 0], [9, 0.75]]}
-      }
-    },
-    {
-      "id": "so",
-      "type": "fill",
-      "source": "SO",
-      "paint": {
-        "fill-color": [
-          "case",
-          ["==", ["get", "PEST_USE"], null],
-          "rgb(200,200,200)",
-          "rgb(200,50,50)"
-        ],
-        "fill-opacity": 0.7
       }
     },
     {
