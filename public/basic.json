@@ -16,7 +16,7 @@
     },
     "Maplewood": {
       "type": "geojson",
-      "data": "/Maplewood_sm.geojson"
+      "data": "/Maplewood_Parcels_md.geojson"
     }
   },
   "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=7SGo3nVkTl7JQ90xmJ0i\t",
