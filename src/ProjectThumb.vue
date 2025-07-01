@@ -49,7 +49,8 @@ export default {
 .project-thumb {
     cursor: pointer;
     aspect-ratio: 1;
-    background: linear-gradient(45deg, #e6e9ff, #ffffff);
+    /* background: linear-gradient(45deg, #e6e9ff, #ffffff); */
+    background: white;
     box-shadow: 2px 2px 10px #77889982;
 }
 
@@ -64,6 +65,7 @@ export default {
 
 .project-thumb .v-card-title {
     line-height: 1.25em !important;
+    padding: 12px;
 }
 
 .project-thumb:hover {

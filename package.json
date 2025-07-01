@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
+    "@turf/turf": "^7.2.0",
+    "maplibre-contour": "^0.1.0",
     "maplibre-gl": "^5.5.0",
     "mitt": "^3.0.1",
     "vue": "^3.4.21",

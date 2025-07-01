@@ -1,5 +1,5 @@
 <template>
-    <v-card v-for="talk, t in this.talks" variant="default" class="mb-0 mt-0 py-2 px-8 talk-card">
+    <v-card v-for="talk, t in this.talks" variant="tonal" class="mb-1 mt-1 py-2 px-8 talk-card">
         <template v-slot:title>
             <!-- :style="{'white-space': $vuetify.display.mdAndUp ? 'nowrap': 'break-spaces'}" -->
             <span class="title-span-talks">{{ talk.title }}</span>
@@ -15,7 +15,7 @@
         <a v-if="talk.link" :href="talk.link">(Link)</a>
         <br>
         <br>
-        <v-divider v-if="t < talks.length - 1"></v-divider>
+        <!-- <v-divider v-if="t < talks.length - 1"></v-divider> -->
     </v-card>
 </template>
 <script>
@@ -30,6 +30,7 @@ export default {
 <style scoped>
 .talk-card {
     text-align: left;
+    background: #ffffff9c;
 }
 .co-authors {
     font-style: italic;
