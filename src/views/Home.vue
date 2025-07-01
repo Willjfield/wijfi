@@ -18,7 +18,7 @@
       </template>
     </v-app-bar>
     <v-main style="padding-top: 0px;">
-      <div id="bg-map"></div>
+      <div id="bg-map"><div id="mask"></div></div>
       <h1 class="section-headers" :style="{ 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">Projects
       </h1>
       <v-divider></v-divider>
@@ -103,7 +103,7 @@ const interpolationSmoothing = 0.15;
           let angleRad = Math.atan2(deltaLng, deltaLat);
           let angleDeg = angleRad * (180 / Math.PI);
           
-          map.setBearing(90-angleDeg);
+        // map.setBearing(360-angleDeg);
 
         map.once("load", () => {
           map.addSource("contour-source", {
@@ -141,7 +141,7 @@ const interpolationSmoothing = 0.15;
         // After map is initialized
         let completion = 0;
         document.addEventListener('scroll', (e) => {
-          completion = window.scrollY / 10000;
+          completion = window.scrollY / 5000;
           // Clamp completion between 0 and 1
           completion = Math.max(0, Math.min(1, completion));
 
@@ -158,8 +158,8 @@ const interpolationSmoothing = 0.15;
           let angleRad = Math.atan2(deltaLng, deltaLat);
           let angleDeg = angleRad * (180 / Math.PI);
           
-          map.setCenter([lng, lat]);
-          map.setBearing(90-angleDeg);
+          map.flyTo({essential: true,center:[lng, lat],roll:90-angleDeg,animate: true, duration: 500});
+         // map.setBearing(90-angleDeg);
         });
   }
 }
@@ -203,18 +203,26 @@ const interpolationSmoothing = 0.15;
 
 </style>
 <style>
+#mask {
+  width: 100%;
+    height: 100%;
+    background: radial-gradient(transparent, transparent, transparent, rgb(198, 182, 84));
+    position: absolute;
+    z-index: 1;
+}
 .maplibregl-canvas{
   
 }
 #bg-map{
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: .2;
-  z-index: 0;
-  filter: invert(1);
+    top: 63px;
+    bottom: 0;
+    left: 0px;
+    width: 100%;
+    /* height: 100%; */
+    opacity: .2;
+    z-index: 0;
+    filter: invert(1);
 }
 .teaching-container {
   background: white !important;
