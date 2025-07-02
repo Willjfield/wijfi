@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <v-app-bar elevation="0" app color="primary">
-      <v-app-bar-title  style="text-align: left; padding-left: 24px;">
-        <h2>Will J Field</h2>
-      </v-app-bar-title>
+       <v-app-bar-title style="text-align: left; padding-left: 24px;">
+        <h3>Will J Field</h3>
+      </v-app-bar-title> 
       <template v-slot:append>
         <v-btn href="mailto:willjfield@proton.me">
           <v-icon>mdi-email</v-icon>
@@ -18,10 +18,18 @@
       </template>
     </v-app-bar>
     <v-main style="padding-top: 0px;">
-      <div id="bg-map">
-        <div id="mask"></div>
+      <div class="between-sections">
+        <div class="d-flex flex-column fill-height justify-center align-center text-white">
+          <h1 class="text-h4 font-weight-thin mb-4">
+            Will Field
+          </h1>
+          <h4 class="subheading">
+            Software Engineer, Map Maker, Computer Graphics Developer
+          </h4>
+        </div>
+        <div class="center"><v-icon color="white" size="x-large">mdi-arrow-down</v-icon></div>
       </div>
-      <div class="between-sections"></div>
+      
       <h1 class="section-headers"
         :style="{ 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">
         Projects
@@ -55,14 +63,19 @@
       <v-container class="section-container teaching-container">
         <Teaching />
       </v-container>
+     
       <Modal />
+     
       <!-- <iframe allowfullscreen sandbox="allow-top-navigation allow-scripts allow-popups allow-popups-to-escape-sandbox"
         width="100%" height="800" max-height="80dvh" frameborder="0"
         style="border: 1px solid #ccc; border-radius: 4px; overflow: hidden;"
         src="https://www.mastofeed.com/apiv2/feed?userurl=https%3A%2F%2Ffosstodon.org%2Fusers%2Fwijfi&theme=light&size=100&header=true&replies=false&boosts=false"></iframe> -->
     </v-main>
-
+   
   </v-app>
+  <div id="bg-map">
+        <div id="mask"></div>
+      </div>
 </template>
 <script>
 import projects from '../assets/projects.json';
@@ -78,8 +91,8 @@ import { createLineInterpolator } from '../utils/interpolateLine';
 import riverPathRaw from '../assets/river_kelvin_path.geojson?raw';
 const riverPath = JSON.parse(riverPathRaw);
 const coordinates = riverPath.features[0].geometry.coordinates;
-    const { interpolate } = createLineInterpolator(coordinates);
-    const interpolationSmoothing = 0.15;
+const { interpolate } = createLineInterpolator(coordinates);
+const interpolationSmoothing = 0.1;
 
 
 export default {
@@ -102,7 +115,7 @@ export default {
 
     // calls maplibregl.addProtocol for the shared cache and contour protocols
     demSource.setupMaplibre(ml);
-    
+
     this.map = new ml.Map({
       container: 'bg-map', // container id
       style: '/contours.json', // style URL,
@@ -117,7 +130,7 @@ export default {
     let angleRad = Math.atan2(deltaLng, deltaLat);
     let angleDeg = (angleRad * (180 / Math.PI)) + 180;
     this.map.flyTo({
-      roll:angleDeg,
+      roll: angleDeg,
       animate: false
     });
 
@@ -154,7 +167,7 @@ export default {
       });
     })
 
-    document.addEventListener('scroll',this.scrollEventHandler);
+    document.addEventListener('scroll', this.scrollEventHandler);
   },
   methods: {
     scrollEventHandler(e) {
@@ -190,6 +203,7 @@ export default {
 .between-sections {
   height: 70lvh;
 }
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -233,9 +247,10 @@ export default {
 #mask {
   width: 100%;
   height: 100%;
-  background: radial-gradient(transparent, transparent, transparent, rgb(198, 182, 84));
+  /* background: radial-gradient(transparent, transparent, transparent, rgb(198, 182, 84)); */
   position: absolute;
   z-index: 1;
+ 
 }
 
 #bg-map {
@@ -245,9 +260,13 @@ export default {
   left: 0px;
   width: 100%;
   /* height: 100%; */
-  opacity: .4;
-  z-index: 0;
+  opacity: 1;
+  z-index: -1;
   filter: invert(1);
+}
+
+#bg-map canvas{
+  filter: blur(3px);
 }
 
 .teaching-container {
