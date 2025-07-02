@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary">
-      <v-app-bar-title style="text-align: left; padding-left: 24px;">
+    <v-app-bar elevation="0" app color="primary">
+      <v-app-bar-title  style="text-align: left; padding-left: 24px;">
         <h2>Will J Field</h2>
       </v-app-bar-title>
       <template v-slot:append>
@@ -18,25 +18,38 @@
       </template>
     </v-app-bar>
     <v-main style="padding-top: 0px;">
-      <div id="bg-map"><div id="mask"></div></div>
-      <h1 class="section-headers" :style="{ 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">Projects
+      <div id="bg-map">
+        <div id="mask"></div>
+      </div>
+      <div class="between-sections"></div>
+      <h1 class="section-headers"
+        :style="{ 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">
+        Projects
       </h1>
       <v-divider></v-divider>
       <v-container class="section-container">
 
         <v-row no-gutters>
-          <v-col class="d-flex child-flex pa-2" cols="12" lg="3" md="4" sm="12" v-for="(project, index) in projects" :key="project.title">
+          <v-col class="d-flex child-flex pa-2" cols="12" lg="3" md="4" sm="12" v-for="(project, index) in projects"
+            :key="project.title">
             <ProjectThumb class="pa-0 ma-0" :project="project" />
           </v-col>
         </v-row>
       </v-container>
-      <h1 class="section-headers" :style="{'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">Talks &Papers
+      <div class="between-sections"></div>
+      <h1 class="section-headers"
+        :style="{ 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">
+        Talks &Papers
       </h1>
       <v-divider></v-divider>
       <v-container class="section-container">
         <Talks />
       </v-container>
-      <h1 class="section-headers" :style="{ 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">Teaching
+      <div class="between-sections"></div>
+
+      <h1 class="section-headers"
+        :style="{ 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">
+        Teaching
       </h1>
       <v-divider></v-divider>
       <v-container class="section-container teaching-container">
@@ -64,9 +77,13 @@ import { createLineInterpolator } from '../utils/interpolateLine';
 
 import riverPathRaw from '../assets/river_kelvin_path.geojson?raw';
 const riverPath = JSON.parse(riverPathRaw);
+const coordinates = riverPath.features[0].geometry.coordinates;
+    const { interpolate } = createLineInterpolator(coordinates);
+    const interpolationSmoothing = 0.15;
+
 
 export default {
-  name: 'App', 
+  name: 'App',
   components: {
     ProjectThumb,
     Modal,
@@ -76,95 +93,103 @@ export default {
   data: () => ({
     projects: projects.filter(project => project.active)
   }),
-  mounted() { 
+  mounted() {
     const demSource = new mlcontour.DemSource({
       url: "https://elevation-tiles-prod.s3.amazonaws.com/terrarium/{z}/{x}/{y}.png",
       encoding: "terrarium",
       maxzoom: 13,
     });
 
-// calls maplibregl.addProtocol for the shared cache and contour protocols
-demSource.setupMaplibre(ml);
-const coordinates = riverPath.features[0].geometry.coordinates;
-const { interpolate } = createLineInterpolator(coordinates);
-const interpolationSmoothing = 0.15;
+    // calls maplibregl.addProtocol for the shared cache and contour protocols
+    demSource.setupMaplibre(ml);
+    
+    this.map = new ml.Map({
+      container: 'bg-map', // container id
+      style: '/contours.json', // style URL,
+      center: coordinates[0], // starting position [lng, lat]
+      zoom: 16,
+      interactive: false,
+    });
+    const [lng2, lat2] = interpolate(interpolationSmoothing);
+    const deltaLng = lng2 - coordinates[0][0];
+    const deltaLat = lat2 - coordinates[0][1];
+    // atan2 for compass bearing: x=deltaLng, y=deltaLat
+    let angleRad = Math.atan2(deltaLng, deltaLat);
+    let angleDeg = (angleRad * (180 / Math.PI)) + 180;
+    this.map.flyTo({
+      roll:angleDeg,
+      animate: false
+    });
 
-    const map = new ml.Map({
-            container: 'bg-map', // container id
-            style: '/contours.json', // style URL,
-            center: coordinates[0], // starting position [lng, lat]
-            zoom: 16, 
-            interactive: false,
-        });
-        const [lng2, lat2] = interpolate(interpolationSmoothing);
-          const deltaLng = lng2 - coordinates[0][0];
-          const deltaLat = lat2 - coordinates[0][1];
-          // atan2 for compass bearing: x=deltaLng, y=deltaLat
-          let angleRad = Math.atan2(deltaLng, deltaLat);
-          let angleDeg = angleRad * (180 / Math.PI);
-          
-        // map.setBearing(360-angleDeg);
+    this.map.once("load", () => {
+      this.map.addSource("contour-source", {
+        type: "vector",
+        tiles: [
+          demSource.contourProtocolUrl({
+            // convert meters to feet, default=1 for meters
+            multiplier: 3.28084,
+            thresholds: {
+              15: [10, 200],
+            },
+            // optional, override vector tile parameters:
+            contourLayer: "contours",
+            elevationKey: "ele",
+            levelKey: "level",
+            extent: 4096,
+            buffer: 1,
+          }),
+        ],
+        maxzoom: 15,
+      });
+      this.map.addLayer({
+        id: "contour-lines",
+        type: "line",
+        source: "contour-source",
+        "source-layer": "contours",
+        paint: {
+          "line-color": "rgba(0,0,0, 100%)",
+          // level = highest index in thresholds array the elevation is a multiple of
+          "line-width": ["match", ["get", "level"], 1, 1, .5],
+        },
+      });
+    })
 
-        map.once("load", () => {
-          map.addSource("contour-source", {
-          type: "vector",
-          tiles: [
-            demSource.contourProtocolUrl({
-              // convert meters to feet, default=1 for meters
-              multiplier: 3.28084,
-              thresholds: {
-                15: [10, 200],
-              },
-              // optional, override vector tile parameters:
-              contourLayer: "contours",
-              elevationKey: "ele",
-              levelKey: "level",
-              extent: 4096,
-              buffer: 1,
-            }),
-          ],
-          maxzoom: 15,
-        });
-        map.addLayer({
-          id: "contour-lines",
-          type: "line",
-          source: "contour-source",
-          "source-layer": "contours",
-          paint: {
-            "line-color": "rgba(0,0,0, 100%)",
-            // level = highest index in thresholds array the elevation is a multiple of
-            "line-width": ["match", ["get", "level"], 1, 1, .5],
-          },
-        });
-        })
-        
-        // After map is initialized
-        let completion = 0;
-        document.addEventListener('scroll', (e) => {
-          completion = window.scrollY / 5000;
-          // Clamp completion between 0 and 1
-          completion = Math.max(0, Math.min(1, completion));
+    document.addEventListener('scroll',this.scrollEventHandler);
+  },
+  methods: {
+    scrollEventHandler(e) {
+      let completion = window.scrollY / document.body.offsetHeight;
+      // Clamp completion between 0 and 1
+      completion = Math.max(0, Math.min(1, completion));
+      const [lng, lat] = interpolate(completion);
 
-          const [lng, lat] = interpolate(completion);
+      // Compute direction for bearing
+      let t2 = completion + interpolationSmoothing;
+      if (t2 > 1) t2 = 1;
+      const [lng2, lat2] = interpolate(t2);
+      const deltaLng = lng2 - lng;
+      const deltaLat = lat2 - lat;
+      // atan2 for compass bearing: x=deltaLng, y=deltaLat
+      let angleRad = Math.atan2(deltaLng, deltaLat);
+      let angleDeg = (angleRad * (180 / Math.PI)) + 180;
 
-          // Compute direction for bearing
+      this.map.flyTo({
+        essential: true,
+        center: [lng, lat],
+        roll: angleDeg,
+        animate: false,
+        duration: 500
+      });
 
-          let t2 = completion + interpolationSmoothing;
-          //if (t2 > 1) t2 = 1;
-          const [lng2, lat2] = interpolate(t2);
-          const deltaLng = lng2 - lng;
-          const deltaLat = lat2 - lat;
-          // atan2 for compass bearing: x=deltaLng, y=deltaLat
-          let angleRad = Math.atan2(deltaLng, deltaLat);
-          let angleDeg = angleRad * (180 / Math.PI);
-          
-          map.flyTo({essential: true,center:[lng, lat],roll:90-angleDeg,animate: true, duration: 500});
-         // map.setBearing(90-angleDeg);
-        });
+      // this.map.setBearing(90-angleDeg);
+    }
   }
 }
 </script>
 <style scoped>
+.between-sections {
+  height: 70lvh;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -189,41 +214,42 @@ const interpolationSmoothing = 0.15;
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .section-container {
   /* background: white; */
   background: #ffffffac;
 
 }
+
 .section-container .v-row * {
   justify-content: center;
 }
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
-
 </style>
 <style>
 #mask {
   width: 100%;
-    height: 100%;
-    background: radial-gradient(transparent, transparent, transparent, rgb(198, 182, 84));
-    position: absolute;
-    z-index: 1;
+  height: 100%;
+  background: radial-gradient(transparent, transparent, transparent, rgb(198, 182, 84));
+  position: absolute;
+  z-index: 1;
 }
-.maplibregl-canvas{
-  
-}
-#bg-map{
+
+#bg-map {
   position: fixed;
-    top: 63px;
-    bottom: 0;
-    left: 0px;
-    width: 100%;
-    /* height: 100%; */
-    opacity: .2;
-    z-index: 0;
-    filter: invert(1);
+  top: 63px;
+  bottom: 0;
+  left: 0px;
+  width: 100%;
+  /* height: 100%; */
+  opacity: .4;
+  z-index: 0;
+  filter: invert(1);
 }
+
 .teaching-container {
   background: white !important;
 }
