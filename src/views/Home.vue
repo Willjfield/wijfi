@@ -63,7 +63,7 @@
       <v-container class="section-container teaching-container">
         <Teaching />
       </v-container>
-     
+      <div class="between-sections"></div>
       <Modal />
      
       <!-- <iframe allowfullscreen sandbox="allow-top-navigation allow-scripts allow-popups allow-popups-to-escape-sandbox"
@@ -88,11 +88,21 @@ import mlcontour from "maplibre-contour";
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { createLineInterpolator } from '../utils/interpolateLine';
 
-import riverPathRaw from '../assets/river_kelvin_path.geojson?raw';
-const riverPath = JSON.parse(riverPathRaw);
-const coordinates = riverPath.features[0].geometry.coordinates;
+
+import glasgow from '../assets/river_kelvin_path.geojson?raw';
+const riverPath = JSON.parse(glasgow);
+
+import south_mountain from '../assets/south_mountain_rahway.geojson?raw';
+const southMountainPath = JSON.parse(south_mountain);
+
+import tivoli_bay from '../assets/tivoli_bay.geojson?raw';
+const tivoliBay = JSON.parse(tivoli_bay);
+
+const allPaths = [riverPath,southMountainPath,tivoliBay];
+const usedPath = Math.floor(Math.random()*3);
+let coordinates = allPaths[usedPath].features[0].geometry.coordinates;
 const { interpolate } = createLineInterpolator(coordinates);
-const interpolationSmoothing = 0.1;
+const interpolationSmoothing = 0.15;
 
 
 export default {
@@ -110,7 +120,7 @@ export default {
     const demSource = new mlcontour.DemSource({
       url: "https://elevation-tiles-prod.s3.amazonaws.com/terrarium/{z}/{x}/{y}.png",
       encoding: "terrarium",
-      maxzoom: 13,
+      maxzoom: 16,
     });
 
     // calls maplibregl.addProtocol for the shared cache and contour protocols
@@ -122,19 +132,20 @@ export default {
       center: coordinates[0], // starting position [lng, lat]
       zoom: 16,
       interactive: false,
+      terrain: true,
+      pitch: 60
     });
-    const [lng2, lat2] = interpolate(interpolationSmoothing);
-    const deltaLng = lng2 - coordinates[0][0];
-    const deltaLat = lat2 - coordinates[0][1];
-    // atan2 for compass bearing: x=deltaLng, y=deltaLat
-    let angleRad = Math.atan2(deltaLng, deltaLat);
-    let angleDeg = (angleRad * (180 / Math.PI)) + 180;
-    this.map.flyTo({
-      roll: angleDeg,
-      animate: false
-    });
+    this.scrollEventHandler();
 
     this.map.once("load", () => {
+      this.map.addSource("terrain-source", {
+        type: "raster-dem",
+        encoding: "terrarium",
+        tiles: [
+          "https://elevation-tiles-prod.s3.amazonaws.com/terrarium/{z}/{x}/{y}.png"
+        ]
+      });
+
       this.map.addSource("contour-source", {
         type: "vector",
         tiles: [
@@ -170,18 +181,24 @@ export default {
     document.addEventListener('scroll', this.scrollEventHandler);
   },
   methods: {
-    scrollEventHandler(e) {
+    scrollEventHandler() {
       let completion = window.scrollY / document.body.offsetHeight;
       // Clamp completion between 0 and 1
       completion = Math.max(0, Math.min(1, completion));
       const [lng, lat] = interpolate(completion);
 
       // Compute direction for bearing
-      let t2 = completion + interpolationSmoothing;
-      if (t2 > 1) t2 = 1;
-      const [lng2, lat2] = interpolate(t2);
-      const deltaLng = lng2 - lng;
-      const deltaLat = lat2 - lat;
+      let tNext = completion + interpolationSmoothing;
+      tNext = Math.max(0, Math.min(1, tNext));
+      const [lng2, lat2] = interpolate(tNext);
+
+      let tPrev = completion - interpolationSmoothing;
+      tPrev = Math.max(0, Math.min(1, tPrev));
+      const [lng1, lat1] = interpolate(tPrev);
+
+      // Compute direction for bearing
+      const deltaLng = lng2 - lng1;
+      const deltaLat = lat2 - lat1;
       // atan2 for compass bearing: x=deltaLng, y=deltaLat
       let angleRad = Math.atan2(deltaLng, deltaLat);
       let angleDeg = (angleRad * (180 / Math.PI)) + 180;
@@ -189,7 +206,7 @@ export default {
       this.map.flyTo({
         essential: true,
         center: [lng, lat],
-        roll: angleDeg,
+        bearing: angleDeg,
         animate: false,
         duration: 500
       });
@@ -201,7 +218,7 @@ export default {
 </script>
 <style scoped>
 .between-sections {
-  height: 70lvh;
+  height: 80lvh;
 }
 
 .logo {

@@ -13,8 +13,19 @@
     "openmaptiles": {
       "type": "vector",
       "url": "https://api.maptiler.com/tiles/v3/tiles.json?key=7SGo3nVkTl7JQ90xmJ0i\t"
+    },
+    "terrainSource": {
+      "type": "raster-dem",
+      "encoding": "terrarium",
+      "tiles": [
+        "https://elevation-tiles-prod.s3.amazonaws.com/terrarium/{z}/{x}/{y}.png"
+      ]
     }
   },
+  "terrain": {
+    "source": "terrainSource",
+    "exaggeration": 3
+},
   "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=7SGo3nVkTl7JQ90xmJ0i\t",
   "layers": [
     {
