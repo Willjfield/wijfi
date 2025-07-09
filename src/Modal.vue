@@ -39,24 +39,33 @@ export default {
   data() {
     return {
       modal: false,
-      project: {}
+      project: {},
+      mitt: inject('mitt')
     }
   },
   mounted() {
 
-    const mitt = inject('mitt');
-    mitt.on('open-modal', (project) => {
+    
+    this.mitt.on('open-modal', (project) => {
       this.project = project;
       this.modal = true;
     });
 
+  },
+  watch: {
+    modal(val) {
+     
+      if (!val) {
+        
+        this.mitt.emit('close-modal');
+      }
+    }
   }
 }
 </script>
 <style scoped>
 .close-modal-x {
-  position: absolute;
-  right: 0;
+  margin: -8px -8px 0px 0px;
   font-size: x-large;
   font-family: sans-serif;
 }
