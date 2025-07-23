@@ -178,8 +178,6 @@ export default {
           self.loading = false;
         })
       }
-      
-      
     }
   },
   async mounted() {
@@ -217,13 +215,18 @@ export default {
 
       try {
         await this.init(this.coordinates);
-       this.map.once("load", () => {
-          self.loading = false;
-        })
+      
       } catch (e) {
-         this.map.once("load", () => {
+        //  this.map.once("load", () => {
+        //   self.loading = false;
+        // })
+      } finally {
+        this.map.once("load", () => {
           self.loading = false;
+          document.body.classList.add("body-ready")
+        
         })
+        
       }
   },
   methods: {
@@ -383,6 +386,9 @@ export default {
 }
 </style>
 <style>
+.body-ready{
+  background: linear-gradient(90deg, #01178527, #011785aa,#011785aa,#011785aa,#01178527);
+}
 .river-select-item {
   background: rgb(57, 73, 171);
   color: white;
