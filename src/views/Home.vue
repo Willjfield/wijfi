@@ -250,10 +250,10 @@ export default {
         container: 'bg-map', // container id
         style: '/contours.json', // style URL,
         center: _startingCoordinates, // starting position [lng, lat]
-        zoom: 16,
+        zoom: 17,
         interactive: false,
         terrain: true,
-        pitch: 60
+        pitch: 50
       });
 
       this.map.once("data", () => {
@@ -296,23 +296,25 @@ export default {
           source: "contour-source",
           "source-layer": "contours",
           paint: {
-            "line-color": "rgba(255,0,0, 100%)",
+            "line-color": "rgba(0,255,255, 100%)",
             // level = highest index in thresholds array the elevation is a multiple of
-            "line-width": 2//["match", ["get", "level"], 2, 0, .5],
+            "line-width": 3,
+            "line-blur":1.5//["match", ["get", "level"], 2, 0, .5],
           },
-        }, 'water');
+        }, 'landcover_wood');
         _map.addLayer({
           id: "contour-lines",
           type: "line",
           source: "contour-source",
           "source-layer": "contours",
           paint: {
-            "line-color": "rgba(0,0,0, 100%)",
+            "line-color": "rgba(255,255,255, 100%)",
             // level = highest index in thresholds array the elevation is a multiple of
             "line-width": 1,
+            "line-blur":.2
           },
         },'water');
-
+        
       })
 
     },
@@ -446,11 +448,11 @@ export default {
   /* height: 100%; */
   opacity: 1;
   z-index: -1;
-  filter: invert(1);
+  /* filter: contrast(2); */
 }
 
 #bg-map canvas {
-  filter: blur(2px);
+  filter: blur(1px);
 }
 
 .teaching-container {

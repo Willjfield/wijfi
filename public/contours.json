@@ -31,7 +31,7 @@
     {
       "id": "background",
       "type": "background",
-      "paint": {"background-color": "hsl(47, 26%, 100%)"}
+      "paint": {"background-color": "hsl(0, 0%, 0%)"}
     },
     {
       "id": "landuse-residential",
@@ -79,7 +79,7 @@
         ["!=", "brunnel", "tunnel"]
       ],
       "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "hsl(50, 100%, 73%)"}
+      "paint": {"fill-color": "hsl(200, 100%, 25%)"}
     },
     {
       "id": "water_intermittent",
@@ -88,7 +88,7 @@
       "source-layer": "water",
       "filter": ["all", ["==", "$type", "Polygon"], ["==", "intermittent", 1]],
       "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "hsl(50, 100%, 73%)", "fill-opacity": 1}
+      "paint": {"fill-color": "hsl(200, 100%, 25%)", "fill-opacity": 1}
     },
     {
       "id": "landcover-ice-shelf",
@@ -158,7 +158,7 @@
       ],
       "layout": {"visibility": "visible"},
       "paint": {
-        "line-color": "hsl(50, 100%, 73%)",
+        "line-color": "hsl(200, 100%, 25%)",
         "line-dasharray": [3, 3],
         "line-gap-width": {"stops": [[12, 0], [20, 6]]},
         "line-opacity": 1,
@@ -178,7 +178,7 @@
       ],
       "layout": {"visibility": "visible"},
       "paint": {
-        "line-color": "hsl(50, 100%, 73%)",
+        "line-color": "hsl(200, 100%, 25%)",
         "line-opacity": 1,
         "line-width": {"base": 1.4, "stops": [[8, 1], [20, 8]]}
       }
@@ -196,7 +196,7 @@
       ],
       "layout": {"visibility": "visible"},
       "paint": {
-        "line-color": "hsl(50, 100%, 73%)",
+        "line-color": "hsl(200, 100%, 25%)",
         "line-dasharray": [2, 1],
         "line-opacity": 1,
         "line-width": {"base": 1.4, "stops": [[8, 1], [20, 8]]}
@@ -529,7 +529,7 @@
       ],
       "layout": {"line-cap": "round", "line-join": "round", "visibility": "visible"},
       "paint": {
-        "line-color": "hsl(50, 100%, 73%)",
+        "line-color": "hsl(200, 100%, 25%)",
         "line-width": {"base": 1.55, "stops": [[4, 0.25], [20, 30]]}
       }
     },
