@@ -30,7 +30,7 @@ export default {
 <style scoped>
 .talk-card {
     text-align: left;
-    background: #ffffff9c;
+    background: #ffffffff;
 }
 .co-authors {
     font-style: italic;

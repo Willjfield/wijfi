@@ -24,14 +24,14 @@
   },
   "terrain": {
     "source": "terrainSource",
-    "exaggeration": 2
+    "exaggeration": 3
 },
   "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=7SGo3nVkTl7JQ90xmJ0i\t",
   "layers": [
     {
       "id": "background",
       "type": "background",
-      "paint": {"background-color": "hsl(47, 26%, 100%)"}
+      "paint": {"background-color": "hsl(47, 26%, 88%)"}
     },
     {
       "id": "landuse-residential",
@@ -43,7 +43,7 @@
         ["==", "$type", "Polygon"],
         ["in", "class", "residential", "suburb", "neighbourhood"]
       ],
-      "layout": {"visibility": "none"},
+      "layout": {"visibility": "visible"},
       "paint": {"fill-color": "hsl(47, 13%, 86%)", "fill-opacity": 1}
     },
     {
@@ -52,7 +52,6 @@
       "source": "openmaptiles",
       "source-layer": "landcover",
       "filter": ["==", "class", "grass"],
-      "layout":{ "visibility": "none"},
       "paint": {"fill-color": "hsl(182, 26%, 72%)", "fill-opacity": 0.45}
     },
     {
@@ -61,7 +60,6 @@
       "source": "openmaptiles",
       "source-layer": "landcover",
       "filter": ["==", "class", "wood"],
-      "layout":{ "visibility": "none"},
       "paint": {
         "fill-color": "hsl(182, 26%, 72%)",
         "fill-opacity": {"base": 1, "stops": [[8, 0.6], [22, 1]]}
@@ -96,7 +94,7 @@
       "source": "openmaptiles",
       "source-layer": "landcover",
       "filter": ["==", "subclass", "ice_shelf"],
-      "layout": {"visibility": "none"},
+      "layout": {"visibility": "visible"},
       "paint": {"fill-color": "hsl(47, 26%, 88%)", "fill-opacity": 0.8}
     },
     {
@@ -105,7 +103,7 @@
       "source": "openmaptiles",
       "source-layer": "landcover",
       "filter": ["==", "subclass", "glacier"],
-      "layout": {"visibility": "none"},
+      "layout": {"visibility": "visible"},
       "paint": {
         "fill-color": "hsl(47, 22%, 94%)",
         "fill-opacity": {"base": 1, "stops": [[0, 1], [8, 0.5]]}
@@ -118,7 +116,6 @@
       "source": "openmaptiles",
       "source-layer": "landcover",
       "filter": ["all", ["in", "class", "sand"]],
-      "layout":{ "visibility": "none"},
       "paint": {
         "fill-antialias": false,
         "fill-color": "rgba(232, 214, 38, 1)",
@@ -131,7 +128,7 @@
       "source": "openmaptiles",
       "source-layer": "landuse",
       "filter": ["==", "class", "agriculture"],
-      "layout": {"visibility": "none"},
+      "layout": {"visibility": "visible"},
       "paint": {"fill-color": "#eae0d0"}
     },
     {
@@ -140,7 +137,6 @@
       "source": "openmaptiles",
       "source-layer": "landcover",
       "filter": ["==", "class", "national_park"],
-      "layout":{ "visibility": "none"},
       "paint": {
         "fill-color": "#E1EBB0",
         "fill-opacity": {"base": 1, "stops": [[5, 0], [9, 0.75]]}
@@ -156,7 +152,7 @@
         ["==", "$type", "LineString"],
         ["==", "brunnel", "tunnel"]
       ],
-      "layout": {"visibility": "visible"},
+      "layout": {"visibility": "none"},
       "paint": {
         "line-color": "hsl(50, 100%, 73%)",
         "line-dasharray": [3, 3],
@@ -176,7 +172,7 @@
         ["!in", "brunnel", "tunnel", "bridge"],
         ["!=", "intermittent", 1]
       ],
-      "layout": {"visibility": "visible"},
+      "layout": {"visibility": "none"},
       "paint": {
         "line-color": "hsl(50, 100%, 73%)",
         "line-opacity": 1,
@@ -260,7 +256,7 @@
       "source": "openmaptiles",
       "source-layer": "transportation",
       "filter": ["all", ["==", "$type", "Polygon"], ["==", "class", "pier"]],
-      "layout": {"visibility": "none"},
+      "layout": {"visibility": "visible"},
       "paint": {"fill-antialias": true, "fill-color": "hsl(47, 26%, 88%)"}
     },
     {
@@ -371,7 +367,7 @@
         ["==", "$type", "Polygon"],
         ["in", "class", "runway", "taxiway"]
       ],
-      "layout": {"visibility": "none"},
+      "layout": {"visibility": "visible"},
       "paint": {
         "fill-color": "rgba(255, 255, 255, 1)",
         "fill-opacity": {"base": 1, "stops": [[13, 0], [14, 1]]}
@@ -510,7 +506,7 @@
         ["==", "$type", "LineString"],
         ["==", "brunnel", "bridge"]
       ],
-      "layout": {"line-cap": "butt", "line-join": "miter", "visibility": "visible"},
+      "layout": {"line-cap": "butt", "line-join": "miter", "visibility": "none"},
       "paint": {
         "line-color": "#bbbbbb",
         "line-gap-width": {"base": 1.55, "stops": [[4, 0.25], [20, 30]]},
@@ -527,7 +523,7 @@
         ["==", "$type", "LineString"],
         ["==", "brunnel", "bridge"]
       ],
-      "layout": {"line-cap": "round", "line-join": "round", "visibility": "visible"},
+      "layout": {"line-cap": "round", "line-join": "round", "visibility": "none"},
       "paint": {
         "line-color": "hsl(50, 100%, 73%)",
         "line-width": {"base": 1.55, "stops": [[4, 0.25], [20, 30]]}

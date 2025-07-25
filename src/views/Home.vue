@@ -75,6 +75,7 @@
       <v-container class="section-container teaching-container">
         <Teaching />
       </v-container>
+     
       <div class="between-sections"></div>
       <Modal />
 
@@ -83,7 +84,13 @@
         style="border: 1px solid #ccc; border-radius: 4px; overflow: hidden;"
         src="https://www.mastofeed.com/apiv2/feed?userurl=https%3A%2F%2Ffosstodon.org%2Fusers%2Fwijfi&theme=light&size=100&header=true&replies=false&boosts=false"></iframe> -->
     </v-main>
-
+    <v-container class="end-container">
+        <!-- <v-card> -->
+          Site by Will Field available on <a href="https://github.com/Willjfield/wijfi">Github</a><br>
+          Data from <a href="https://www.openstreetmaps.org" >OpenStreetMaps</a><br>
+          Visualized using <a href="https://www.maplibre.org"> MapLibreGLJS</a>
+        <!-- </v-card> -->
+      </v-container>
   </v-app>
   <div id="bg-map">
    
@@ -264,26 +271,36 @@ export default {
             "https://elevation-tiles-prod.s3.amazonaws.com/terrarium/{z}/{x}/{y}.png"
           ]
         });
-
-        _map.addSource("contour-source", {
-          type: "vector",
-          tiles: [
-            this.demSource.contourProtocolUrl({
-              // convert meters to feet, default=1 for meters
+        let _protocolSettings = {
               multiplier: 3.28084,
               thresholds: {
                 15: [10, 200],
               },
-              // optional, override vector tile parameters:
               contourLayer: "contours",
               elevationKey: "ele",
               levelKey: "level",
               extent: 4096,
               buffer: 1,
-            }),
+            }
+        _map.addSource("contour-source", {
+          type: "vector",
+          tiles: [
+          this.demSource.contourProtocolUrl(_protocolSettings)
           ],
           maxzoom: 15,
         });
+
+        _map.addLayer({
+          id: "contour-lines-1",
+          type: "line",
+          source: "contour-source",
+          "source-layer": "contours",
+          paint: {
+            "line-color": "rgba(255,0,0, 100%)",
+            // level = highest index in thresholds array the elevation is a multiple of
+            "line-width": 2//["match", ["get", "level"], 2, 0, .5],
+          },
+        }, 'water');
         _map.addLayer({
           id: "contour-lines",
           type: "line",
@@ -292,9 +309,9 @@ export default {
           paint: {
             "line-color": "rgba(0,0,0, 100%)",
             // level = highest index in thresholds array the elevation is a multiple of
-            "line-width": ["match", ["get", "level"], 1, 1, .5],
+            "line-width": 1,
           },
-        });
+        },'water');
 
       })
 
@@ -384,8 +401,18 @@ export default {
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
+
 </style>
 <style>
+
+.end-container{
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  font-weight: light;
+  text-align: right;
+  color: white;
+}
 .body-ready{
   background: linear-gradient(90deg, #01178527, #011785aa,#011785aa,#011785aa,#01178527);
 }
@@ -423,7 +450,7 @@ export default {
 }
 
 #bg-map canvas {
-  filter: blur(3px);
+  filter: blur(2px);
 }
 
 .teaching-container {
