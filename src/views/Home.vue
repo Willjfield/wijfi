@@ -268,8 +268,7 @@ export default {
               contourLayer: "contours",
               elevationKey: "ele",
               levelKey: "level",
-              extent: 4096,
-              interval: 1,
+              extent: 8192,
               buffer: 1,
             }
         _map.addSource("contour-source", {
@@ -285,7 +284,7 @@ export default {
           source: "contour-source",
           "source-layer": "contours",
           paint: {
-            "line-color": "rgba(153, 213, 255,100%)",//"rgba(0,255,255, 100%)",
+            "line-color": "rgba(153, 213, 255,80%)",//"rgba(0,255,255, 100%)",
             // level = highest index in thresholds array the elevation is a multiple of
             "line-width": 2,
             "line-blur":1//["match", ["get", "level"], 2, 0, .5],
