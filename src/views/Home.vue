@@ -78,27 +78,16 @@
      
       <div class="between-sections"></div>
       <Modal />
-
-      <!-- <iframe allowfullscreen sandbox="allow-top-navigation allow-scripts allow-popups allow-popups-to-escape-sandbox"
-        width="100%" height="800" max-height="80dvh" frameborder="0"
-        style="border: 1px solid #ccc; border-radius: 4px; overflow: hidden;"
-        src="https://www.mastofeed.com/apiv2/feed?userurl=https%3A%2F%2Ffosstodon.org%2Fusers%2Fwijfi&theme=light&size=100&header=true&replies=false&boosts=false"></iframe> -->
     </v-main>
     <v-container class="end-container">
-        <!-- <v-card> -->
           Site by Will Field available on <a href="https://github.com/Willjfield/wijfi">Github</a><br>
           Data from <a href="https://www.openstreetmaps.org" >OpenStreetMaps</a><br>
           Visualized using <a href="https://www.maplibre.org"> MapLibreGLJS</a>
-        <!-- </v-card> -->
       </v-container>
   </v-app>
   <div id="bg-map">
-   
     <div id="loading-screen" :class="{ active: loading }"></div>
-    <div id="mask" ></div>
-   
-   
-
+    <!-- <div id="mask" :class="{ active: !loading }"></div> -->
   </div>
 
    
@@ -272,22 +261,22 @@ export default {
           ]
         });
         let _protocolSettings = {
-              multiplier: 3.28084,
+              multiplier: 3.28084*2,
               thresholds: {
-                15: [10, 200],
+                1: [4, 150],
               },
               contourLayer: "contours",
               elevationKey: "ele",
               levelKey: "level",
               extent: 4096,
+              interval: 1,
               buffer: 1,
             }
         _map.addSource("contour-source", {
           type: "vector",
           tiles: [
           this.demSource.contourProtocolUrl(_protocolSettings)
-          ],
-          maxzoom: 15,
+          ]
         });
 
         _map.addLayer({
@@ -296,10 +285,10 @@ export default {
           source: "contour-source",
           "source-layer": "contours",
           paint: {
-            "line-color": "rgba(0,255,255, 100%)",
+            "line-color": "rgba(153, 213, 255,100%)",//"rgba(0,255,255, 100%)",
             // level = highest index in thresholds array the elevation is a multiple of
-            "line-width": 3,
-            "line-blur":1.5//["match", ["get", "level"], 2, 0, .5],
+            "line-width": 2,
+            "line-blur":1//["match", ["get", "level"], 2, 0, .5],
           },
         }, 'landcover_wood');
         _map.addLayer({
@@ -310,7 +299,7 @@ export default {
           paint: {
             "line-color": "rgba(255,255,255, 100%)",
             // level = highest index in thresholds array the elevation is a multiple of
-            "line-width": 1,
+            "line-width": .1,
             "line-blur":.2
           },
         },'water');
@@ -416,7 +405,8 @@ export default {
   color: white;
 }
 .body-ready{
-  background: linear-gradient(90deg, #01178527, #011785aa,#011785aa,#011785aa,#01178527);
+  
+  background: linear-gradient(90deg, rgba(57, 73, 171,0), rgba(57, 73, 171,.5),rgba(57, 73, 171,.6),rgba(57, 73, 171,.6),rgba(57, 73, 171,.5),rgba(57, 73, 171,0));
 }
 .river-select-item {
   background: rgb(57, 73, 171);
@@ -430,14 +420,7 @@ export default {
 
 }
 
-#mask {
-  width: 100%;
-  height: 100%;
-  /* background: radial-gradient(transparent, transparent, transparent, rgb(198, 182, 84)); */
-  position: fixed;
-  z-index: 1;
 
-}
 
 #bg-map {
   position: fixed;
@@ -448,6 +431,7 @@ export default {
   /* height: 100%; */
   opacity: 1;
   z-index: -1;
+  
   /* filter: contrast(2); */
 }
 
@@ -488,36 +472,19 @@ export default {
   bottom: 0;
   right: 0;
   opacity: 0;
-  transition: opacity 2s ease-out;
-  transition-delay: 1s;
-  background: rgb(171 165 57);
+  transition: opacity 2s ease-in-out;
+  /* transition-delay: 1s; */
+  background: rgb(57, 73, 171);
   justify-content: center;
   align-items: center;
   text-align: center;
   pointer-events: none;
 }
-@keyframes fadeInOut {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+
 #loading-screen.active{
   pointer-events: all;
-  /* animation: fadeInOut 2s ease-in-out;
-  animation-direction: normal;
-  animation-fill-mode: forwards; */
    opacity: 1;
   transition: opacity .05s ease-in-out;
 }
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
+
 </style>
