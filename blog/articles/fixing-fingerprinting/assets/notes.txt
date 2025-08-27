@@ -1,0 +1,55 @@
+Summary of thread in #maplibre-gl-js
+Jul 8 - 14
+11 messages11
+5 users5
+@Will Field reported an issue with terrain glitches on their Fairphone 4 device running the /e/os Android fork and using the DuckDuckGo browser. @Harel Mazor explained this is likely due to image privacy protection measures in the browser that add noise to the terrain data. They discussed potential mitigations like discarding pixels above a certain elevation threshold.
+Less detail
+
+    @Will Field noticed terrain glitches on their Fairphone 4 device with /e/os and DuckDuckGo browser [1]
+    @Harel Mazor said this is due to image privacy protection measures in browsers that add noise to images [2]
+    @Will Field suggested an optional setting to discard pixels that are different from neighbors by a certain threshold [3]
+    @wipfli agreed this could be a good idea, like discarding pixels above 100,000m elevation [4]
+    @Luke could not find documentation on browsers adding noise to images for privacy [5], [6]
+==================================
+Hey I looked through github issues and didn't see this come up but I noticed that on my phone only (Fairphone 4, /e/os android fork, duckduckgo browser) terrain produces strange glitches (see eg. screenshot of the terrain demo attached). Is this a known issue? I assume it has something to do with tessellation and happy to try fixing it if I can unless it's already known and being addressed. (edited) 
+Screenshot_20250707-141651_DuckDuckGo.png 
+Screenshot_20250707-141651_DuckDuckGo.png
+10 replies
+  Jul 8th at 6:24 PM
+There are some reports on it for other browsers in the past.
+This is due to image privacy protection, where the browser changes some pixels in the images to add some privacy protection or something.
+We have tried to overcome it in the past, but if the browser doesn't give us the terrain RGB image without adding noise, this is what will happen...
+  Jul 8th at 6:36 PM
+oh interesting. Good to know. If it's common enough, I wonder if there could be an optional setting to discard pixels from dem data that are a certain threshold different from neighboring pixels.
+  Jul 9th at 7:40 AM
+That is actually a good idea. Maybe one could even discard pixels if the elevation is above a certain, configurable threshold. For example if it is more than 100'000 m or so...
+:new-york:  Jul 10th at 9:51 PM
+this is super interesting, is there any documentation on this feature from any browser that changes image pixels to preserve privacy? I’ve never heard of this and can’t find any resources about how the intended effect works
+9:53
+I can’t seem to find anything online that suggests any browsers add noise to images to preserve privacy
+  Jul 14th at 6:36 PM
+@Luke I’m not aware of any docs on it, but it’s been reported at least on brave and firefox, both being open source, so their maintainers can maybe help point in the right direction of their respective browser repo:Brave Browser - https://github.com/brave/brave-browser/issues/25149
+Firefox - https://github.com/maplibre/maplibre-gl-js/issues/3537 (edited) 
+:new-york:  Jul 14th at 6:49 PM
+awesome, i found a lot of helpful context in the linked issue 3110for context, the fingerprinting vector is not by being able to read back pixels from source images, the fingerprinting vector is in reading pixel data from arbitrary canvases—e.g. drawing text to a canvas and reading back the pixel values will end up encoding a lot of entropy from the user’s OS/font rendering stack, including potentially details about graphics hardware, display configuration, and which fonts they do or don’t have installed locallyit seems like the problematic approach in maplibre-gl-js is that it attempts to read pixel values from an image by (1) drawing that image to a canvas and (2) reading the raw image values back from the canvas.the latter step is what gets noise added by privacy-sensitive browsing environments’ “anti-fingerprinting” measures (edited) 
+6:54
+so in order to achieve
+> the browser doesn’t give us the terrain RGB image without adding noise
+maplibre-gl-js would need an alternate approach to unpacking the pixel data from the image source into a buffer, ie one that doesn’t rely on reading back from a canvas.There’s some work (3185) on using WebCodecs as a “more direct” channel for retrieving pixel values from source images, so now it seems like this issue should only affect browsers without webcodecs support
+6:57
+the video half of webcodecs (which that PR, #3185, uses)  was an interop 2023 target so it should have pretty broad browser support in recent browsers? (edited) 
+6:58
+I don’t know the exact browser stack used by DDG browser on e/os though
+==================================
+Summary of thread in #maplibre-gl-js
+Jul 14 - 15
+12 messages12
+3 users3
+@wipfli proposed an alternative encoding method using Hilbert mapping to map similar elevations to similar colors, as an alternative to adding random noise to pixels in images. @Mike Barry mentioned looking into similar approaches before for lossy image compression. The discussion explored the trade-offs of different encoding and compression techniques.
+Less detail
+
+    @wipfli described a Hilbert-based encoding approach that maps elevation values to RGB colors [1]
+    @wipfli shared examples of the Hilbert encoding compared to the usual terrarium encoding [1], [2]
+    @Mike Barry noted they had looked into similar approaches before for lossy image compression, but the quality was poor [3]
+    @Blayne Chard suggested exploring options for compressing and serving float32 data directly, rather than serving as images [4]
+    @Blayne Chard discussed using JPEG-XL and Zstandard compression as alternatives to image formats [5], [6]
