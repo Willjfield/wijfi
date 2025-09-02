@@ -12,13 +12,14 @@
   "sources": {
     "openmaptiles": {
       "type": "vector",
-      "url": "https://api.maptiler.com/tiles/v3/tiles.json?key=7SGo3nVkTl7JQ90xmJ0i\t"
+      "url": "https://api.maptiler.com/tiles/v3/tiles.json?key=7SGo3nVkTl7JQ90xmJ0i"
     },
     "terrainSource": {
       "type": "raster-dem",
       "encoding": "terrarium",
+      "maxzoom": 15,
       "tiles": [
-        "https://elevation-tiles-prod.s3.amazonaws.com/terrarium/{z}/{x}/{y}.png"
+        "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"
       ]
     }
   },

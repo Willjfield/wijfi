@@ -103,10 +103,7 @@
   </v-app>
   <div id="bg-map" v-show="displayMap">
     <div id="loading-screen" :class="{ active: loading }"></div>
-    <!-- <div id="mask" :class="{ active: !loading }"></div> -->
   </div>
-
-
 </template>
 <script>
 import { inject } from 'vue';
@@ -163,10 +160,25 @@ export default {
     displayMap: true,
     webglSupported: true,
     autoAnimation: 0,
+    animationSpeed: .5,
     selection: riverNames[initialIdx],
     coordinates: allPaths[initialIdx].features[0].geometry.coordinates,
   }),
   watch: {
+    displayMap(val){
+      if(val){
+        document.body.classList.add("body-ready");
+      }else{
+        document.body.classList.remove("body-ready");
+      }
+    },
+    loading(val){
+      if(val){
+        document.body.classList.remove("body-ready");
+      }else{
+        document.body.classList.add("body-ready");
+      }
+    },
     /**
      * Update the river coordinates when the selection changes. If the selection has not changed, do nothing.
      * @param {string} val - The new selection value.
@@ -184,10 +196,10 @@ export default {
       const self = this;
       try {
         await this.init(this.coordinates);
-        this.map.once("load", () => {
-          self.loading = false;
-        })
       } catch (e) {
+        this.displayMap = false;
+        this.loading = false;
+      } finally {
         this.map.once("load", () => {
           self.loading = false;
         })
@@ -208,7 +220,7 @@ export default {
       if (start === undefined) {
         start = timestamp;
       }
-      self.autoAnimation += .000075;
+      self.autoAnimation += .000075*self.animationSpeed;
       if (self.autoAnimation > 1) self.autoAnimation = 0;
       self.scrollEventHandler();
 
@@ -218,9 +230,9 @@ export default {
     requestAnimationFrame(step);
 
     this.demSource = new mlcontour.DemSource({
-      url: "https://elevation-tiles-prod.s3.amazonaws.com/terrarium/{z}/{x}/{y}.png",
+      url:"https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
       encoding: "terrarium",
-      maxzoom: 16,
+      maxzoom: 15,
     });
 
     this.demSource.setupMaplibre(ml);
@@ -232,15 +244,14 @@ export default {
 
     } catch (e) {
       this.displayMap = false;
-      //  this.map.once("load", () => {
-      //   self.loading = false;
-      // })
     } finally {
-      if (!this.displayMap) return;
+      if (!this.displayMap || !this.webglSupported) {
+        this.loading = false;
+        return;
+      }
       this.map.once("load", () => {
         self.loading = false;
-        document.body.classList.add("body-ready")
-
+        this.displayMap = true;
       })
 
     }
@@ -250,6 +261,8 @@ export default {
       if (!this.isWebglSupported()) {
         this.webglSupported = false;
         throw new Error('WebGL disabled or not supported');
+      }else{
+        console.log("webgl supported")
       }
       let _startingCoordinates = coordinates[0];
       this.autoAnimation = 0;
@@ -272,11 +285,9 @@ export default {
       this.map.once("data", () => {
         document.addEventListener('scroll', this.scrollEventHandler);
         this.scrollEventHandler();
-      })
-      let _map = this.map;
-      let _self = this;
-      this.map.once("idle", () => {
 
+       let _map = this.map;
+        console.log("load")
         _map.addSource("terrain-source", {
           type: "raster-dem",
           encoding: "terrarium",
@@ -284,6 +295,7 @@ export default {
             "https://elevation-tiles-prod.s3.amazonaws.com/terrarium/{z}/{x}/{y}.png"
           ]
         });
+        console.log('here')
         let _protocolSettings = {
           multiplier: 3.28084 * 2,
           thresholds: {
@@ -327,11 +339,13 @@ export default {
           },
         }, 'water');
 
+          this.displayMap = true;
+          this.loading = false;
       })
 
     },
     scrollEventHandler() {
-      let completion = window.scrollY / document.body.offsetHeight;
+      let completion = (window.scrollY*this.animationSpeed) / document.body.offsetHeight;
       completion += this.autoAnimation;
 
       if (window.scrollY / window.innerHeight > 0.667 || this.modalOpen) {
@@ -358,7 +372,10 @@ export default {
       // atan2 for compass bearing: x=deltaLng, y=deltaLat
       let angleRad = Math.atan2(deltaLng, deltaLat);
       let angleDeg = (angleRad * (180 / Math.PI)) + 180;
-      if (!this.displayMap) return;
+      if (!this.displayMap) {
+        console.log("not displaying map")
+        return;
+      }
       this.map.flyTo({
         essential: true,
         center: [lng, lat],
@@ -366,8 +383,6 @@ export default {
         animate: false,
         duration: 500
       });
-
-      // this.map.setBearing(90-angleDeg);
     },
     isWebglSupported() {
       if (window.WebGLRenderingContext) {
