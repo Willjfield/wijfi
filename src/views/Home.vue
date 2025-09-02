@@ -1,43 +1,59 @@
 <template>
   <v-app>
-    
+
     <v-app-bar elevation="0" app color="primary">
       <v-app-bar-title style="text-align: left; padding-left: 24px;">
         <h3>Will J Field</h3>
       </v-app-bar-title>
       <template v-slot:append>
-        <v-btn href="mailto:willjfield@proton.me">
+        <v-btn stacked href="mailto:willjfield@proton.me">
           <v-icon>mdi-email</v-icon>
           <span v-show="$vuetify.display.mdAndUp" class="email-address">willjfield@proton.me</span>
         </v-btn>
-        <v-btn href="https://github.com/willjfield" target="_blank">
-          <v-icon>mdi-github</v-icon>
+        <v-btn stacked href="/protected" target="_blank">
+          <v-icon>mdi-file-account</v-icon>
+          <span v-show="$vuetify.display.mdAndUp" class="email-address">Resume <v-icon
+              size="x-small">mdi-lock</v-icon></span>
         </v-btn>
-        <v-btn href="https://fosstodon.org/@Wijfi" target="_blank">
+        <v-btn stacked href="https://github.com/willjfield" target="_blank">
+          <v-icon>mdi-github</v-icon>
+          <span v-show="$vuetify.display.mdAndUp" class="email-address">Github</span>
+
+        </v-btn>
+        <v-btn stacked href="https://fosstodon.org/@Wijfi" target="_blank">
           <v-icon>mdi-mastodon</v-icon>
+          <span v-show="$vuetify.display.mdAndUp" class="email-address">Mastodon</span>
         </v-btn>
       </template>
-      
+
     </v-app-bar>
     <v-main style="padding-top: 0px;">
-    
-      <v-select v-show="!this.hideSelectRiver" prependInner-icon="mdi-map" icon-color="white" density="compact"
-        bg-color="primary" class="map-select" :items="rivers" v-model="selection">
+      <v-select v-show="!this.hideSelectRiver && displayMap" prependInner-icon="mdi-map" icon-color="white"
+        density="compact" bg-color="primary" class="map-select" :items="rivers" v-model="selection">
         <template v-slot:item="{ props: itemProps, item }">
           <v-list-item class="map-select-item" v-bind="itemProps"></v-list-item>
         </template>
       </v-select>
+      <v-switch v-model="displayMap" density="compact" class="map-switch" color="white" inset>
+        <template #label>
+          <div class="text-white text-small">
+            {{ displayMap ? 'Remove Background' : 'Add Background' }}
+          </div>
+        </template>
+        <template #thumb>
+          <v-icon >{{ displayMap ? 'mdi-map-minus' : 'mdi-map-plus' }}</v-icon>
+        </template>
+      </v-switch>
       <div class="between-sections">
 
         <div class="d-flex flex-column fill-height justify-center align-center text-white">
+
           <h1 class="text-h4 font-weight-thin mb-4">
             Will Field
           </h1>
           <h4 class="subheading">
             Software Engineer, Map Maker, Computer Graphics Developer
-
           </h4>
-
         </div>
         <div class="center"><v-icon color="white" size="x-large">mdi-arrow-down</v-icon></div>
       </div>
@@ -75,22 +91,22 @@
       <v-container class="section-container teaching-container">
         <Teaching />
       </v-container>
-     
+
       <div class="between-sections"></div>
       <Modal />
     </v-main>
     <v-container class="end-container">
-          Site by Will Field available on <a href="https://github.com/Willjfield/wijfi">Github</a><br>
-          Data from <a href="https://www.openstreetmaps.org" >OpenStreetMaps</a><br>
-          Visualized using <a href="https://www.maplibre.org"> MapLibreGLJS</a>
-      </v-container>
+      Site by Will Field available on <a href="https://github.com/Willjfield/wijfi">Github</a><br>
+      Data from <a href="https://www.openstreetmaps.org">OpenStreetMaps</a><br>
+      Visualized using <a href="https://www.maplibre.org"> MapLibreGLJS</a>
+    </v-container>
   </v-app>
-  <div id="bg-map">
+  <div id="bg-map" v-show="displayMap">
     <div id="loading-screen" :class="{ active: loading }"></div>
     <!-- <div id="mask" :class="{ active: !loading }"></div> -->
   </div>
 
-   
+
 </template>
 <script>
 import { inject } from 'vue';
@@ -144,6 +160,7 @@ export default {
     modalOpen: false,
     idx: initialIdx,
     loading: true,
+    displayMap: true,
     autoAnimation: 0,
     selection: riverNames[initialIdx],
     coordinates: allPaths[initialIdx].features[0].geometry.coordinates,
@@ -160,13 +177,13 @@ export default {
       this.idx = newVal;
       this.loading = true;
       this.coordinates = allPaths[this.idx].features[0].geometry.coordinates;
-     
+
       this.interpolator = createLineInterpolator(this.coordinates);
-      
+
       const self = this;
       try {
         await this.init(this.coordinates);
-         this.map.once("load", () => {
+        this.map.once("load", () => {
           self.loading = false;
         })
       } catch (e) {
@@ -179,10 +196,10 @@ export default {
   async mounted() {
     let self = this;
 
-    inject('mitt').on('open-modal',()=>{
+    inject('mitt').on('open-modal', () => {
       self.modalOpen = true;
     })
-    inject('mitt').on('close-modal',()=>{
+    inject('mitt').on('close-modal', () => {
       self.modalOpen = false;
     });
     let start;
@@ -190,11 +207,11 @@ export default {
       if (start === undefined) {
         start = timestamp;
       }
-      self.autoAnimation+=.000075;
-      if(self.autoAnimation > 1) self.autoAnimation = 0;
+      self.autoAnimation += .000075;
+      if (self.autoAnimation > 1) self.autoAnimation = 0;
       self.scrollEventHandler();
 
-        requestAnimationFrame(step);
+      requestAnimationFrame(step);
     }
 
     requestAnimationFrame(step);
@@ -209,24 +226,30 @@ export default {
     this.coordinates = allPaths[this.idx].features[0].geometry.coordinates;
     this.interpolator = createLineInterpolator(this.coordinates);
 
-      try {
-        await this.init(this.coordinates);
-      
-      } catch (e) {
-        //  this.map.once("load", () => {
-        //   self.loading = false;
-        // })
-      } finally {
-        this.map.once("load", () => {
-          self.loading = false;
-          document.body.classList.add("body-ready")
-        
-        })
-        
-      }
+    try {
+      await this.init(this.coordinates);
+
+    } catch (e) {
+      this.displayMap = false;
+      //  this.map.once("load", () => {
+      //   self.loading = false;
+      // })
+    } finally {
+      if (!this.displayMap) return;
+      this.map.once("load", () => {
+        self.loading = false;
+        document.body.classList.add("body-ready")
+
+      })
+
+    }
   },
   methods: {
     async init(coordinates) {
+      if (!this.isWebglSupported()) {
+        // console.error('WebGL disabled or not supported');
+        throw new Error('WebGL disabled or not supported');
+      }
       let _startingCoordinates = coordinates[0];
       this.autoAnimation = 0;
       if (this.map) this.map.remove();
@@ -250,9 +273,9 @@ export default {
         this.scrollEventHandler();
       })
       let _map = this.map;
-      let _self= this;
+      let _self = this;
       this.map.once("idle", () => {
-        
+
         _map.addSource("terrain-source", {
           type: "raster-dem",
           encoding: "terrarium",
@@ -261,20 +284,20 @@ export default {
           ]
         });
         let _protocolSettings = {
-              multiplier: 3.28084*2,
-              thresholds: {
-                1: [4, 150],
-              },
-              contourLayer: "contours",
-              elevationKey: "ele",
-              levelKey: "level",
-              extent: 8192,
-              buffer: 1,
-            }
+          multiplier: 3.28084 * 2,
+          thresholds: {
+            1: [4, 150],
+          },
+          contourLayer: "contours",
+          elevationKey: "ele",
+          levelKey: "level",
+          extent: 8192,
+          buffer: 1,
+        }
         _map.addSource("contour-source", {
           type: "vector",
           tiles: [
-          this.demSource.contourProtocolUrl(_protocolSettings)
+            this.demSource.contourProtocolUrl(_protocolSettings)
           ]
         });
 
@@ -287,7 +310,7 @@ export default {
             "line-color": "rgba(153, 213, 255,80%)",//"rgba(0,255,255, 100%)",
             // level = highest index in thresholds array the elevation is a multiple of
             "line-width": 2,
-            "line-blur":1//["match", ["get", "level"], 2, 0, .5],
+            "line-blur": 1//["match", ["get", "level"], 2, 0, .5],
           },
         }, 'landcover_wood');
         _map.addLayer({
@@ -299,10 +322,10 @@ export default {
             "line-color": "rgba(255,255,255, 100%)",
             // level = highest index in thresholds array the elevation is a multiple of
             "line-width": .1,
-            "line-blur":.2
+            "line-blur": .2
           },
-        },'water');
-        
+        }, 'water');
+
       })
 
     },
@@ -334,7 +357,7 @@ export default {
       // atan2 for compass bearing: x=deltaLng, y=deltaLat
       let angleRad = Math.atan2(deltaLng, deltaLat);
       let angleDeg = (angleRad * (180 / Math.PI)) + 180;
-
+      if (!this.displayMap) return;
       this.map.flyTo({
         essential: true,
         center: [lng, lat],
@@ -344,6 +367,27 @@ export default {
       });
 
       // this.map.setBearing(90-angleDeg);
+    },
+    isWebglSupported() {
+      if (window.WebGLRenderingContext) {
+        const canvas = document.createElement('canvas');
+        try {
+          // Note that { failIfMajorPerformanceCaveat: true } can be passed as a second argument
+          // to canvas.getContext(), causing the check to fail if hardware rendering is not available. See
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext
+          // for more details.
+          const context = canvas.getContext('webgl2') || canvas.getContext('webgl');
+          if (context && typeof context.getParameter == 'function') {
+            return true;
+          }
+        } catch (e) {
+          // WebGL is supported, but disabled
+          return false;
+        }
+        return false;
+      }
+      // WebGL not supported
+      return false;
     }
   }
 }
@@ -362,7 +406,7 @@ export default {
 
 .email-address {
   text-transform: none;
-  font-size: small;
+  font-size: smaller;
 }
 
 .section-headers {
@@ -391,11 +435,13 @@ export default {
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
-
 </style>
 <style>
+body {
+  background: midnightblue;
+}
 
-.end-container{
+.end-container {
   position: absolute;
   bottom: 10px;
   right: 0;
@@ -403,10 +449,12 @@ export default {
   text-align: right;
   color: white;
 }
-.body-ready{
-  
-  background: linear-gradient(90deg, rgba(57, 73, 171,0), rgba(57, 73, 171,.5),rgba(57, 73, 171,.6),rgba(57, 73, 171,.6),rgba(57, 73, 171,.5),rgba(57, 73, 171,0));
+
+.body-ready {
+
+  background: linear-gradient(90deg, rgba(57, 73, 171, 0), rgba(57, 73, 171, .5), rgba(57, 73, 171, .6), rgba(57, 73, 171, .6), rgba(57, 73, 171, .5), rgba(57, 73, 171, 0));
 }
+
 .river-select-item {
   background: rgb(57, 73, 171);
   color: white;
@@ -414,7 +462,7 @@ export default {
   border-radius: 4px;
 }
 
-.v-overlay-container .v-list{
+.v-overlay-container .v-list {
   background: rgb(57, 73, 171) !important;
 
 }
@@ -430,7 +478,7 @@ export default {
   /* height: 100%; */
   opacity: 1;
   z-index: -1;
-  
+
   /* filter: contrast(2); */
 }
 
@@ -442,15 +490,37 @@ export default {
   background: white !important;
 }
 
+.map-switch, 
 .map-select {
   zoom: .75;
   max-width: 300px;
   /* z-index: 4; */
   top: 93px;
-  left: 8px;
   position: fixed;
-  opacity: .5;
+  /* opacity: .5; */
 }
+
+.map-switch {
+  right: 8px;
+  text-align: center;
+}
+.v-switch.map-switch .v-label {
+    padding-inline-start: 0px;
+}
+.map-select {
+  left: 8px;
+}
+
+
+/* Stack the map switch label underneath the control */
+.map-switch .v-selection-control {
+  flex-direction: column;
+  align-items: center;
+}
+.map-switch .v-selection-control__label {
+  margin-top: 4px;
+}
+
 
 .map-select:hover {
   opacity: 1;
@@ -462,6 +532,7 @@ export default {
   font-weight: 100;
   border-radius: 4px;
 }
+
 #loading-screen {
   position: fixed;
   z-index: 2;
@@ -480,10 +551,9 @@ export default {
   pointer-events: none;
 }
 
-#loading-screen.active{
+#loading-screen.active {
   pointer-events: all;
-   opacity: 1;
+  opacity: 1;
   transition: opacity .05s ease-in-out;
 }
-
 </style>
