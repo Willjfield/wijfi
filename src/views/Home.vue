@@ -28,13 +28,13 @@
 
     </v-app-bar>
     <v-main style="padding-top: 0px;">
-      <v-select v-show="!this.hideSelectRiver && displayMap" prependInner-icon="mdi-map" icon-color="white"
+      <v-select v-show="!this.hideSelectRiver && displayMap && webglSupported" prependInner-icon="mdi-map" icon-color="white"
         density="compact" bg-color="primary" class="map-select" :items="rivers" v-model="selection">
         <template v-slot:item="{ props: itemProps, item }">
           <v-list-item class="map-select-item" v-bind="itemProps"></v-list-item>
         </template>
       </v-select>
-      <v-switch v-model="displayMap" density="compact" class="map-switch" color="white" inset>
+      <v-switch v-show="webglSupported" v-model="displayMap" density="compact" class="map-switch" color="white" inset>
         <template #label>
           <div class="text-white text-small">
             {{ displayMap ? 'Remove Background' : 'Add Background' }}
@@ -161,6 +161,7 @@ export default {
     idx: initialIdx,
     loading: true,
     displayMap: true,
+    webglSupported: true,
     autoAnimation: 0,
     selection: riverNames[initialIdx],
     coordinates: allPaths[initialIdx].features[0].geometry.coordinates,
@@ -247,7 +248,7 @@ export default {
   methods: {
     async init(coordinates) {
       if (!this.isWebglSupported()) {
-        // console.error('WebGL disabled or not supported');
+        this.webglSupported = false;
         throw new Error('WebGL disabled or not supported');
       }
       let _startingCoordinates = coordinates[0];
