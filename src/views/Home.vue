@@ -1,28 +1,29 @@
 <template>
   <v-app>
 
-    <v-app-bar elevation="0" app color="primary">
+    <v-app-bar elevation="8" density="compact" app color="primary">
       <v-app-bar-title style="text-align: left; padding-left: 24px;">
-        <h3>Will J Field</h3>
+        <!-- <h3>Will J Field</h3> -->
       </v-app-bar-title>
       <template v-slot:append>
         <v-btn stacked href="mailto:willjfield@proton.me">
           <v-icon>mdi-email</v-icon>
-          <span v-show="$vuetify.display.mdAndUp" class="email-address">willjfield@proton.me</span>
+          <span v-show="$vuetify.display.mdAndUp" class="email-address"></span>
         </v-btn>
-        <v-btn stacked href="/protected" target="_blank">
-          <v-icon>mdi-file-account</v-icon>
-          <span v-show="$vuetify.display.mdAndUp" class="email-address">Resume <v-icon
-              size="x-small">mdi-lock</v-icon></span>
-        </v-btn>
+        
         <v-btn stacked href="https://github.com/willjfield" target="_blank">
           <v-icon>mdi-github</v-icon>
-          <span v-show="$vuetify.display.mdAndUp" class="email-address">Github</span>
+          <span v-show="$vuetify.display.mdAndUp" class="email-address"></span>
 
         </v-btn>
         <v-btn stacked href="https://fosstodon.org/@Wijfi" target="_blank">
           <v-icon>mdi-mastodon</v-icon>
-          <span v-show="$vuetify.display.mdAndUp" class="email-address">Mastodon</span>
+          <span v-show="$vuetify.display.mdAndUp" class="email-address"></span>
+        </v-btn>
+        <v-btn href="/protected" target="_blank">
+          <v-icon size="large">mdi-file-account</v-icon>
+          <span v-show="$vuetify.display.mdAndUp" class="email-address">(<v-icon
+              size="x-small">mdi-lock</v-icon>)</span>
         </v-btn>
       </template>
 
@@ -468,6 +469,13 @@ body {
   background: midnightblue;
 }
 
+.map-select .v-field__outline{
+  display: none;
+}
+.maplibregl-ctrl.maplibregl-ctrl-attrib{
+  max-width: min-content;
+  line-height: 1em;
+}
 .end-container {
   position: absolute;
   bottom: 10px;
@@ -498,7 +506,7 @@ body {
 
 #bg-map {
   position: fixed;
-  top: 63px;
+  top: 48px;
   bottom: 0;
   left: 0px;
   width: 100%;
@@ -522,7 +530,7 @@ body {
   zoom: .75;
   max-width: 300px;
   /* z-index: 4; */
-  top: 93px;
+  top: 73px;
   position: fixed;
   /* opacity: .5; */
 }
