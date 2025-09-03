@@ -28,16 +28,20 @@
 
     </v-app-bar>
     <v-main style="padding-top: 0px;">
-      <v-select v-show="!this.hideSelectRiver && displayMap && webglSupported" prependInner-icon="mdi-map" icon-color="white"
-        density="compact" bg-color="primary" class="map-select" :items="rivers" v-model="selection">
+      <v-select v-show="!this.hideSelectRiver && displayMap && webglSupported" 
+        density="compact" bg-color="primary" class="map-select pa-0" :items="rivers" v-model="selection">
+        <template #selection>
+          <v-icon>mdi-map</v-icon>
+          
+        </template>
         <template v-slot:item="{ props: itemProps, item }">
           <v-list-item class="map-select-item" v-bind="itemProps"></v-list-item>
         </template>
       </v-select>
-      <v-switch v-show="webglSupported" v-model="displayMap" density="compact" class="map-switch" color="white" inset>
+      <v-switch v-show="webglSupported && !this.hideSelectRiver" v-model="displayMap" class="map-switch" color="white" inset>
         <template #label>
-          <div class="text-white text-small">
-            {{ displayMap ? 'Remove Background' : 'Add Background' }}
+          <div v-show="true" class="text-white text-small">
+            {{ displayMap ? 'Hide Map' : 'Show Map' }}
           </div>
         </template>
         <template #thumb>
@@ -165,6 +169,13 @@ export default {
     coordinates: allPaths[initialIdx].features[0].geometry.coordinates,
   }),
   watch: {
+    hideSelectRiver(val){
+      const selector = "maplibregl-ctrl-attrib";
+      console.log(document.getElementsByClassName(selector))
+      const attrEl = document.getElementsByClassName(selector)[0];
+      console.log(attrEl)
+      val ? attrEl.removeAttribute('open') : attrEl.setAttribute('open',true)
+    },
     displayMap(val){
       if(val){
         document.body.classList.add("body-ready");
