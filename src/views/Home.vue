@@ -50,9 +50,7 @@
         </template>
       </v-switch>
       <div class="between-sections">
-
         <div class="d-flex flex-column fill-height justify-center align-center text-white">
-
           <h1 class="text-h4 font-weight-thin mb-4">
             Will Field
           </h1>
@@ -60,23 +58,9 @@
             Software Engineer, Map Maker, Computer Graphics Developer
           </h4>
         </div>
-        <div class="center"><v-icon color="white" size="x-large">mdi-arrow-down</v-icon></div>
+        <div class="center mt-12"><v-icon color="white" size="x-large">mdi-arrow-down</v-icon></div>
       </div>
-
-      <h1 class="section-headers"
-        :style="{ 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">
-        Projects
-      </h1>
-      <v-divider></v-divider>
-      <v-container class="section-container">
-
-        <v-row no-gutters>
-          <v-col class="d-flex child-flex pa-2" cols="12" lg="3" md="4" sm="12" v-for="(project, index) in projects"
-            :key="project.title">
-            <ProjectThumb class="pa-0 ma-0" :project="project" />
-          </v-col>
-        </v-row>
-      </v-container>
+      <Projects :revealProjects="revealProjects"/>
       <div class="between-sections"></div>
       <h1 class="section-headers"
         :style="{ 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">
@@ -112,8 +96,7 @@
 </template>
 <script>
 import { inject } from 'vue';
-import projects from '../assets/projects.json';
-import ProjectThumb from '../ProjectThumb.vue';
+import Projects from '../Projects.vue';
 import Talks from '../Talks.vue';
 import Teaching from '../Teaching.vue';
 import Modal from '../Modal.vue';
@@ -150,13 +133,12 @@ const riverNames = allPaths.map((path, idx) => {
 export default {
   name: 'App',
   components: {
-    ProjectThumb,
     Modal,
     Talks,
-    Teaching
+    Teaching,
+    Projects
   },
   data: () => ({
-    projects: projects.filter(project => project.active),
     rivers: riverNames,
     hideSelectRiver: false,
     modalOpen: false,
@@ -166,6 +148,7 @@ export default {
     webglSupported: true,
     autoAnimation: 0,
     animationSpeed: .5,
+    revealProjects: false,
     selection: riverNames[initialIdx],
     coordinates: allPaths[initialIdx].features[0].geometry.coordinates,
   }),
@@ -220,7 +203,9 @@ export default {
   },
   async mounted() {
     let self = this;
-
+    document.addEventListener('scroll',()=>{
+      self.revealProjects = true;
+    })
     inject('mitt').on('open-modal', () => {
       self.modalOpen = true;
     })
@@ -420,9 +405,9 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 .between-sections {
-  height: 70lvh;
+  height: 70vh;
 }
 
 .logo {
@@ -463,12 +448,18 @@ export default {
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
-</style>
-<style>
+
 body {
   background: midnightblue;
 }
+.project-container{
+  opacity: 1;
+  transition: opacity .5s ease-in-out;
 
+}
+.hide-content{
+  opacity: 0;
+}
 .map-select .v-field__outline{
   display: none;
 }
