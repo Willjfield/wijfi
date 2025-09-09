@@ -1,13 +1,20 @@
 <template>
-    <div class="my-4 py-2 px-8">
-        <div class="classes" v-for="_class, t in this.teaching">
-            <b class="class-title">{{ _class.title }}</b>
-            <br>
-            <i>{{ _class.institution }}</i>
-            {{ _class.year }}
+    <h1 class="section-headers"
+        :style="{ 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">
+        Teaching
+    </h1>
+    <v-divider></v-divider>
+    <v-container class="section-container teaching-container">
+        <div class="my-4 py-2 px-8">
+            <div class="classes" v-for="_class, t in this.teaching">
+                <b class="class-title">{{ _class.title }}</b>
+                <br>
+                <i>{{ _class.institution }}</i>
+                {{ _class.year }}
 
+            </div>
         </div>
-    </div>
+    </v-container>
 </template>
 <script>
 import teaching from './assets/teaching.json';

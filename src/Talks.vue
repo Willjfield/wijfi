@@ -1,4 +1,10 @@
 <template>
+          <h1 class="section-headers"
+        :style="{ 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">
+        Talks &Papers
+      </h1>
+      <v-divider></v-divider>
+    <v-container class="section-container">
     <v-card v-for="talk, t in this.talks" variant="tonal" class="mb-1 mt-1 py-2 px-8 talk-card">
         <template v-slot:title>
             <!-- :style="{'white-space': $vuetify.display.mdAndUp ? 'nowrap': 'break-spaces'}" -->
@@ -17,6 +23,7 @@
         <br>
         <!-- <v-divider v-if="t < talks.length - 1"></v-divider> -->
     </v-card>
+</v-container>
 </template>
 <script>
 import talks from './assets/talks.json';

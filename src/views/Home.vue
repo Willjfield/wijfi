@@ -1,52 +1,25 @@
 <template>
   <v-app>
-
-    <v-app-bar elevation="8" density="compact" app color="primary">
-      <v-app-bar-title style="text-align: left; padding-left: 24px;">
-        <!-- <h3>Will J Field</h3> -->
-      </v-app-bar-title>
-      <template v-slot:append>
-        <v-btn stacked href="mailto:willjfield@proton.me">
-          <v-icon>mdi-email</v-icon>
-          <span v-show="$vuetify.display.mdAndUp" class="email-address"></span>
-        </v-btn>
-        
-        <v-btn stacked href="https://github.com/willjfield" target="_blank">
-          <v-icon>mdi-github</v-icon>
-          <span v-show="$vuetify.display.mdAndUp" class="email-address"></span>
-
-        </v-btn>
-        <v-btn stacked href="https://fosstodon.org/@Wijfi" target="_blank">
-          <v-icon>mdi-mastodon</v-icon>
-          <span v-show="$vuetify.display.mdAndUp" class="email-address"></span>
-        </v-btn>
-        <v-btn href="/protected" target="_blank">
-          <v-icon size="large">mdi-file-account</v-icon>
-          <span v-show="$vuetify.display.mdAndUp" class="email-address">(<v-icon
-              size="x-small">mdi-lock</v-icon>)</span>
-        </v-btn>
-      </template>
-
-    </v-app-bar>
+    <AppBar/>
     <v-main style="padding-top: 0px;">
-      <v-select v-show="!this.hideSelectRiver && displayMap && webglSupported" 
-        density="compact" bg-color="primary" class="map-select pa-0" :items="rivers" v-model="selection">
+      <v-select v-show="!this.hideSelectRiver && displayMap && webglSupported" density="compact" bg-color="primary"
+        class="map-select pa-0" :items="rivers" v-model="selection">
         <template #selection>
           <v-icon>mdi-map</v-icon>
-          
         </template>
         <template v-slot:item="{ props: itemProps, item }">
           <v-list-item class="map-select-item" v-bind="itemProps"></v-list-item>
         </template>
       </v-select>
-      <v-switch v-show="webglSupported && !this.hideSelectRiver" v-model="displayMap" class="map-switch" color="white" inset>
+      <v-switch v-show="webglSupported && !this.hideSelectRiver" v-model="displayMap" class="map-switch" color="white"
+        inset>
         <template #label>
           <div v-show="true" class="text-white text-small">
             {{ displayMap ? 'Hide Map' : 'Show Map' }}
           </div>
         </template>
         <template #thumb>
-          <v-icon >{{ displayMap ? 'mdi-map-minus' : 'mdi-map-plus' }}</v-icon>
+          <v-icon>{{ displayMap ? 'mdi-map-minus' : 'mdi-map-plus' }}</v-icon>
         </template>
       </v-switch>
       <div class="between-sections">
@@ -60,27 +33,11 @@
         </div>
         <div class="center mt-12"><v-icon color="white" size="x-large">mdi-arrow-down</v-icon></div>
       </div>
-      <Projects :revealProjects="revealProjects"/>
+      <Projects :revealProjects="revealProjects" />
       <div class="between-sections"></div>
-      <h1 class="section-headers"
-        :style="{ 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">
-        Talks &Papers
-      </h1>
-      <v-divider></v-divider>
-      <v-container class="section-container">
-        <Talks />
-      </v-container>
+      <Talks />
       <div class="between-sections"></div>
-
-      <h1 class="section-headers"
-        :style="{ 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">
-        Teaching
-      </h1>
-      <v-divider></v-divider>
-      <v-container class="section-container teaching-container">
-        <Teaching />
-      </v-container>
-
+      <Teaching />
       <div class="between-sections"></div>
       <Modal />
     </v-main>
@@ -100,6 +57,8 @@ import Projects from '../Projects.vue';
 import Talks from '../Talks.vue';
 import Teaching from '../Teaching.vue';
 import Modal from '../Modal.vue';
+import AppBar from '../AppBar.vue';
+
 import ml from 'maplibre-gl';
 import mlcontour from "maplibre-contour";
 import 'maplibre-gl/dist/maplibre-gl.css';
@@ -133,6 +92,7 @@ const riverNames = allPaths.map((path, idx) => {
 export default {
   name: 'App',
   components: {
+    AppBar,
     Modal,
     Talks,
     Teaching,
@@ -153,24 +113,24 @@ export default {
     coordinates: allPaths[initialIdx].features[0].geometry.coordinates,
   }),
   watch: {
-    hideSelectRiver(val){
+    hideSelectRiver(val) {
       const selector = "maplibregl-ctrl-attrib";
       console.log(document.getElementsByClassName(selector))
       const attrEl = document.getElementsByClassName(selector)[0];
       console.log(attrEl)
-      val ? attrEl.removeAttribute('open') : attrEl.setAttribute('open',true)
+      val ? attrEl.removeAttribute('open') : attrEl.setAttribute('open', true)
     },
-    displayMap(val){
-      if(val){
+    displayMap(val) {
+      if (val) {
         document.body.classList.add("body-ready");
-      }else{
+      } else {
         document.body.classList.remove("body-ready");
       }
     },
-    loading(val){
-      if(val){
+    loading(val) {
+      if (val) {
         document.body.classList.remove("body-ready");
-      }else{
+      } else {
         document.body.classList.add("body-ready");
       }
     },
@@ -203,7 +163,7 @@ export default {
   },
   async mounted() {
     let self = this;
-    document.addEventListener('scroll',()=>{
+    document.addEventListener('scroll', () => {
       self.revealProjects = true;
     })
     inject('mitt').on('open-modal', () => {
@@ -217,7 +177,7 @@ export default {
       if (start === undefined) {
         start = timestamp;
       }
-      self.autoAnimation += .000075*self.animationSpeed;
+      self.autoAnimation += .000075 * self.animationSpeed;
       if (self.autoAnimation > 1) self.autoAnimation = 0;
       self.scrollEventHandler();
 
@@ -227,7 +187,7 @@ export default {
     requestAnimationFrame(step);
 
     this.demSource = new mlcontour.DemSource({
-      url:"https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      url: "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
       encoding: "terrarium",
       maxzoom: 15,
     });
@@ -258,7 +218,7 @@ export default {
       if (!this.isWebglSupported()) {
         this.webglSupported = false;
         throw new Error('WebGL disabled or not supported');
-      }else{
+      } else {
         console.log("webgl supported")
       }
       let _startingCoordinates = coordinates[0];
@@ -283,7 +243,7 @@ export default {
         document.addEventListener('scroll', this.scrollEventHandler);
         this.scrollEventHandler();
 
-       let _map = this.map;
+        let _map = this.map;
         console.log("load")
         _map.addSource("terrain-source", {
           type: "raster-dem",
@@ -336,13 +296,13 @@ export default {
           },
         }, 'water');
 
-          this.displayMap = true;
-          this.loading = false;
+        this.displayMap = true;
+        this.loading = false;
       })
 
     },
     scrollEventHandler() {
-      let completion = (window.scrollY*this.animationSpeed) / document.body.offsetHeight;
+      let completion = (window.scrollY * this.animationSpeed) / document.body.offsetHeight;
       completion += this.autoAnimation;
 
       if (window.scrollY / window.innerHeight > 0.667 || this.modalOpen) {
@@ -405,6 +365,39 @@ export default {
   }
 }
 </script>
+<style scoped>
+@keyframes pulse-arrow {
+  0% {
+    opacity:1;
+  }
+  80% {
+    opacity:1;
+    transform: translateY(0px);
+  }
+  85% {
+    opacity:0;
+    transform: translateY(20px);
+  }
+  90% {
+    opacity:1;
+    transform: translateY(0px);
+  }
+  95% {
+    opacity:0;
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0px);
+    opacity:1;
+  }
+}
+.mdi-arrow-down {
+  animation-name: pulse-arrow;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+</style>
 <style>
 .between-sections {
   height: 70vh;
@@ -452,21 +445,26 @@ export default {
 body {
   background: midnightblue;
 }
-.project-container{
+
+.project-container {
   opacity: 1;
   transition: opacity .5s ease-in-out;
 
 }
-.hide-content{
+
+.hide-content {
   opacity: 0;
 }
-.map-select .v-field__outline{
+
+.map-select .v-field__outline {
   display: none;
 }
-.maplibregl-ctrl.maplibregl-ctrl-attrib{
+
+.maplibregl-ctrl.maplibregl-ctrl-attrib {
   max-width: min-content;
   line-height: 1em;
 }
+
 .end-container {
   position: absolute;
   bottom: 10px;
@@ -516,7 +514,7 @@ body {
   background: white !important;
 }
 
-.map-switch, 
+.map-switch,
 .map-select {
   zoom: .75;
   max-width: 300px;
@@ -530,9 +528,11 @@ body {
   right: 8px;
   text-align: center;
 }
+
 .v-switch.map-switch .v-label {
-    padding-inline-start: 0px;
+  padding-inline-start: 0px;
 }
+
 .map-select {
   left: 8px;
 }
@@ -543,6 +543,7 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
 .map-switch .v-selection-control__label {
   margin-top: 4px;
 }

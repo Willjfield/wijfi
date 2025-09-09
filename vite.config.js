@@ -9,4 +9,7 @@ export default defineConfig({
     emptyOutDir: true,
     copyPublicDir: false,
   },
+  ssr: {
+    noExternal: [ /\.css$/, /^vuetify/ ],
+  }
 })
