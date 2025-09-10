@@ -2,26 +2,13 @@
   <v-app>
     <AppBar/>
     <v-main style="padding-top: 0px;">
-      <v-select v-show="!this.hideSelectRiver && displayMap && webglSupported" density="compact" bg-color="primary"
-        class="map-select pa-0" :items="rivers" v-model="selection">
-        <template #selection>
-          <v-icon>mdi-map</v-icon>
-        </template>
-        <template v-slot:item="{ props: itemProps, item }">
-          <v-list-item class="map-select-item" v-bind="itemProps"></v-list-item>
-        </template>
-      </v-select>
-      <v-switch v-show="webglSupported && !this.hideSelectRiver" v-model="displayMap" class="map-switch" color="white"
-        inset>
-        <template #label>
-          <div v-show="true" class="text-white text-small">
-            {{ displayMap ? 'Hide Map' : 'Show Map' }}
-          </div>
-        </template>
-        <template #thumb>
-          <v-icon>{{ displayMap ? 'mdi-map-minus' : 'mdi-map-plus' }}</v-icon>
-        </template>
-      </v-switch>
+      <SettingsMenu
+        :rivers="rivers"
+        :selection="selection"
+        :displayMap="displayMap"
+        @update:selection="selection = $event"
+        @update:displayMap="displayMap = $event"
+      />
       <div class="between-sections">
         <div class="d-flex flex-column fill-height justify-center align-center text-white">
           <h1 class="text-h4 font-weight-thin mb-4">
@@ -58,6 +45,7 @@ import Talks from '../Talks.vue';
 import Teaching from '../Teaching.vue';
 import Modal from '../Modal.vue';
 import AppBar from '../AppBar.vue';
+import SettingsMenu from '../SettingsMenu.vue';
 
 import ml from 'maplibre-gl';
 import mlcontour from "maplibre-contour";
@@ -96,7 +84,8 @@ export default {
     Modal,
     Talks,
     Teaching,
-    Projects
+    Projects,
+    SettingsMenu
   },
   data: () => ({
     rivers: riverNames,

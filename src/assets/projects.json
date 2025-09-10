@@ -7,9 +7,18 @@
         "active": true,
         "thumbnail": "thumbs/liz_01.png",
         "thumbnails": [
-            "thumbs/liz_03.png",
-            "thumbs/liz_02.png",
-            "thumbs/liz_01.png"
+            {
+                "path": "thumbs/liz_01.png",
+                "alt": "Interactive zoning atlas interface showing Long Island with basemap selection controls and legend for different zoning classifications"
+            },
+            {
+                "path": "thumbs/liz_02.png",
+                "alt": "Detailed zoning map of Long Island towns and cities with color-coded districts and labeled landmarks including parks, schools, and commercial areas"
+            },
+            {
+                "path": "thumbs/liz_03.png",
+                "alt": "Map of Long Island showing zoning districts color-coded by land use type, with primarily residential areas in yellow, mixed residential in magenta, and nonresidential areas in blue"
+            }
         ],
         "summary": "The Long Island Zoning Atlas is an innovative online platform, the first of its kind in New York State, providing a comprehensive map of all zoning districts across each of Long Island's 13 towns, two cities, and 90+ incorporated villages. It provides detailed insights into the types of housing permitted in each area, as well as other critical characteristics."
     },
@@ -21,9 +30,18 @@
         "active": true,
         "thumbnail": "thumbs/wrm-02.jpg",
         "thumbnails": [
-            "thumbs/wrm-03.jpg",
-            "thumbs/wrm-02.jpg",
-            "thumbs/wrm-01.jpg"
+            {
+                "path": "thumbs/wrm-03.jpg",
+                "alt": "Map view showing NYC political boundaries with highlighted districts and representative information panel"
+            },
+            {
+                "path": "thumbs/wrm-02.jpg",
+                "alt": "Interface displaying representative information for a Brooklyn address with contact details for city, state, and federal officials"
+            },
+            {
+                "path": "thumbs/wrm-01.jpg",
+                "alt": "Map of New York City showing political districts highlighted in purple with a blue location pin marking a specific address in Brooklyn"
+            }
         ],
         "summary": "The \"Who Represents Me: NYC\" online service allows New York City residents to easily find their elected officials. The service is a joint effort between the Center for Urban Research at The Graduate Center / CUNY and the League of Women Voters of the City of New York and has been developed with the support of the New York Community Trust."
     },
@@ -35,9 +53,18 @@
         "active": true,
         "thumbnail": "thumbs/ry_04.png",
         "thumbnails": [
-            "thumbs/ry_04.png",
-            "thumbs/ry_03.png",
-            "thumbs/ry_01.png"
+            {
+                "path": "thumbs/ry_04.png",
+                "alt": "District population analysis showing 2020 census data with comparisons to state averages and demographic breakdowns"
+            },
+            {
+                "path": "thumbs/ry_03.png",
+                "alt": "Map displaying redistricting metrics including compactness scores and demographic data for legislative districts"
+            },
+            {
+                "path": "thumbs/ry_01.png",
+                "alt": "Choropleth map of the United States showing county-level data with color gradient from blue to orange representing varying values"
+            }
         ],
         "summary": "The Redistricting & You online maps help members of the public, journalists, elected officials, and fair districting advocates to understand the local implications of redrawing legislative district lines across the country."
     },
@@ -49,9 +76,18 @@
         "active": true,
         "thumbnail": "thumbs/htc_01.png",
         "thumbnails": [
-            "thumbs/htc_01.png",
-            "thumbs/htc_02.png",
-            "thumbs/htc_04.png"
+            {
+                "path": "thumbs/htc_01.png",
+                "alt": "Map of New York City showing census tracts with cross-hatched areas indicating neighborhoods where 29% or more households lack internet access"
+            },
+            {
+                "path": "thumbs/htc_02.png",
+                "alt": "Line graph comparing 2020 census self-response rates to 2010 final rates, showing daily progress over time"
+            },
+            {
+                "path": "thumbs/htc_04.png",
+                "alt": "Map visualization of census self-response rates with color-coded areas and interactive controls for different demographic categories"
+            }
         ],
         "summary": "On a periodic basis over the course of the 2020 Census, the Center presented an analysis of self-response rates to the coalition of philanthropic foundations and national and regional census stakeholders that are leading the effort in collaboration with the U.S. Census Bureau to help ensure a fair and accurate 2020 Census. Reports highlight trends and changes by geographic area and demographic data, response methods, and more."
     },
@@ -63,8 +99,14 @@
         "active": true,
         "thumbnail": "thumbs/im_01.png",
         "thumbnails": [
-            "thumbs/im_01.png",
-            "thumbs/im_02.png"
+            {
+                "path": "thumbs/im_01.png",
+                "alt": "Map of New York City showing percentage of population aged 65+ by neighborhood with color-coded legend and demographic controls"
+            },
+            {
+                "path": "thumbs/im_02.png",
+                "alt": "Detailed view of Brooklyn neighborhood showing aging population data with location information and comparative statistics"
+            }
         ],
         "summary": "The \"Who Represents Me: NYC\" online service allows New York City residents to easily find their elected officials.The service is a joint effort between the Center for Urban Research at The Graduate Center / CUNY and the League of Women Voters of the City of New York and has been developed with the support of the New York Community Trust."
     },
@@ -76,8 +118,14 @@
         "active": true,
         "thumbnail": "thumbs/rcv_01.png",
         "thumbnails": [
-            "thumbs/rcv_01.png",
-            "thumbs/rcv_02.png"
+            {
+                "path": "thumbs/rcv_01.png",
+                "alt": "Map of New York City showing ranked choice voting results for mayoral candidates with color-coded election districts"
+            },
+            {
+                "path": "thumbs/rcv_02.png",
+                "alt": "Sankey diagram illustrating vote flow between candidates across multiple rounds of ranked choice voting for a specific assembly district"
+            }
         ],
         "summary": "The Center for Urban Research (CUR) at The Graduate Center of the City University of New York (CUNY) has created this NYC Ranked Choice Voting map to help members of the public, journalists, elected officials, and others to understand the hyperlocal patterns of New York's first citywide election using ranked choice voting: the June 22, 2021 primary. Our map visualizes the Democratic primary results for Mayor and Comptroller."
     },
@@ -89,8 +137,14 @@
         "active": true,
         "thumbnail": "thumbs/wch_01.png",
         "thumbnails": [
-            "thumbs/wch_01.png",
-            "thumbs/wch_02.png"
+            {
+                "path": "thumbs/wch_01.png",
+                "alt": "Global map showing historical events with colored markers indicating different types of locations and time periods"
+            },
+            {
+                "path": "thumbs/wch_02.png",
+                "alt": "Detailed map of Paris showing historical markers for the June Days Uprising with information panel about the 1848 workers' rebellion"
+            }
         ],
         "summary": "This is a map containing the Working Class History project's always-growing archive of Stories of our collective struggles to build a better world."
     },
@@ -100,12 +154,24 @@
         "title": "Dogs Exhibit - California Science Center",
         "link": "https://www.unifiedfield.com/projects/california-science-center",
         "active": true,
-        "thumbnail":"thumbs/ufi_01.webp",
+        "thumbnail": "thumbs/ufi_01.webp",
         "thumbnails": [
-            "thumbs/ufi_01.webp",
-            "thumbs/ufi_02.webp",
-            "thumbs/ufi_03.webp",
-            "thumbs/ufi_04.webp"
+            {
+                "path": "thumbs/ufi_01.webp",
+                "alt": "Interactive exhibit display showing dog-themed digital interface with touch controls and visual elements"
+            },
+            {
+                "path": "thumbs/ufi_02.webp",
+                "alt": "Physical exhibit setup with digital screens and interactive components for the California Science Center dogs exhibit"
+            },
+            {
+                "path": "thumbs/ufi_03.webp",
+                "alt": "Museum installation showing interactive displays and physical elements designed to help visitors experience the world from a dog's perspective"
+            },
+            {
+                "path": "thumbs/ufi_04.webp",
+                "alt": "Exhibit interface displaying dog behavior and sensory information with interactive controls and educational content"
+            }
         ],
         "summary": "Working together with the museum and Evidence Design, Unified Field created 17 digital and physical interactives, linear films and immersive soundscapes that range from the whimsical to the serious and heart-warming, allowing guests to see like a dog, hear like a dog, run like a dog and so much more."
     },
@@ -117,8 +183,14 @@
         "active": true,
         "thumbnail": "thumbs/mic_01.jpg",
         "thumbnails": [
-            "thumbs/mic_01.jpg",
-            "thumbs/mic_02.jpg"
+            {
+                "path": "thumbs/mic_01.jpg",
+                "alt": "Physical mat with Playmobil figures arranged on a blue grid surface, demonstrating object tracking and interaction capabilities"
+            },
+            {
+                "path": "thumbs/mic_02.jpg",
+                "alt": "Pirate-themed Playmobil playset on a blue mat showing various figures, cannons, and a tower, illustrating the interactive mat's object recognition features"
+            }
         ],
         "summary": "Project Zanzibar is a flexible, portable mat that can sense and track physical objects, identify what they are, and allow you to interact through multi-touch and hover gestures."
     }

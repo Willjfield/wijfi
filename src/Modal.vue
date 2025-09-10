@@ -1,12 +1,12 @@
 <template>
-  <v-dialog :max-width="$vuetify.display.mdAndUp ? '60vw' : '95vw'" width="auto" v-model="modal">
-    <v-card>
+  <v-dialog :max-width="$vuetify.display.mdAndUp ? '60vw' : '95vw'" width="auto" v-model="modal" :retain-focus="false">
+    <v-card role="dialog" :aria-modal="true" :aria-labelledby="titleId" :aria-describedby="descId">
       <v-card-actions>
-        <v-card-title> <a class="external-link" :href="this.project.link">{{ project.title }}</a></v-card-title>
-        <v-btn icon="mdi-close" class="close-modal-x" color="primary" @click="modal = false"></v-btn>
+        <v-card-title :id="titleId" tabindex="-1"> <a class="external-link" :href="this.project.link">{{ project.title }}</a></v-card-title>
+        <v-btn icon="mdi-close" class="close-modal-x" color="primary" @click="closeModal" :aria-label="`Close ${project.title} details`"></v-btn>
       </v-card-actions>
 
-      <v-card-text class="py-0">
+      <v-card-text class="py-0" :id="descId">
         {{ project.summary }}
         <br>
         <v-card-actions>
@@ -15,22 +15,22 @@
         <br>
         <div class="img-container">
           <v-row>
-            <v-col v-for="(thumbnail, index) in this.project.thumbnails">
-              <v-img class="project-images" :src="thumbnail" cover aspect-ratio="1" />
+            <v-col v-for="(thumbnail, index) in this.project.thumbnails" :key="index">
+              <v-img class="project-images" :src="thumbnail.path" :alt="thumbnail.alt" cover aspect-ratio="1" />
             </v-col>
           </v-row>
         </div>
         <v-divider></v-divider>
         <br>
-        <!-- <a target="_blank" class="external-link" :href="this.project.link">Link</a> | -->
         Employer/Client: {{ project.employer }} |
         Role: {{ project.role }}
       </v-card-text>
       <v-card-actions>
-        <v-btn color="primary" block @click="modal = false">Close</v-btn>
+        <v-btn color="primary" block @click="closeModal">Close</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
+  <button ref="focusGuard" class="visually-hidden">focus-guard</button>
 </template>
 <script>
 import { inject } from 'vue';
@@ -40,24 +40,37 @@ export default {
     return {
       modal: false,
       project: {},
-      mitt: inject('mitt')
+      mitt: inject('mitt'),
+      previouslyFocusedElement: null,
+      titleId: 'modal-title',
+      descId: 'modal-desc'
     }
   },
   mounted() {
-
     
     this.mitt.on('open-modal', (project) => {
       this.project = project;
+      this.previouslyFocusedElement = document.activeElement;
       this.modal = true;
+      this.$nextTick(() => {
+        const titleEl = document.getElementById(this.titleId);
+        if (titleEl) titleEl.focus();
+      })
     });
 
   },
+  methods: {
+    closeModal() {
+      this.modal = false;
+    }
+  },
   watch: {
     modal(val) {
-     
       if (!val) {
-        
         this.mitt.emit('close-modal');
+        if (this.previouslyFocusedElement && this.previouslyFocusedElement.focus) {
+          this.previouslyFocusedElement.focus();
+        }
       }
     }
   }
@@ -79,5 +92,16 @@ export default {
   max-height: 50%; */
   margin: 0 auto;
   box-shadow: 1px 1px 10px 1px #9d9d9d;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 </style>

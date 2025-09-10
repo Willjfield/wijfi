@@ -17,6 +17,13 @@ export default createVuetify({
           secondary: colors.indigo.lighten2, // #FFCDD2
         }
       },
+      dark: {
+        dark: true,
+        colors: {
+          primary: colors.indigo.lighten2,
+          secondary: colors.indigo.darken1,
+        }
+      }
     },
   },
 

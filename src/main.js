@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, nextTick } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router';
 import vuetify from './plugins/vuetify'
 import App from './App.vue'
@@ -16,17 +16,20 @@ const router = createRouter({
         {
             path: '/',
             name: 'home',
-            component: () => import('./views/Home.vue')
+            component: () => import('./views/Home.vue'),
+            meta: { title: 'Home' }
         },
         {
             path: '/SOMAPest',
             name: 'somapest',
-            component: () => import('./views/SOMAPest.vue')
+            component: () => import('./views/SOMAPest.vue'),
+            meta: { title: 'SOMA Pest' }
         },
         {
             path: '/protected',
             name: 'protected',
-            component: () => import('./views/Protected.vue')
+            component: () => import('./views/Protected.vue'),
+            meta: { title: 'Protected' }
         }
     ]
 })
@@ -45,6 +48,21 @@ router.beforeEach((to, from, next) => {
         }
     } else {
         next();
+    }
+});
+
+router.afterEach(async (to) => {
+    const titleBase = 'Will J Field';
+    const routeTitle = to.meta && to.meta.title ? ` - ${to.meta.title}` : '';
+    document.title = `${titleBase}${routeTitle}`;
+    await nextTick();
+    const mainEl = document.getElementById('main');
+    if (mainEl) {
+        //mainEl.focus();
+    }
+    const announcer = document.getElementById('sr-announcer');
+    if (announcer) {
+        announcer.textContent = `Navigated to ${document.title}`;
     }
 });
 
