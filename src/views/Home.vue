@@ -1,16 +1,11 @@
 <template>
   <v-app>
-    <AppBar/>
+    <AppBar />
     <v-main style="padding-top: 0px;">
-      <SettingsMenu
-        :rivers="rivers"
-        :selection="selection"
-        :displayMap="displayMap"
-        @update:selection="selection = $event"
-        @update:displayMap="displayMap = $event"
-      />
+      <SettingsMenu :rivers="rivers" :selection="selection" :displayMap="displayMap"
+        @update:selection="selection = $event" @update:displayMap="displayMap = $event" />
       <div class="between-sections">
-        <div class="d-flex flex-column fill-height justify-center align-center text-white">
+        <div :style="{'color':theme.global.current.colors.text}" class="d-flex flex-column fill-height justify-center align-center">
           <h1 class="text-h4 font-weight-thin mb-4">
             Will Field
           </h1>
@@ -39,6 +34,7 @@
   </div>
 </template>
 <script>
+import { useTheme } from 'vuetify';
 import { inject } from 'vue';
 import Projects from '../Projects.vue';
 import Talks from '../Talks.vue';
@@ -98,6 +94,7 @@ export default {
     autoAnimation: 0,
     animationSpeed: .5,
     revealProjects: false,
+    theme: useTheme(),
     selection: riverNames[initialIdx],
     coordinates: allPaths[initialIdx].features[0].geometry.coordinates,
   }),
@@ -146,12 +143,14 @@ export default {
       } finally {
         this.map.once("load", () => {
           self.loading = false;
+
         })
       }
     }
   },
   async mounted() {
     let self = this;
+    
     document.addEventListener('scroll', () => {
       self.revealProjects = true;
     })
@@ -198,6 +197,19 @@ export default {
       this.map.once("load", () => {
         self.loading = false;
         this.displayMap = true;
+        const bgMapEl = document.getElementById('bg-map');
+        const canvEl = bgMapEl.getElementsByTagName('canvas');
+        const bgEl = document.getElementsByClassName('body-ready');
+        console.log(this.theme.global.current)
+        if (this.theme.global.current.dark) {
+          bgMapEl.style.filter = 'invert(0)'
+          canvEl[0].style.filter = 'hue-rotate(0deg)'
+          bgEl[0].classList.remove('light')
+        } else {
+          bgMapEl.style.filter = 'invert(1)'
+          canvEl[0].style.filter = 'hue-rotate(180deg)'
+          bgEl[0].classList.add('light')
+        }
       })
 
     }
@@ -227,13 +239,13 @@ export default {
         terrain: true,
         pitch: 50
       });
-
+     // const self = this;
       this.map.once("data", () => {
         document.addEventListener('scroll', this.scrollEventHandler);
         this.scrollEventHandler();
-
+        
         let _map = this.map;
-        console.log("load")
+
         _map.addSource("terrain-source", {
           type: "raster-dem",
           encoding: "terrarium",
@@ -241,7 +253,7 @@ export default {
             "https://elevation-tiles-prod.s3.amazonaws.com/terrarium/{z}/{x}/{y}.png"
           ]
         });
-        console.log('here')
+
         let _protocolSettings = {
           multiplier: 3.28084 * 2,
           thresholds: {
@@ -357,29 +369,35 @@ export default {
 <style scoped>
 @keyframes pulse-arrow {
   0% {
-    opacity:1;
+    opacity: 1;
   }
+
   80% {
-    opacity:1;
+    opacity: 1;
     transform: translateY(0px);
   }
+
   85% {
-    opacity:0;
+    opacity: 0;
     transform: translateY(20px);
   }
+
   90% {
-    opacity:1;
+    opacity: 1;
     transform: translateY(0px);
   }
+
   95% {
-    opacity:0;
+    opacity: 0;
     transform: translateY(20px);
   }
+
   100% {
     transform: translateY(0px);
-    opacity:1;
+    opacity: 1;
   }
 }
+
 .mdi-arrow-down {
   animation-name: pulse-arrow;
   animation-duration: 10s;
@@ -464,8 +482,17 @@ body {
 }
 
 .body-ready {
-
   background: linear-gradient(90deg, rgba(57, 73, 171, 0), rgba(57, 73, 171, .5), rgba(57, 73, 171, .6), rgba(57, 73, 171, .6), rgba(57, 73, 171, .5), rgba(57, 73, 171, 0));
+}
+
+.body-ready.light {
+  background: linear-gradient(90deg,
+      rgba(57, 73, 171, .2),
+      rgba(57, 73, 171, .1),
+      rgba(57, 73, 171, 0),
+      rgba(57, 73, 171, 0),
+      rgba(57, 73, 171, .1),
+      rgba(57, 73, 171, .2))
 }
 
 .river-select-item {

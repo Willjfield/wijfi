@@ -13,15 +13,20 @@ export default createVuetify({
       light: {
         dark: false,
         colors: {
-          primary: colors.indigo.darken1, // #E53935
-          secondary: colors.indigo.lighten2, // #FFCDD2
+          primary: colors.indigo.lighten4, 
+          secondary: colors.indigo.darken3,
+          surface: colors.indigo.accent1,
+          text: colors.indigo.darken3
         }
       },
       dark: {
         dark: true,
         colors: {
-          primary: colors.indigo.lighten2,
-          secondary: colors.indigo.darken1,
+          primary: colors.indigo.darken3,
+          secondary: colors.indigo.lighten4,
+          surface: colors.indigo.accent4,
+          text: colors.indigo.darken3
+
         }
       }
     },

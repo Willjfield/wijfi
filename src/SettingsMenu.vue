@@ -1,16 +1,16 @@
 <template>
   <div class="settings-container">
-    <v-menu location="top" :close-on-content-click="false">
+    <v-menu density="compact" location="top" :close-on-content-click="false">
       <template #activator="{ props }">
-        <v-btn v-bind="props" class="settings-btn" icon color="primary" :aria-label="'Open settings'">
-          <v-icon>mdi-cog</v-icon>
+        <v-btn elevation="0" variant="plain" v-bind="props" icon="mdi-cog" class="settings-btn" color="white"
+          :aria-label="'Open settings'">
         </v-btn>
       </template>
-      <v-card min-width="300">
+      <v-card color="primary" min-width="300">
         <v-card-title class="text-subtitle-1">Settings</v-card-title>
         <v-divider></v-divider>
         <v-card-text>
-          <v-switch v-model="localDisplayMap" color="primary" inset hide-details>
+          <v-switch v-model="localDisplayMap" :color="currentTheme.colors.surface" inset hide-details>
             <template #label>
               <span>{{ localDisplayMap ? 'Hide map' : 'Show map' }}</span>
             </template>
@@ -18,27 +18,32 @@
               <v-icon>{{ localDisplayMap ? 'mdi-map-minus' : 'mdi-map-plus' }}</v-icon>
             </template>
           </v-switch>
-
-          <v-select class="mt-3" :items="rivers" v-model="localSelection" density="compact" label="Background path"
-            item-title="title" item-value="value"></v-select>
-
-          <v-divider class="my-3"></v-divider>
-
-          <v-switch v-model="isDark" color="primary" inset hide-details :aria-label="'Toggle dark theme'">
-            <template #label>
-              <span>{{ isDark ? 'Dark theme' : 'Light theme' }}</span>
-            </template>
-            <template #thumb>
-              <v-icon>{{ isDark ? 'mdi-weather-night' : 'mdi-white-balance-sunny' }}</v-icon>
-            </template>
-          </v-switch>
+          <v-radio-group inline v-model="currentThemeName">
+            <v-radio :value="'dark'">
+              <template #label>
+                <v-icon>mdi-weather-night</v-icon>
+              </template>
+            </v-radio>
+            <v-radio :value="'light'">
+              <template #label>
+                <v-icon>mdi-weather-sunny</v-icon>
+              </template>
+            </v-radio>
+            <v-radio :value="'system'">
+              <template #label>
+                <v-icon>mdi-desktop-classic</v-icon>
+              </template>
+            </v-radio>
+          </v-radio-group>
+          <v-select color="white" bg-color="secondary" class="mt-3" :items="rivers" v-model="localSelection"
+            density="compact" label="Background Map Location" item-title="title" item-value="value"></v-select>
         </v-card-text>
       </v-card>
     </v-menu>
   </div>
 </template>
 <script>
-import { watch, ref, onMounted } from 'vue';
+import { watch, ref, onMounted, nextTick } from 'vue';
 import { useTheme } from 'vuetify';
 
 export default {
@@ -56,10 +61,13 @@ export default {
     const localDisplayMap = ref(props.displayMap);
 
     const storedTheme = typeof window !== 'undefined' ? localStorage.getItem('theme') : null;
-    if (storedTheme === 'dark' || storedTheme === 'light') {
-      theme.global.name.value = storedTheme;
+    if (storedTheme === 'dark' || storedTheme === 'light' || storedTheme === 'system') {
+      theme.change(storedTheme)
     }
-    const isDark = ref(theme.global.current.value.dark);
+
+    const currentThemeName = ref(theme.global.current.value.dark ? 'dark' : 'light');
+    const currentTheme = ref(theme.global.current.value);
+    const isDark = ref(theme.global.current.dark);
 
     watch(() => props.selection, (val) => { localSelection.value = val; });
     watch(() => props.displayMap, (val) => { localDisplayMap.value = val; });
@@ -67,32 +75,54 @@ export default {
     watch(localSelection, (val) => emit('update:selection', val));
     watch(localDisplayMap, (val) => emit('update:displayMap', val));
 
-    watch(isDark, (val) => {
-      theme.global.name.value = val ? 'dark' : 'light';
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('theme', val ? 'dark' : 'light');
+    function manageMapColors(){
+      const bgMapEl = document.getElementById('bg-map');
+      const canvEl = bgMapEl.getElementsByTagName('canvas');
+      const bgEl = document.getElementsByClassName('body-ready');
+      if(theme.global.current.value.dark){
+        bgMapEl.style.filter = 'invert(0)'
+       canvEl[0].style.filter = 'hue-rotate(0deg)'
+       bgEl[0].classList.remove('light')
+      }else{
+        bgMapEl.style.filter = 'invert(1)'
+        canvEl[0].style.filter = 'hue-rotate(180deg)'
+        bgEl[0].classList.add('light')
       }
+    }
+    
+    watch(currentThemeName, (val) => {
+      
+      val ? theme.change(val) : theme.change('system');
+      manageMapColors();
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('theme', val);
+      }
+
+
     });
 
-    onMounted(() => {
+    onMounted(async () => {
+      
       isDark.value = theme.global.current.value.dark;
+      // await nextTick();
+      // manageMapColors();
     });
 
-    return { localSelection, localDisplayMap, isDark };
+    return { localSelection, localDisplayMap, isDark, currentTheme, currentThemeName };
   }
 }
 </script>
 <style scoped>
 .settings-container {
   position: fixed;
-  left: 50%;
-  bottom: 16px;
-  transform: translateX(-50%);
+  left: 5px;
+  top: 50px;
   z-index: 5;
 }
 
+.v-select {}
+
 .settings-btn {
-  box-shadow: 0 2px 10px rgba(0,0,0,.35);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .35);
 }
 </style>
-

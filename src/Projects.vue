@@ -1,7 +1,8 @@
 <template>
 <div :class="{'project-container':true,'hide-content':!this.revealProjects}">
     <h1 class="section-headers"
-      :style="{ 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">
+   
+      :style="{'color':'black', 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">
       Projects
     </h1>
     <v-divider></v-divider>
