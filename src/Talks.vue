@@ -27,17 +27,21 @@
 </template>
 <script>
 import talks from './assets/talks.json';
+import { useTheme } from 'vuetify';
 export default {
     name: 'Talks',
     data: () => ({
-        talks
+        talks,
+        theme:useTheme()
     }),
 }
 </script>
 <style scoped>
 .talk-card {
     text-align: left;
-    background: #ffffffff;
+    background: rgb(var(--v-theme-surface));
+    color: rgb(var(--v-theme-text));
+
 }
 .co-authors {
     font-style: italic;
@@ -57,5 +61,6 @@ export default {
 .v-card-title .title-span-talks {
     line-height: 1.25em !important;
     white-space: break-spaces;
+    color: rgb(var(--v-theme-text));
 }
 </style>

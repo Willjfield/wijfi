@@ -2,15 +2,15 @@
   <div class="settings-container">
     <v-menu density="compact" location="top" :close-on-content-click="false">
       <template #activator="{ props }">
-        <v-btn elevation="0" variant="plain" v-bind="props" icon="mdi-cog" class="settings-btn" color="white"
-          :aria-label="'Open settings'">
+        <v-btn elevation="0" variant="plain" v-bind="props" prepend-icon="mdi-cog" append-icon="mdi-human"
+          class="settings-btn" :color="currentTheme.colors.surface" :aria-label="'Open settings'">/
         </v-btn>
       </template>
       <v-card color="primary" min-width="300">
         <v-card-title class="text-subtitle-1">Settings</v-card-title>
         <v-divider></v-divider>
         <v-card-text>
-          <v-switch v-model="localDisplayMap" :color="currentTheme.colors.surface" inset hide-details>
+          <v-switch v-model="localDisplayMap" :color="currentTheme.colors.text" inset hide-details>
             <template #label>
               <span>{{ localDisplayMap ? 'Hide map' : 'Show map' }}</span>
             </template>
@@ -35,8 +35,13 @@
               </template>
             </v-radio>
           </v-radio-group>
-          <v-select color="white" bg-color="secondary" class="mt-3" :items="rivers" v-model="localSelection"
-            density="compact" label="Background Map Location" item-title="title" item-value="value"></v-select>
+          <v-select class="mt-3 river-selection" :items="rivers" v-model="localSelection" density="compact"
+            label="Background Map Location" item-value="value">
+            <template v-slot:item="{ props: itemProps }">
+              <v-list-item :color="currentTheme.colors.text" :base-color="currentTheme.colors.text"
+                v-bind="itemProps"></v-list-item>
+            </template>
+          </v-select>
         </v-card-text>
       </v-card>
     </v-menu>
@@ -75,25 +80,35 @@ export default {
     watch(localSelection, (val) => emit('update:selection', val));
     watch(localDisplayMap, (val) => emit('update:displayMap', val));
 
-    function manageMapColors(){
+    function manageMapColors(_dark) {
       const bgMapEl = document.getElementById('bg-map');
       const canvEl = bgMapEl.getElementsByTagName('canvas');
-      const bgEl = document.getElementsByClassName('body-ready');
-      if(theme.global.current.value.dark){
-        bgMapEl.style.filter = 'invert(0)'
-       canvEl[0].style.filter = 'hue-rotate(0deg)'
-       bgEl[0].classList.remove('light')
-      }else{
-        bgMapEl.style.filter = 'invert(1)'
-        canvEl[0].style.filter = 'hue-rotate(180deg)'
-        bgEl[0].classList.add('light')
+
+      console.log(_dark)
+      console.log(theme.global.current.value)
+      if (theme.global.current.value.dark) {
+        if (bgMapEl) {
+          bgMapEl.style.filter = 'invert(0)'
+        }
+        if (canvEl.length > 0) {
+          canvEl[0].style.filter = 'hue-rotate(0deg)'
+        }
+        document.body.classList.remove('light')
+      } else {
+        if (bgMapEl) {
+          bgMapEl.style.filter = 'invert(1)'
+        }
+        if (canvEl.length > 0) {
+          canvEl[0].style.filter = 'hue-rotate(180deg)'
+        }
+        document.body.classList.add('light')
       }
     }
-    
+
     watch(currentThemeName, (val) => {
-      
+
       val ? theme.change(val) : theme.change('system');
-      manageMapColors();
+      manageMapColors(val);
       if (typeof window !== 'undefined') {
         localStorage.setItem('theme', val);
       }
@@ -102,16 +117,19 @@ export default {
     });
 
     onMounted(async () => {
-      
       isDark.value = theme.global.current.value.dark;
-      // await nextTick();
-      // manageMapColors();
     });
 
     return { localSelection, localDisplayMap, isDark, currentTheme, currentThemeName };
   }
 }
 </script>
+<style>
+.v-btn__prepend,
+.v-btn__append {
+  margin: 0;
+}
+</style>
 <style scoped>
 .settings-container {
   position: fixed;
@@ -120,9 +138,16 @@ export default {
   z-index: 5;
 }
 
-.v-select {}
+.settings-container button {
+  color: rgb(var(--v-theme-text)) !important;
+}
+
+.river-selection {
+  margin-top: 0 !important;
+}
 
 .settings-btn {
   box-shadow: 0 2px 10px rgba(0, 0, 0, .35);
+  opacity: 1;
 }
 </style>

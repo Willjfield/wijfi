@@ -50,8 +50,8 @@ export default {
     cursor: pointer;
     aspect-ratio: 1;
     /* background: linear-gradient(45deg, #e6e9ff, #ffffff); */
-    background: white;
-    box-shadow: 2px 2px 10px #77889982;
+    background: rgba(var(--v-theme-surface));
+    box-shadow: 2px 2px 10px rgba(var(--v-theme-dropShadow),.4);
 }
 
 .project-thumb .v-card-item {

@@ -2,7 +2,7 @@
 <div :class="{'project-container':true,'hide-content':!this.revealProjects}">
     <h1 class="section-headers"
    
-      :style="{'color':'black', 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">
+      :style="{'color':theme.global.current.colors.text, 'padding-left': $vuetify.display.mdAndUp ? '24px' : '0px', 'text-align': $vuetify.display.mdAndUp ? 'justify' : 'center' }">
       Projects
     </h1>
     <v-divider></v-divider>
@@ -19,7 +19,7 @@
 <script>
     import projects from './assets/projects.json';
     import ProjectThumb from './ProjectThumb.vue';
-
+    import { useTheme} from 'vuetify';
     export default {
         name: 'App',
         props:['revealProjects'],
@@ -27,6 +27,7 @@
             ProjectThumb
         },
         data: () => ({
+          theme: useTheme(),
             projects: projects.filter(project => project.active)
         })
     }

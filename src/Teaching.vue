@@ -18,10 +18,13 @@
 </template>
 <script>
 import teaching from './assets/teaching.json';
+import { useTheme } from 'vuetify';
+
 export default {
     name: 'Teaching',
     data: () => ({
-        teaching
+        teaching,
+        theme:useTheme()
     }),
 }
 </script>
@@ -42,5 +45,9 @@ export default {
     line-height: 1.25em;
     max-width: 75%;
     margin: 0 auto;
+}
+.teaching-container {
+  background: rgb(var(--v-theme-surface));
+  color: rgb(var(--v-theme-text));
 }
 </style>

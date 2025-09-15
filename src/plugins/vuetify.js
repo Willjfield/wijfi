@@ -13,10 +13,11 @@ export default createVuetify({
       light: {
         dark: false,
         colors: {
-          primary: colors.indigo.lighten4, 
-          secondary: colors.indigo.darken3,
-          surface: colors.indigo.accent1,
-          text: colors.indigo.darken3
+          primary: colors.indigo.lighten5, 
+          secondary: colors.indigo.lighten4,
+          surface: colors.indigo.lighten5,
+          text: colors.indigo.darken3,
+          dropShadow: '#778899'
         }
       },
       dark: {
@@ -24,9 +25,10 @@ export default createVuetify({
         colors: {
           primary: colors.indigo.darken3,
           secondary: colors.indigo.lighten4,
-          surface: colors.indigo.accent4,
-          text: colors.indigo.darken3
-
+          surface: colors.indigo.darken1,
+          surfaceSemiTransparent: colors.indigo.darken1+'.5',
+          text: colors.indigo.lighten4,
+          dropShadow: '#fff'
         }
       }
     },

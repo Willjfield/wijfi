@@ -5,15 +5,19 @@
       <SettingsMenu :rivers="rivers" :selection="selection" :displayMap="displayMap"
         @update:selection="selection = $event" @update:displayMap="displayMap = $event" />
       <div class="between-sections">
-        <div :style="{'color':theme.global.current.colors.text}" class="d-flex flex-column fill-height justify-center align-center">
-          <h1 class="text-h4 font-weight-thin mb-4">
-            Will Field
-          </h1>
-          <h4 class="subheading">
-            Software Engineer, Map Maker, Computer Graphics Developer
-          </h4>
+        <div :style="{ 'color': theme.global.current.colors.text }"
+          class="d-flex flex-column fill-height justify-center align-center">
+          <div class="visible-bg">
+            <h1 class="text-h4 font-weight-thin mb-4">
+              Will Field
+            </h1>
+            <h4 class="subheading">
+              Software Engineer, Map Maker, Computer Graphics Developer
+            </h4>
+          </div>
         </div>
-        <div class="center mt-12"><v-icon color="white" size="x-large">mdi-arrow-down</v-icon></div>
+        <div ref="downArrowPrompt" class="center mt-12"><v-icon :color="theme.global.current.colors.text"
+            size="x-large">mdi-arrow-down</v-icon></div>
       </div>
       <Projects :revealProjects="revealProjects" />
       <div class="between-sections"></div>
@@ -112,6 +116,12 @@ export default {
       } else {
         document.body.classList.remove("body-ready");
       }
+      console.log(this.theme.global.current.dark)
+      if (this.theme.global.current.dark) {
+        document.body.classList.remove("light");
+      } else {
+        document.body.classList.add("light");
+      }
     },
     loading(val) {
       if (val) {
@@ -150,7 +160,7 @@ export default {
   },
   async mounted() {
     let self = this;
-    
+
     document.addEventListener('scroll', () => {
       self.revealProjects = true;
     })
@@ -167,8 +177,9 @@ export default {
       }
       self.autoAnimation += .000075 * self.animationSpeed;
       if (self.autoAnimation > 1) self.autoAnimation = 0;
-      self.scrollEventHandler();
-
+      if(document.body.classList.contains('body-ready')){
+        self.scrollEventHandler();
+      }
       requestAnimationFrame(step);
     }
 
@@ -200,7 +211,7 @@ export default {
         const bgMapEl = document.getElementById('bg-map');
         const canvEl = bgMapEl.getElementsByTagName('canvas');
         const bgEl = document.getElementsByClassName('body-ready');
-        console.log(this.theme.global.current)
+        //console.log(this.theme.global.current)
         if (this.theme.global.current.dark) {
           bgMapEl.style.filter = 'invert(0)'
           canvEl[0].style.filter = 'hue-rotate(0deg)'
@@ -239,11 +250,11 @@ export default {
         terrain: true,
         pitch: 50
       });
-     // const self = this;
+      // const self = this;
       this.map.once("data", () => {
         document.addEventListener('scroll', this.scrollEventHandler);
         this.scrollEventHandler();
-        
+
         let _map = this.map;
 
         _map.addSource("terrain-source", {
@@ -303,9 +314,12 @@ export default {
 
     },
     scrollEventHandler() {
+
       let completion = (window.scrollY * this.animationSpeed) / document.body.offsetHeight;
       completion += this.autoAnimation;
-
+      if (window.scrollY > 5) {
+        this.$refs.downArrowPrompt.style.display = 'none';
+      }
       if (window.scrollY / window.innerHeight > 0.667 || this.modalOpen) {
         this.hideSelectRiver = true;
       } else {
@@ -406,6 +420,11 @@ export default {
 }
 </style>
 <style>
+.light .visible-bg {
+  padding: 1em;
+  background: linear-gradient(90deg, #fff9, #fffa, #fffa, white, #ffffff99);
+}
+
 .between-sections {
   height: 70vh;
 }
@@ -426,9 +445,10 @@ export default {
   text-align: justify;
   font-weight: 100;
   padding-left: 24px;
-  background: white;
+  background: rgb(var(--v-theme-surface));
   margin-top: 1em;
   padding: 12px;
+  color: rgb(var(--v-theme-text));
 }
 
 .logo:hover {
@@ -437,7 +457,8 @@ export default {
 
 .section-container {
   /* background: white; */
-  background: #ffffffac;
+  background: rgba(var(--v-theme-surface), .75);
+
 
 }
 
@@ -450,7 +471,7 @@ export default {
 }
 
 body {
-  background: midnightblue;
+  background: rgb(var(--v-theme-surface));
 }
 
 .project-container {
@@ -478,7 +499,9 @@ body {
   right: 0;
   font-weight: light;
   text-align: right;
-  color: white;
+  color: rgb(var(--v-theme-text));
+  background-color: rgb(var(--v-theme-surface));
+  /* width: auto; */
 }
 
 .body-ready {
@@ -488,10 +511,10 @@ body {
 .body-ready.light {
   background: linear-gradient(90deg,
       rgba(57, 73, 171, .2),
-      rgba(57, 73, 171, .1),
-      rgba(57, 73, 171, 0),
-      rgba(57, 73, 171, 0),
-      rgba(57, 73, 171, .1),
+      rgba(255, 255, 255, .1),
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, .1),
       rgba(57, 73, 171, .2))
 }
 
@@ -524,10 +547,6 @@ body {
 
 #bg-map canvas {
   filter: blur(1px);
-}
-
-.teaching-container {
-  background: white !important;
 }
 
 .map-switch,
