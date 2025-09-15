@@ -2,15 +2,15 @@
   <v-dialog :max-width="$vuetify.display.mdAndUp ? '60vw' : '95vw'" width="auto" v-model="modal" :retain-focus="false">
     <v-card role="dialog" :aria-modal="true" :aria-labelledby="titleId" :aria-describedby="descId">
       <v-card-actions>
-        <v-card-title :id="titleId" tabindex="-1"> <a class="external-link" :href="this.project.link">{{ project.title }}</a></v-card-title>
-        <v-btn icon="mdi-close" class="close-modal-x" color="primary" @click="closeModal" :aria-label="`Close ${project.title} details`"></v-btn>
+        <v-card-title :id="titleId" :color="theme.global.current.colors.text" tabindex="-1"> <a :color="theme.global.current.colors.text" class="external-link" :href="this.project.link">{{ project.title }}</a></v-card-title>
+        <v-btn icon="mdi-close" class="close-modal-x" :color="theme.global.current.colors.linkText" @click="closeModal" :aria-label="`Close ${project.title} details`"></v-btn>
       </v-card-actions>
 
       <v-card-text class="py-0" :id="descId">
         {{ project.summary }}
         <br>
         <v-card-actions>
-          <v-btn color="primary" prepend-icon="mdi-link" block :href="this.project.link">Visit {{ project.title }}</v-btn>
+          <v-btn :color="theme.global.current.colors.linkText" prepend-icon="mdi-link" block :href="this.project.link">Visit {{ project.title }}</v-btn>
         </v-card-actions>
         <br>
         <div class="img-container">
@@ -26,7 +26,7 @@
         Role: {{ project.role }}
       </v-card-text>
       <v-card-actions>
-        <v-btn color="primary" block @click="closeModal">Close</v-btn>
+        <v-btn :color="theme.global.current.colors.linkText" block @click="closeModal">Close</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -34,6 +34,7 @@
 </template>
 <script>
 import { inject } from 'vue';
+import {useTheme} from 'vuetify';
 export default {
   name: 'Modal',
   data() {
@@ -43,7 +44,8 @@ export default {
       mitt: inject('mitt'),
       previouslyFocusedElement: null,
       titleId: 'modal-title',
-      descId: 'modal-desc'
+      descId: 'modal-desc',
+      theme: useTheme()
     }
   },
   mounted() {
@@ -91,7 +93,7 @@ export default {
   /* max-width: 100%;
   max-height: 50%; */
   margin: 0 auto;
-  box-shadow: 1px 1px 10px 1px #9d9d9d;
+  box-shadow: 1px 1px 10px 1px rgb(var(--v-theme-dropShadow));
 }
 .visually-hidden {
   position: absolute;

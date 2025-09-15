@@ -8,7 +8,7 @@ import colors from 'vuetify/util/colors'
 export default createVuetify({
 
   theme: {
-    defaultTheme: 'light',
+    defaultTheme: 'dark',
     themes: {
       light: {
         dark: false,
@@ -17,7 +17,9 @@ export default createVuetify({
           secondary: colors.indigo.lighten4,
           surface: colors.indigo.lighten5,
           text: colors.indigo.darken3,
-          dropShadow: '#778899'
+          dropShadow: '#778899',
+          linkText:'#646cff',
+          linkTextHover:'#535bf2',
         }
       },
       dark: {
@@ -27,8 +29,10 @@ export default createVuetify({
           secondary: colors.indigo.lighten4,
           surface: colors.indigo.darken1,
           surfaceSemiTransparent: colors.indigo.darken1+'.5',
-          text: colors.indigo.lighten4,
-          dropShadow: '#fff'
+          text: colors.indigo.lighten5,
+          dropShadow: '#fff',
+          linkText:'#eee',
+          linkTextHover:'#fff',
         }
       }
     },

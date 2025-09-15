@@ -84,8 +84,6 @@ export default {
       const bgMapEl = document.getElementById('bg-map');
       const canvEl = bgMapEl.getElementsByTagName('canvas');
 
-      console.log(_dark)
-      console.log(theme.global.current.value)
       if (theme.global.current.value.dark) {
         if (bgMapEl) {
           bgMapEl.style.filter = 'invert(0)'
