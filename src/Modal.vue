@@ -34,7 +34,21 @@
 </template>
 <script>
 import { inject } from 'vue';
-import {useTheme} from 'vuetify';
+import { useTheme } from 'vuetify';
+import projects from './assets/projects.json';
+
+function titleToSlug(title) {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function findProjectBySlug(slug) {
+  const active = projects.filter((p) => p.active);
+  return active.find((p) => titleToSlug(p.title) === slug) ?? null;
+}
+
 export default {
   name: 'Modal',
   data() {
@@ -46,22 +60,37 @@ export default {
       titleId: 'modal-title',
       descId: 'modal-desc',
       theme: useTheme()
-    }
+    };
   },
   mounted() {
-    
     this.mitt.on('open-modal', (project) => {
+      this.openWithProject(project);
+      const slug = titleToSlug(project.title);
+      if (window.history.replaceState) {
+        window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}#${slug}`);
+      } else {
+        window.location.hash = slug;
+      }
+    });
+
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      const project = findProjectBySlug(hash);
+      if (project) {
+        this.$nextTick(() => this.openWithProject(project));
+      }
+    }
+  },
+  methods: {
+    openWithProject(project) {
       this.project = project;
       this.previouslyFocusedElement = document.activeElement;
       this.modal = true;
       this.$nextTick(() => {
         const titleEl = document.getElementById(this.titleId);
         if (titleEl) titleEl.focus();
-      })
-    });
-
-  },
-  methods: {
+      });
+    },
     closeModal() {
       this.modal = false;
     }
@@ -69,6 +98,11 @@ export default {
   watch: {
     modal(val) {
       if (!val) {
+        if (window.history.replaceState) {
+          window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        } else {
+          window.location.hash = '';
+        }
         this.mitt.emit('close-modal');
         if (this.previouslyFocusedElement && this.previouslyFocusedElement.focus) {
           this.previouslyFocusedElement.focus();
@@ -76,7 +110,7 @@ export default {
       }
     }
   }
-}
+};
 </script>
 <style scoped>
 .close-modal-x {
