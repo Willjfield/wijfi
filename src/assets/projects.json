@@ -1,5 +1,28 @@
 [
     {
+        "employer": "The Arras Foundation in collaboration with North Arrow",
+        "role": "Software Developer",
+        "title": "Community Health Indicator Dashboard",
+        "link": "https://arras.north-arrow.org/",
+        "active": true,
+        "thumbnail": "thumbs/arras_01.png",
+        "thumbnails": [
+            {
+                "path": "thumbs/arras_01.png",
+                "alt": "Dashboard showing a map of the two counties with a sidebar for each theme"
+            },
+            {
+                "path": "thumbs/arras_02.png",
+                "alt": "Dashboard showing a map of the two counties with a sidebar for each theme"
+            },
+            {
+                "path": "thumbs/arras_03.png",
+                "alt": "Dashboard showing a map of the two counties with a sidebar for each theme"
+            }
+        ],
+        "summary": "The Arras Foundation wanted to measure community health in the two counties they serve (Lancaster and Chester, SC) and track progress over time. We created a map-based dashboard that brings together 43 original, longitudinal datasets, organized into 5 themes--Economic Vitality, Education, Health, Natural Environment, and Social & Cultural Wellbeing. The split screen design allows the user to easily compare indicators." 
+    },
+    {
         "employer": "CUNY",
         "role": "Senior Application Developer",
         "title": "Long Island Zoning Atlas",

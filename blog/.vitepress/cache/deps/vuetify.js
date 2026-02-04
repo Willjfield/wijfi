@@ -1,33 +1,33 @@
 import {
   DateAdapterSymbol,
   DateOptionsSymbol,
+  DefaultsSymbol,
   DisplaySymbol,
   GoToSymbol,
-  createDate,
-  createDisplay,
-  createGoTo,
-  useDate,
-  useDisplay,
-  useGoTo,
-  useLayout
-} from "./chunk-55D5YUNP.js";
-import {
-  DefaultsSymbol,
   IN_BROWSER,
   IconSymbol,
   LocaleSymbol,
   ThemeSymbol,
+  createDate,
   createDefaults,
+  createDisplay,
+  createGoTo,
   createIcons,
   createLocale,
   createTheme,
   defineComponent,
   mergeDeep,
+  useDate,
   useDefaults,
+  useDisplay,
+  useGoTo,
+  useHotkey,
+  useLayout,
   useLocale,
+  useMask,
   useRtl,
   useTheme
-} from "./chunk-ZN2KC5C5.js";
+} from "./chunk-A466ZLYA.js";
 import {
   effectScope,
   nextTick,
@@ -133,7 +133,7 @@ function createVuetify() {
     };
   });
 }
-var version = "3.8.5";
+var version = "3.10.0";
 createVuetify.version = version;
 function inject(key) {
   const vm = this.$;
@@ -148,8 +148,10 @@ export {
   useDefaults,
   useDisplay,
   useGoTo,
+  useHotkey,
   useLayout,
   useLocale,
+  useMask,
   useRtl,
   useTheme,
   version

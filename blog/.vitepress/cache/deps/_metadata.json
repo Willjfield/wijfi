@@ -1,76 +1,64 @@
 {
-  "hash": "367b21d3",
+  "hash": "3be4573c",
   "configHash": "e7e3f5f9",
-  "lockfileHash": "80d3616d",
-  "browserHash": "2721aaf1",
+  "lockfileHash": "d15bb0b7",
+  "browserHash": "05e78c59",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "857f7b27",
+      "fileHash": "2b478ec3",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/vitepress/node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "4275dd1a",
+      "fileHash": "35ba2819",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
       "src": "../../../../node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "e4338958",
+      "fileHash": "1cd3df19",
       "needsInterop": false
     },
     "vitepress > @vueuse/integrations/useFocusTrap": {
       "src": "../../../../node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "vitepress___@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "c3577196",
+      "fileHash": "738dea59",
       "needsInterop": false
     },
     "vitepress > mark.js/src/vanilla.js": {
       "src": "../../../../node_modules/mark.js/src/vanilla.js",
       "file": "vitepress___mark__js_src_vanilla__js.js",
-      "fileHash": "a6c2cfb7",
+      "fileHash": "4dfc362e",
       "needsInterop": false
     },
     "vitepress > minisearch": {
       "src": "../../../../node_modules/minisearch/dist/es/index.js",
       "file": "vitepress___minisearch.js",
-      "fileHash": "ba951a17",
+      "fileHash": "4b74ba5f",
       "needsInterop": false
     },
     "vuetify": {
       "src": "../../../../node_modules/vuetify/lib/framework.js",
       "file": "vuetify.js",
-      "fileHash": "fcf9e30b",
+      "fileHash": "6a1191af",
       "needsInterop": false
     },
     "vuetify/components": {
       "src": "../../../../node_modules/vuetify/lib/components/index.js",
       "file": "vuetify_components.js",
-      "fileHash": "4b6f78bb",
-      "needsInterop": false
-    },
-    "vuetify/components/VCard": {
-      "src": "../../../../node_modules/vuetify/lib/components/VCard/index.js",
-      "file": "vuetify_components_VCard.js",
-      "fileHash": "2c685f8f",
+      "fileHash": "8d007bfa",
       "needsInterop": false
     }
   },
   "chunks": {
+    "chunk-A466ZLYA": {
+      "file": "chunk-A466ZLYA.js"
+    },
     "chunk-C3SBVAB5": {
       "file": "chunk-C3SBVAB5.js"
-    },
-    "chunk-HTZ6CKWA": {
-      "file": "chunk-HTZ6CKWA.js"
-    },
-    "chunk-55D5YUNP": {
-      "file": "chunk-55D5YUNP.js"
-    },
-    "chunk-ZN2KC5C5": {
-      "file": "chunk-ZN2KC5C5.js"
     },
     "chunk-JKYORFWC": {
       "file": "chunk-JKYORFWC.js"
