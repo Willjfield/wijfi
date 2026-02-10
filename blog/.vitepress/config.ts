@@ -1,5 +1,4 @@
 import { defineConfig } from 'vitepress'
-// import vuetify from '../../src/plugins/vuetify'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -20,9 +19,27 @@ export default defineConfig({
       { icon: 'protonmail', link: 'mailto:willjfield@proton.me' },
     ]
   }, 
-  cleanUrls: true
-  // vite: {
-  //   plugins: [vuetify()]
-  // }
+  cleanUrls: true,
+  vite: {
+    ssr: {
+      noExternal: ['vuetify']
+    },
+    optimizeDeps: {
+      include: ['vuetify']
+    },
+    resolve: {
+      dedupe: ['vue']
+    },
+    plugins: [
+      {
+        name: 'ssr-css-handler',
+        enforce: 'pre',
+        load(id) {
+          if (id.endsWith('.css')) {
+            return 'export default {}'
+          }
+        }
+      }
+    ]
   }
-)
+})

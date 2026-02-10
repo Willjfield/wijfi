@@ -55,7 +55,7 @@ export default {
     return {
       modal: false,
       project: {},
-      mitt: inject('mitt'),
+      mitt: null,
       previouslyFocusedElement: null,
       titleId: 'modal-title',
       descId: 'modal-desc',
@@ -63,6 +63,7 @@ export default {
     };
   },
   mounted() {
+    this.mitt = inject('mitt');
     this.mitt.on('open-modal', (project) => {
       this.openWithProject(project);
       const slug = titleToSlug(project.title);
