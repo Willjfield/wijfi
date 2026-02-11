@@ -30,7 +30,21 @@ const router = createRouter({
             name: 'protected',
             component: () => import('./views/Protected.vue'),
             meta: { title: 'Protected' }
-        }
+        },
+        // {
+
+        //     path: '/blog',
+        //     name: 'blog',
+        //     // Special route to directly serve the static HTML from /public/blog/index.html.
+        //     // We'll use a route guard to redirect to the static file, since Vue cannot render an HTML file directly.
+        //     beforeEnter() {
+        //         window.location.assign('/blog/');
+        //     },
+        //     // dummy component because one is required, but it will never be rendered
+        //     component: { template: '<div></div>' },
+        //     meta: { title: 'Blog' }
+        // },
+        
     ]
 })
 

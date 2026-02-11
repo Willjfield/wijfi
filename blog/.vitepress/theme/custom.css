@@ -1,3 +1,122 @@
 .vp-external-link-icon::after{
     display: none !important;
-  }
+}
+
+/* Tighter article grid on blog home */
+.article-grid.v-container {
+  max-width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.article-grid .v-row {
+  margin: -0.5rem;
+}
+.article-grid .v-col {
+  padding: 0.5rem;
+}
+
+
+/* Override Vuetify's CSS reset for VitePress content */
+/* Only target VitePress doc content, not Vuetify components */
+.vp-doc:not(.v-application) {
+  /* Restore VitePress typography */
+  font-family: var(--vp-font-family-base) !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  color: var(--vp-c-text-1) !important;
+}
+
+/* Ensure VitePress markdown content is properly styled with high specificity */
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.vp-doc h4,
+.vp-doc h5,
+.vp-doc h6 {
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  margin-top: 2em !important;
+  margin-bottom: 1em !important;
+  font-family: var(--vp-font-family-base) !important;
+}
+
+.vp-doc h1 {
+  font-size: 2.25em !important;
+  border-bottom: 1px solid var(--vp-c-divider) !important;
+  padding-bottom: 0.3em !important;
+  margin-top: 0 !important;
+}
+
+.vp-doc h2 {
+  font-size: 1.75em !important;
+  border-bottom: 1px solid var(--vp-c-divider) !important;
+  padding-bottom: 0.3em !important;
+}
+
+.vp-doc p {
+  margin: 1em 0 !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+}
+
+.vp-doc ul,
+.vp-doc ol {
+  margin: 1em 0 !important;
+  padding-left: 1.5em !important;
+}
+
+.vp-doc li {
+  margin: 0.25em 0 !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+}
+
+.vp-doc code {
+  background-color: var(--vp-c-bg-mute) !important;
+  padding: 0.2em 0.4em !important;
+  border-radius: 3px !important;
+  font-size: 0.9em !important;
+  font-family: var(--vp-font-family-mono) !important;
+}
+
+.vp-doc pre {
+  background-color: var(--vp-c-bg-mute) !important;
+  padding: 1em !important;
+  border-radius: 8px !important;
+  overflow-x: auto !important;
+  margin: 1em 0 !important;
+}
+
+.vp-doc pre code {
+  background-color: transparent !important;
+  padding: 0 !important;
+}
+
+.vp-doc blockquote {
+  border-left: 4px solid var(--vp-c-brand) !important;
+  padding-left: 1em !important;
+  margin: 1em 0 !important;
+  color: var(--vp-c-text-2) !important;
+}
+
+.vp-doc img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+.vp-doc table {
+  border-collapse: collapse !important;
+  margin: 1em 0 !important;
+  width: 100% !important;
+}
+
+.vp-doc th,
+.vp-doc td {
+  border: 1px solid var(--vp-c-divider) !important;
+  padding: 0.6em 1em !important;
+}
+
+.vp-doc th {
+  background-color: var(--vp-c-bg-mute) !important;
+  font-weight: 600 !important;
+}

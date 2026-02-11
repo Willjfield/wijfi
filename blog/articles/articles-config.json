@@ -3,7 +3,7 @@
         {
             "id": 1,
             "title": "New Portfolio",
-            "excerpt": "New country, new job search, new portfolio, new blog...",
+            "excerpt": "A new country, a new portfolio, a new blog...",
             "image": "/articles/portfolio/assets/portfolio-thumb.jpg",
             "href": "/articles/portfolio/article",
             "date": "Aug. 27, 2025",
@@ -12,29 +12,11 @@
         {
             "id": 2,
             "title": "Glitch Mapping With Browser Anti-Fingerprinting",
-            "excerpt": "Glitches can sometimes reveal more about a medium and its limitations than intentional work...",
+            "excerpt": "A bug reveals a glitch that turns out to be a feature of the browser's privacy protection measures.",
             "image": "/articles/fingerprinting/assets/fingerprinting-thumb.jpg",
             "href": "/articles/fingerprinting/article",
-            "date": "Aug. 27, 2025",
+            "date": "Nov. 20, 2025",
             "published": true
-        },
-        {
-            "id": 3,
-            "title": "'Fixing' Anti-Fingerprint Glitches in MapLibre",
-            "excerpt": "Glitches when you don't want them and how I made my first contribution to MapLibre GL JS...",
-            "image": "/articles/fixing-fingerprinting/assets/fixing-fngr-thumb.jpg",
-            "href": "/articles/fixing-fingerprinting/article",
-            "date": "2023-05-29",
-            "published": true
-        },
-        {
-            "id": 5,
-            "title": "Where Does Data from Pokemon Go go?",
-            "excerpt": "Est commodi iusto et alias deleniti sed voluptatibus tempora est reprehenderit autem...",
-            "image": "/articles/thumbnail-01.png",
-            "href": "/articles/article-4",
-            "date": "2023-05-29",
-            "published": false
         },
         {
             "id": 6,
@@ -42,8 +24,8 @@
             "excerpt": "Est commodi iusto et alias deleniti sed voluptatibus tempora est reprehenderit autem...",
             "image": "/articles/thumbnail-01.png",
             "href": "/articles/article-4",
-            "date": "2023-05-29",
-            "published": false
+            "date": "Jan. 20, 2026",
+            "published": true
         },
         {
             "id": 7,
@@ -51,8 +33,17 @@
             "excerpt": "Est commodi iusto et alias deleniti sed voluptatibus tempora est reprehenderit autem...",
             "image": "/articles/thumbnail-01.png",
             "href": "/articles/article-4",
-            "date": "2023-05-29",
-            "published": false
+            "date": "Jan. 25, 2026",
+            "published": true
+        },
+        {
+            "id": 8,
+            "title": "Community Health Indicator Dashboard",
+            "excerpt": "A dashboard for the Arras Foundation to track community health indicators.",
+            "image": "/articles/thumbnail-01.png",
+            "href": "/articles/article-4",
+            "date": "Feb. 11, 2026",
+            "published": true
         }
     ]
 }

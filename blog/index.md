@@ -7,9 +7,9 @@ hero:
   tagline: My professional work and experiments in GIS
 ---
 
-<v-container>
+<v-container class="article-grid">
   <v-row no-gutters>
-    <v-col :cols="cols" v-for="article in articles.filter(a => a.published)">
+    <v-col :cols="cols" v-for="article in articles.filter(a => a.published)" :key="article.href">
       <ArticleCard
       :title="article.title"
       :excerpt="article.excerpt"
@@ -31,17 +31,14 @@ import { useDisplay } from 'vuetify'
 const { name } = useDisplay()
 
   const cols = computed(() => {
-    // name is reactive and
-    // must use .value
     switch (name.value) {
       case 'xs': return 12
       case 'sm': return 12
-      case 'md': return 4
-      case 'lg': return 3
-      case 'xl': return 3
-      case 'xxl': return 3
+      case 'md': return 4   // 3 columns
+      case 'lg': return 4   // 3 columns
+      case 'xl': return 4   // 3 columns
+      case 'xxl': return 4  // 3 columns
     }
-
-    return undefined
+    return 12
   })
 </script>

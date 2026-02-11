@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "blog:dev": "vitepress dev blog",
     "blog:build": "vitepress build blog",
+    "blog:build:preview": "VITEPRESS_BASE=/ vitepress build blog",
     "blog:preview": "vitepress preview blog"
   },
   "dependencies": {
