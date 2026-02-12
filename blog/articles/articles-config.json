@@ -25,7 +25,7 @@
             "image": "/articles/thumbnail-01.png",
             "href": "/articles/article-4",
             "date": "Jan. 20, 2026",
-            "published": true
+            "published": false
         },
         {
             "id": 7,
@@ -34,14 +34,14 @@
             "image": "/articles/thumbnail-01.png",
             "href": "/articles/article-4",
             "date": "Jan. 25, 2026",
-            "published": true
+            "published": false
         },
         {
             "id": 8,
             "title": "Community Health Indicator Dashboard",
             "excerpt": "A dashboard for the Arras Foundation to track community health indicators.",
-            "image": "/articles/thumbnail-01.png",
-            "href": "/articles/article-4",
+            "image": "/articles/CHID/thumb.jpg",
+            "href": "/articles/CHID/article",
             "date": "Feb. 11, 2026",
             "published": true
         }
