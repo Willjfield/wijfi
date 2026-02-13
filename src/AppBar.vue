@@ -4,7 +4,7 @@
             <!-- <h3>Will J Field</h3> -->
         </v-app-bar-title>
         <template v-slot:append>
-            <v-btn stacked href="mailto:willjfield@proton.me">
+            <v-btn stacked href="https://wijfi.com/blog">
                 <v-icon>mdi-post-outline</v-icon>
                 <span v-show="$vuetify.display.mdAndUp" class="email-address"></span>
             </v-btn>
