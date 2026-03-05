@@ -6,7 +6,7 @@ title:Community Health Indicator Dashboard
 #### With [North Arrow](https://www.north-arrow.org/) for [The Arras Foundation](https://arrasfoundation.org/)
 
 <figure>
-  <img style="max-height:75dvh; border: 1px solid gray; margin: 0 auto;" src="./assets/Banner.jpg" alt="" />
+  <img  src="./assets/Banner.jpg" alt="" />
 </figure>
 
 I'm finally wrapping up the [Community Health Indicator Dashboard](https://arras.north-arrow.org/), my first project with [North Arrow](https://www.north-arrow.org/) - a GIS consultancy run by Olivia Ildefonso Ph.D, who I was fortunate enough to meet at CUNY, and her partner Charles Grosperrin. I had been aware of North Arrow for several years and excited to finally work with them to implement a custom dashboard for [The Arras Foundation](https://arrasfoundation.org/), a non-profit dedicated to the health and wellbeing of residents in Lancaster and Chester counties in South Carolina.
