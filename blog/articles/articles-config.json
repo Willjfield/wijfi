@@ -44,6 +44,15 @@
             "href": "/articles/CHID/article",
             "date": "Feb. 11, 2026",
             "published": true
+        },
+        {
+            "id": 9,
+            "title": "Maputnik Style Editor",
+            "excerpt": "A chat interface for Maputnik to help with accessibility and design.",
+            "image": "/articles/MaputnikAgent/assets/Chat_Window_Only.png",
+            "href": "/articles/MaputnikAgent/article",
+            "date": "Mar. 5, 2026",
+            "published": true
         }
     ]
 }

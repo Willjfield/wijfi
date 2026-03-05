@@ -13,8 +13,8 @@ hero:
       <ArticleCard
       :title="article.title"
       :excerpt="article.excerpt"
-      :image="article.image"
-      :href="article.href"
+      :image="`${basePath}${article.image}`"
+      :href="`${basePath}${article.href}`"
       :date="article.date"
       />
     </v-col>
@@ -28,6 +28,8 @@ import { articles } from '../blog/articles/articles-config.json'
 import { computed } from 'vue'
 import { useDisplay } from 'vuetify'
 
+// Use VitePress base path (not full URL) so the router can handle client-side navigation
+const basePath = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') || ''
 const { name } = useDisplay()
 
   const cols = computed(() => {

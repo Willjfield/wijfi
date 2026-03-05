@@ -27,7 +27,7 @@ function copyAssets() {
           const destPath = join(destDir, entry.name)
           
           if (entry.isDirectory()) {
-            if (entry.name === 'assets' || entry.name.match(/^(portfolio|fingerprinting|fixing-fingerprinting)$/)) {
+            if (entry.name === 'assets' || !entry.name.startsWith('_')) {
               copyRecursive(srcPath, destPath)
             }
           } else if (entry.isFile() && /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(entry.name)) {
