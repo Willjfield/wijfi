@@ -5,7 +5,8 @@
         </v-app-bar-title>
         <template v-slot:append>
             <v-btn stacked href="https://wijfi.com/blog">
-                <v-icon>mdi-post-outline</v-icon>
+                <!-- <v-icon>mdi-post-outline</v-icon> -->
+                Blog
                 <span v-show="$vuetify.display.mdAndUp" class="email-address"></span>
             </v-btn>
             <v-btn stacked href="mailto:willjfield@proton.me">

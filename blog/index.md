@@ -9,7 +9,7 @@ hero:
 
 <v-container class="article-grid">
   <v-row no-gutters>
-    <v-col :cols="cols" v-for="article in articles.filter(a => a.published)" :key="article.href">
+    <v-col :cols="cols" v-for="article in articles.filter(a => a.published).sort((a,b) => +b.id - (+a.id))" :key="article.href">
       <ArticleCard
       :title="article.title"
       :excerpt="article.excerpt"
