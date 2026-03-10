@@ -49,6 +49,12 @@ export default defineConfig({
   base,
   title: "Geospatial Blog",
   description: "A blog to document and share my geospatial work",
+  // Rewrite article pages so the generated output is .../index.html
+  // instead of .../article.html. This gives URLs like /articles/slug/
+  // when combined with cleanUrls.
+  rewrites: {
+    'articles/:slug/article.md': 'articles/:slug/index.md'
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [

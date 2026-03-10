@@ -5,7 +5,7 @@
             "title": "New Portfolio",
             "excerpt": "A new country, a new portfolio, a new blog...",
             "image": "/articles/portfolio/assets/portfolio-thumb.jpg",
-            "href": "/articles/portfolio/article",
+            "href": "/articles/portfolio/",
             "date": "Aug. 27, 2025",
             "published": true
         },
@@ -14,7 +14,7 @@
             "title": "Glitch Mapping With Browser Anti-Fingerprinting",
             "excerpt": "A bug reveals a glitch that turns out to be a feature of the browser's privacy protection measures.",
             "image": "/articles/fingerprinting/assets/fingerprinting-thumb.jpg",
-            "href": "/articles/fingerprinting/article",
+            "href": "/articles/fingerprinting/",
             "date": "Nov. 20, 2025",
             "published": true
         },
@@ -41,7 +41,7 @@
             "title": "Community Health Indicator Dashboard",
             "excerpt": "A dashboard for the Arras Foundation to track community health indicators.",
             "image": "/articles/CHID/thumb.jpg",
-            "href": "/articles/CHID/article",
+            "href": "/articles/CHID/",
             "date": "Feb. 11, 2026",
             "published": true
         },
@@ -50,7 +50,7 @@
             "title": "Maputnik Style Editor",
             "excerpt": "A chat interface for Maputnik to help with accessibility and design.",
             "image": "/articles/MaputnikAgent/assets/Chat_Window_Only.png",
-            "href": "/articles/MaputnikAgent/article",
+            "href": "/articles/MaputnikAgent/",
             "date": "Mar. 5, 2026",
             "published": true
         }

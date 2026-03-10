@@ -1,0 +1,21 @@
+# Rewrite blog clean URLs (e.g. /blog/articles/MaputnikAgent/article) to the actual .html files
+# so direct navigation and refresh work. Put more specific rules first.
+[[redirects]]
+  from = "/blog/"
+  to = "/blog/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/blog/:splat/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/articles/:slug/article"
+  to = "/blog/articles/:slug/"
+  status = 301

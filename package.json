@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "deploy": "vite build && VITEPRESS_BASE=/blog/ vitepress build blog && mkdir -p dist/blog && cp -rf ./blog/.vitepress/dist/* ./dist/blog/",
+    "deploy": "vite build && VITEPRESS_BASE=/blog/ vitepress build blog && mkdir -p dist/blog && cp -rf ./blog/.vitepress/dist/* ./dist/blog/ && cp _redirects dist/",
     "preview": "vite preview",
     "blog:dev": "vitepress dev blog",
     "blog:build": "vitepress build blog",
